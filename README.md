@@ -1,2 +1,4 @@
 # JavaScript-tool-function
-谭金涛常用的JavaScript函数的项目
+
+🍑 这里汇集了谭金涛常用的JS方法。
+
