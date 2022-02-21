@@ -12,18 +12,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import zh from '@angular/common/locales/zh';
 import { IconsProviderModule } from './icons-provider.module';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 // 页面
 import { IndexComponent } from './pages/index/index.component';
 import { NoFoundComponent } from './pages/no-found/no-found.component';
 import { OpenAnimationComponent } from './components/open-animation/open-animation.component';
+import { UtilOneComponent } from './pages/util-one/util-one.component';
+
 
 
 // 组件
-
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 // 服务
 
 
@@ -40,7 +41,8 @@ registerLocaleData(en);
     AppComponent,
     IndexComponent,
     NoFoundComponent,
-    OpenAnimationComponent
+    OpenAnimationComponent,
+    UtilOneComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
+    NzButtonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { IndexComponent } from './pages/index/index.component';
+import { IndexComponent } from './pages/index/index.component';
 import { NoFoundComponent } from './pages/no-found/no-found.component';
+import { UtilOneComponent } from './pages/util-one/util-one.component';
 
 const routes: Routes = [
   {
     path: 'index',
-    //*1) component: IndexComponent,
-    //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
-    loadChildren: () =>
-      import('./pages/index/index-routing.module').then(
-        (m) => m.IndexRoutingModule
-      ),
+    component: IndexComponent,
+    children: [
+      {
+        path: 'util-1',
+        component: UtilOneComponent,
+      },
+    ],
   },
   // 重定向路由
   {
@@ -22,7 +24,12 @@ const routes: Routes = [
   // 404 路由
   {
     path: '**',
-    component: NoFoundComponent,
+    //*1) component: NoFoundComponent,
+    //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
+    loadChildren: () =>
+      import('./pages/no-found/no-found-routing.module').then(
+        (m) => m.NoFoundRoutingModule
+      ),
   },
 ];
 
