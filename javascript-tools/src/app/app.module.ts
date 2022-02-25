@@ -18,13 +18,17 @@ import { IndexComponent } from './pages/index/index.component';
 import { NoFoundComponent } from './pages/no-found/no-found.component';
 import { OpenAnimationComponent } from './components/open-animation/open-animation.component';
 import { UtilOneComponent } from './pages/util-one/util-one.component';
+import { UtilTwoComponent } from './pages/util-two/util-two.component';
 
+// monaco-editor 组件
+import { MonacoEditorComponent } from './components/monaco-editor/monaco-editor.component';
 
 
 // 组件
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+
 // 服务
 
 
@@ -42,7 +46,9 @@ registerLocaleData(en);
     IndexComponent,
     NoFoundComponent,
     OpenAnimationComponent,
-    UtilOneComponent
+    UtilOneComponent,
+    MonacoEditorComponent,
+    UtilTwoComponent
   ],
   imports: [
     BrowserModule,

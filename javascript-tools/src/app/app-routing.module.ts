@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { NoFoundComponent } from './pages/no-found/no-found.component';
 import { UtilOneComponent } from './pages/util-one/util-one.component';
+import { UtilTwoComponent } from './pages/util-two/util-two.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: 'util-1',
         component: UtilOneComponent,
+      },
+      {
+        path: 'util-2',
+        component: UtilTwoComponent,
       },
     ],
   },

@@ -1,2 +1,6 @@
-<div id="monaco" #box>
+
+<app-monaco-editor [code]='initCode'></app-monaco-editor>
+<div>
+    <button (click)="saveCode()"> Save </button>
+    <button (click)="clearCode()"> Clear </button>
 </div>

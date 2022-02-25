@@ -10,6 +10,10 @@ export const MenuConfig = [
         exhibitStr: '数字转中文',
         router:'/index/util-1',
       },
+      {
+        exhibitStr: 'xxx',
+        router:'/index/util-2',
+      },
     ]
   },
 
@@ -37,6 +41,5 @@ export const MenuConfig = [
         router:'',
       },
     ]
-  },
-
+  }
 ]
