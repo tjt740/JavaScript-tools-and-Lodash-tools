@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// 左侧菜单栏
 import * as all from '../../config/menu-config';
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -15,7 +15,8 @@ export class IndexComponent implements OnInit {
   routeConfig: any;
 
   constructor(
-    private route: Router,
+    protected route: Router,
+
   ) { }
 
   ngOnInit(): void {
