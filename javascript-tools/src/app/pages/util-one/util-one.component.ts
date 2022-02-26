@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// 函数文档
+
+
+
+// Step1 函数文档
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
@@ -8,13 +11,13 @@ import { ToolsDocService } from 'src/app/services/tools-doc.service';
   styleUrls: ['./util-one.component.less'],
 })
 export class UtilOneComponent implements OnInit {
-  initCode: string = '';
+  initCode: any = '';
   constructor(
     public toolsDoc: ToolsDocService,
   ) {}
 
   ngOnInit(): void {
-    //初始化
+    // Step2 初始化
     this.initCode = this.toolsDoc.intToChinese()
   }
 }

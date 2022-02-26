@@ -5,7 +5,7 @@ import * as all from '../../config/menu-config';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.less']
+  styleUrls: ['./index.component.less'],
 })
 export class IndexComponent implements OnInit {
   isCollapsed = false;
@@ -14,10 +14,7 @@ export class IndexComponent implements OnInit {
 
   routeConfig: any;
 
-  constructor(
-    protected route: Router,
-
-  ) { }
+  constructor(protected route: Router) {}
 
   ngOnInit(): void {
     // 获取左边menu的菜单栏详情
@@ -32,8 +29,7 @@ export class IndexComponent implements OnInit {
     this.route.navigateByUrl('/index');
   }
 
-  trackFn(item:any) {
+  trackFn(item: any) {
     return item.id;
   }
-
 }

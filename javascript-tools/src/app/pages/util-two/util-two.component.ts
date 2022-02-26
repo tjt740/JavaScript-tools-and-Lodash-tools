@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
   selector: 'app-util-two',
@@ -7,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilTwoComponent implements OnInit {
 
-  constructor() { }
+  initCode: string = '';
+  constructor(
+    public toolsDoc: ToolsDocService,
+  ) {}
 
-  initCode:string = `
-  function fn(){
-    console.log(321);
-  }
-`;
   ngOnInit(): void {
+    // Step2 初始化
+    this.initCode = this.toolsDoc.randomNum(0, 10);
   }
 
 }

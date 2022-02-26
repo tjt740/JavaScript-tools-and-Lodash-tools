@@ -4,13 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ToolsDocService {
-  constructor() { }
+  constructor() {}
+  // >>>处理数字<<<
+  // *生成范围随机数
+  randomNum(min: number, max: number): string {
+    return `
+      //生成范围随机数
+      const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
+      // randomNum(0,5)  [0-5]
+    `;
+  }
 
-  //===============>>>处理字符串<<<==================
-  // 数字转中文
+  // >>>处理字符串<<<
+  // *数字转中文
   intToChinese(): string {
     return `
+        // 数字转中文
         const intToChinese = (value) => {
           const str = String(value);
           const len = str.length - 1;
@@ -41,13 +51,12 @@ export class ToolsDocService {
           });
       };
 
-      intToChinese(1000)/ intToChinese('9999')
+      // intToChinese(1000)    '一千'
+      // intToChinese('9999')  '九千九百九十九'
     `;
-  };
+  }
 
-   //===============>>>处理数组<<<==================
+  // >>>处理数组<<<
 
-
-
-  //===============>>>处理JSON<<<==================
+  // >>>处理JSON<<<
 }
