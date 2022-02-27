@@ -14,6 +14,7 @@ export class UtilTenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.digitUppercase();
   }
 
 }

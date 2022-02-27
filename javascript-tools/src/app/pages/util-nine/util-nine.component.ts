@@ -14,6 +14,7 @@ export class UtilNineComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getCamelCase();
   }
 
 }

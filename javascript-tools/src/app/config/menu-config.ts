@@ -75,8 +75,8 @@ export const MenuConfig = [
         router: '/index/util-8',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '短横线命名转换成驼峰命名',
+        router: '/index/util-9',
       },
       {
         exhibitStr: '',
@@ -104,20 +104,20 @@ export const MenuConfig = [
     id: Math.random(),
     childRoute: [
       {
+        exhibitStr: '随机数字',
+        router: '/index/util-2',
+      },
+      {
+        exhibitStr: '数字转化为大写金额',
+        router: '/index/util-10',
+      },
+      {
         exhibitStr: '数字转中文',
         router: '/index/util-1',
       },
       {
-        exhibitStr: '生成范围随机数',
-        router: '/index/util-2',
-      },
-      {
         exhibitStr: '数字千分位分隔',
         router: '/index/util-3',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
       },
       {
         exhibitStr: '',
