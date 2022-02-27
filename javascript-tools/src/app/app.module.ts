@@ -13,21 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import zh from '@angular/common/locales/zh';
 import { IconsProviderModule } from './icons-provider.module';
 
+// monaco-editor 组件
+import { MonacoEditorComponent } from './components/monaco-editor/monaco-editor.component';
+
 // 页面
 import { IndexComponent } from './pages/index/index.component';
 import { NoFoundComponent } from './pages/no-found/no-found.component';
 import { OpenAnimationComponent } from './components/open-animation/open-animation.component';
 import { UtilOneComponent } from './pages/util-one/util-one.component';
 import { UtilTwoComponent } from './pages/util-two/util-two.component';
-
-// monaco-editor 组件
-import { MonacoEditorComponent } from './components/monaco-editor/monaco-editor.component';
-
-
-// 组件
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzButtonModule } from 'ng-zorro-antd/button';
 import { UtilThreeComponent } from './pages/util-three/util-three.component';
 import { UtilFourComponent } from './pages/util-four/util-four.component';
 import { UtilFiveComponent } from './pages/util-five/util-five.component';
@@ -49,6 +43,13 @@ import { UtilTwentyComponent } from './pages/util-twenty/util-twenty.component';
 import { UtilTwentyOneComponent } from './pages/util-twenty-one/util-twenty-one.component';
 import { UtilTwentyTwoComponent } from './pages/util-twenty-two/util-twenty-two.component';
 import { UtilTwentyThreeComponent } from './pages/util-twenty-three/util-twenty-three.component';
+
+
+// 组件
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 // 服务
 

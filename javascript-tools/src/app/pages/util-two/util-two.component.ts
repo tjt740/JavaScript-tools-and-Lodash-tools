@@ -15,7 +15,7 @@ export class UtilTwoComponent implements OnInit {
 
   ngOnInit(): void {
     // Step2 初始化
-    this.initCode = this.toolsDoc.randomNum(0, 10);
+    this.initCode = this.toolsDoc.randomNum();
   }
 
 }

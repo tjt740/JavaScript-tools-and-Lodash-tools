@@ -2,111 +2,159 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MonacoEditorConfigService {
+  initCode: string = '';
+  constructor() {}
 
-  constructor() { }
-  // get monaco.languages.ILanguageExtensionPoint Object for 'CustomLang' Lanaguage
   public getCustomLangExtensionPoint(): monaco.languages.ILanguageExtensionPoint {
     const newLanguage: monaco.languages.ILanguageExtensionPoint = {
-      id: 'CustomLang'
+      id: 'CustomLang',
     };
     return newLanguage;
   }
 
-  // get IMonarchTokenProvider object for 'CustomLang' Language
-  // This object defines the rules for syntax highlighting
   public getCustomLangTokenProviders(): any {
     return <any>{
-      // Set defaultToken to invalid to see what you do not tokenize yet
-      // defaultToken: 'invalid',
-
       keywords: [
-        'abstract', 'continue', 'for', 'new', 'switch', 'assert', 'goto', 'do',
-        'if', 'private', 'this', 'break', 'protected', 'throw', 'else', 'public',
-        'enum', 'return', 'catch', 'try', 'interface', 'static', 'class',
-        'finally', 'const', 'super', 'while', 'true', 'false'
+        'abstract',
+        'continue',
+        'for',
+        'new',
+        'switch',
+        'assert',
+        'goto',
+        'do',
+        'if',
+        'private',
+        'this',
+        'break',
+        'protected',
+        'throw',
+        'else',
+        'public',
+        'enum',
+        'return',
+        'catch',
+        'try',
+        'interface',
+        'static',
+        'class',
+        'finally',
+        'const',
+        'super',
+        'while',
+        'true',
+        'false',
       ],
 
       typeKeywords: [
-        'boolean', 'double', 'byte', 'int', 'short', 'char', 'void', 'long', 'float'
+        'boolean',
+        'double',
+        'byte',
+        'int',
+        'short',
+        'char',
+        'void',
+        'long',
+        'float',
       ],
 
       operators: [
-        '=', '>', '<', '!', '~', '?', ':', '==', '<=', '>=', '!=',
-        '&&', '||', '++', '--', '+', '-', '*', '/', '&', '|', '^', '%',
-        '<<', '>>', '>>>', '+=', '-=', '*=', '/=', '&=', '|=', '^=',
-        '%=', '<<=', '>>=', '>>>='
+        '=',
+        '>',
+        '<',
+        '!',
+        '~',
+        '?',
+        ':',
+        '==',
+        '<=',
+        '>=',
+        '!=',
+        '&&',
+        '||',
+        '++',
+        '--',
+        '+',
+        '-',
+        '*',
+        '/',
+        '&',
+        '|',
+        '^',
+        '%',
+        '<<',
+        '>>',
+        '>>>',
+        '+=',
+        '-=',
+        '*=',
+        '/=',
+        '&=',
+        '|=',
+        '^=',
+        '%=',
+        '<<=',
+        '>>=',
+        '>>>=',
       ],
-
-      // we include these common regular expressions
       symbols: /[=><!~?:&|+\-*\/\^%]+/,
+      escapes:
+        /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
 
-      // C# style strings
-      escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
-
-      // The main tokenizer for our languages
       tokenizer: {
         root: [
-          // identifiers and keywords
-          [/[a-z_$][\w$]*/, {
-            cases: {
-              '@typeKeywords': 'keyword',
-              '@keywords': 'keyword',
-              '@default': 'identifier'
-            }
-          }],
-          [/[A-Z][\w\$]*/, 'type.identifier'],  // to show class names nicely
-
-          // whitespace
+          [
+            /[a-z_$][\w$]*/,
+            {
+              cases: {
+                '@typeKeywords': 'keyword',
+                '@keywords': 'keyword',
+                '@default': 'identifier',
+              },
+            },
+          ],
+          [/[A-Z][\w\$]*/, 'type.identifier'],
           { include: '@whitespace' },
-
-          // delimiters and operators
           [/[{}()\[\]]/, '@brackets'],
           [/[<>](?!@symbols)/, '@brackets'],
-          [/@symbols/, {
-            cases: {
-              '@operators': 'operator',
-              '@default': ''
-            }
-          }],
-
-          // @ annotations.
-          // As an example, we emit a debugging log message on these tokens.
-          // Note: message are supressed during the first load -- change some lines to see them.
-          [/@\s*[a-zA-Z_\$][\w\$]*/, { token: 'annotation', log: 'annotation token: $0' }],
-
-          // numbers
+          [
+            /@symbols/,
+            {
+              cases: {
+                '@operators': 'operator',
+                '@default': '',
+              },
+            },
+          ],
+          [
+            /@\s*[a-zA-Z_\$][\w\$]*/,
+            { token: 'annotation', log: 'annotation token: $0' },
+          ],
           [/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
           [/0[xX][0-9a-fA-F]+/, 'number.hex'],
           [/\d+/, 'number'],
-
-          // delimiter: after number because of .\d floats
           [/[;,.]/, 'delimiter'],
-
-          // strings
-          [/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-teminated string
+          [/"([^"\\]|\\.)*$/, 'string.invalid'],
           [/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
-
-          // characters
           [/'[^\\']'/, 'string'],
           [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
-          [/'/, 'string.invalid']
+          [/'/, 'string.invalid'],
         ],
-
         comment: [
           [/[^\/*]+/, 'comment'],
-          [/\/\*/, 'comment', '@push'],    // nested comment
+          [/\/\*/, 'comment', '@push'], // nested comment
           ['\\*/', 'comment', '@pop'],
-          [/[\/*]/, 'comment']
+          [/[\/*]/, 'comment'],
         ],
 
         string: [
           [/[^\\"]+/, 'string'],
           [/@escapes/, 'string.escape'],
           [/\\./, 'string.escape.invalid'],
-          [/"/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
+          [/"/, { token: 'string.quote', bracket: '@close', next: '@pop' }],
         ],
 
         whitespace: [
@@ -135,7 +183,7 @@ export class MonacoEditorConfigService {
         { token: '@brackets', foreground: '000000' },
         { token: 'annotation', foreground: 'B22222' },
       ],
-      colors: {}
+      colors: {},
     };
   }
 }

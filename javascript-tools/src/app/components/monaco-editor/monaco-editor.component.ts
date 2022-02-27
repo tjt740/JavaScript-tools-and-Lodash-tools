@@ -101,4 +101,6 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges {
       this.codeChange.emit(this.codeEditorInstance.getValue());
     });
   }
+
+
 }

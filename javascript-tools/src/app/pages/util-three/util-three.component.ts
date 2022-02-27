@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
   selector: 'app-util-three',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilThreeComponent implements OnInit {
 
-  constructor() { }
+  initCode: string = '';
+  constructor(
+    public toolsDoc: ToolsDocService,
+  ) {}
 
   ngOnInit(): void {
+    // Step2 初始化
+    this.initCode = this.toolsDoc.partitionNum();
   }
-
 }

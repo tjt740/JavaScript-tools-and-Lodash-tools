@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
   selector: 'app-util-seven',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilSevenComponent implements OnInit {
 
-  constructor() { }
+  initCode: string = '';
+  constructor(
+    public toolsDoc: ToolsDocService,
+  ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.telFormat();
   }
 
 }

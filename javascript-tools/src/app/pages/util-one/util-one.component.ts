@@ -11,7 +11,7 @@ import { ToolsDocService } from 'src/app/services/tools-doc.service';
   styleUrls: ['./util-one.component.less'],
 })
 export class UtilOneComponent implements OnInit {
-  initCode: any = '';
+  initCode: string = '';
   constructor(
     public toolsDoc: ToolsDocService,
   ) {}
