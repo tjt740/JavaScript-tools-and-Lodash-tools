@@ -4,10 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ToolsDocService {
-  constructor() { }
-
-
-
+  constructor() {}
 
   // >>>数字操作<<<
 
@@ -24,6 +21,7 @@ export class ToolsDocService {
       randomNum(0,5)  // 0
       randomNum(0,5)  // 3
       randomNum(0,5)  // 5
+
     `;
   }
 
@@ -66,6 +64,7 @@ export class ToolsDocService {
 
       intToChinese(1000) // '一千'
       intToChinese('9999') // '九千九百九十九'
+
     `;
   }
 
@@ -111,6 +110,7 @@ export class ToolsDocService {
       digitUppercase(100000)  // 壹拾万元整
       digitUppercase(0.01)    // 壹分
       digitUppercase(0.0001)  // 零元整
+
     `;
   }
 
@@ -122,29 +122,17 @@ export class ToolsDocService {
       // n: 数字
 
       const partitionNum = (n) => {
-
           let num = n.toString();
-
           let len = num.length;
-
           if (len <= 3) {
-
               return num;
-
           } else {
-
               let temp = '';
-
               let remainder = len % 3;
-
               if (remainder > 0) { // 不是3的整数倍
-
                   return num.slice(0, remainder) + ',' + num.slice(remainder, len).match(/\d{3}/g).join(',') + temp;
-
               } else { // 3的整数倍
-
                   return num.slice(0, len).match(/\d{3}/g).join(',') + temp;
-
               }
           }
       }
@@ -156,9 +144,6 @@ export class ToolsDocService {
     `;
   }
 
-
-
-
   // >>>字符串操作<<<
 
   // *随机生成自定义长度的字符串
@@ -169,25 +154,19 @@ export class ToolsDocService {
       // len: 随机字符串的长度
 
       const randomString = (len) => {
-
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'; // 随机字符串词典;
-
         const strLen = chars.length;
-
         const randomStr = '';
-
         for (let i = 0; i < len; i++) {
-
             randomStr += chars.charAt(Math.floor(Math.random() * strLen));
-
         };
-
         return randomStr;
       };
 
       randomString(3)   // 'zff'
       randomString(5)   // '2D3Zy'
       randomString(10)  // 'SpzTPtYZGt'
+
     `;
   }
 
@@ -202,6 +181,7 @@ export class ToolsDocService {
 
       firstStrUpper('tjtqsn') // Tjtqsn
       firstStrUpper('abcd')   // Abcd
+
     `;
   }
 
@@ -214,25 +194,19 @@ export class ToolsDocService {
       // symbol: *数量
 
       const telFormat = (tel, symbol = 4) => {
-
         tel = String(tel);
-
         symbol = symbol > 7 ? 7 : symbol;  // *数不能大于7
-
         const telPerFix = tel.substr(0, 3); // 手机号前缀
-
         const symbolNum = new Array(symbol).fill('*').join(''); // 生成指定的 * 数量;
-
         const telsSuffix = tel.substr(symbolNum.length + telPerFix.length); // 手机号后缀
-
         const formatTel = telPerFix + symbolNum + telsSuffix;
-
         return formatTel;
       };
 
       telFormat(15751666937)    // 157****6937
       telFormat(15751666937, 7) // 157*******7
       telFormat(15751666937, 0) // 15751666937
+
     `;
   }
 
@@ -244,14 +218,13 @@ export class ToolsDocService {
       // str: 英文字符串
 
       const getKebabCase = (str) => {
-
         str = String(str);
-
         return str.replace(/[A-Z]/g, (item) => '-' + item.toLowerCase())
       };
 
       getKebabCase('tjtQsn')  // tjt-qsn
       getKebabCase('ABCDE')   // -a-b-c-d-e
+
     `;
   }
 
@@ -263,21 +236,15 @@ export class ToolsDocService {
       // str: 字符串
 
       const getCamelCase = (str) => {
-
         str = String(str);
-
         return str.replace( /-([a-z])/g, (i, item) => item.toUpperCase())
-      }
+      };
 
       getCamelCase('tjt-qsn')     // 'tjtQsn'
       getCamelCase('-a-b-c-d-e')  // 'ABCDE'
+
     `;
   }
-
-
-
-
-
 
   // >>>数组操作<<<
 
@@ -289,22 +256,19 @@ export class ToolsDocService {
       // arr: 数组
 
       const arrScrambling = (arr) => {
-
         for (let i = 0; i < arr.length; i++) {
-
           const randomIndex = Math.round(Math.random() * (arr.length - 1 - i)) + i;
-
           [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
-
         }
-
         return arr;
       };
 
       arrScrambling([1,2,3,4,5])                      // [2, 3, 5, 1, 4]
       arrScrambling([{a:1},{a:2},{a:3},{a:4},{a:5}])  // [{a: 2},{a: 1},{a: 4},{a: 5},{a: 3}]
+
     `;
   }
+
   // *随机获取数组中的某个数
   randomArrayNum() {
     return `
@@ -320,24 +284,117 @@ export class ToolsDocService {
     `;
   }
 
-
-
-
-
-
   // >>>JSON操作<<<
-
-
-
-
-
-
 
   // >>>URL操作<<<
 
+  // >>>存储(localStorage/sessionStorage)操作<<<
 
+  // *获取localStorage
+  getLocalStorage() {
+    return `
+      // 获取localStorage
 
+      // key: 键值
 
+      const getLocalStorage = (key) => {
+        if (!key) return;
+        return window.localStorage.getItem(key);
+      };
 
+    `;
+  }
 
+  // *存储localStorage
+  setLocalStorage() {
+    return `
+      // 存储localStorage
+
+      // key: 键值
+      // value: 值
+
+      const setLocalStorage = (key, value) => {
+        if (!key) return;
+        if (typeof value !== 'string') {
+          value = JSON.stringify(value);
+        }
+        window.localStorage.setItem(key, value);
+      };
+
+    `;
+  }
+
+  // *删除localStorage
+  removeLocalStorage() {
+    return `
+      // 删除localStorage
+
+      // key: 键值
+
+      const removeLocalStorage = (key) => {
+        if (!key) return;
+        window.localStorage.removeItem(key);
+      };
+
+    `;
+  }
+
+  // *获取sessionStorage
+  getSessionStorage() {
+    return `
+      // 获取sessionStorage
+
+      // key: 键值
+
+      const getSessionStorage = (key) => {
+        if (!key) return;
+         return window.sessionStorage.getItem(key)
+      };
+
+    `;
+  }
+
+  // *存储sessionStorage
+  setSessionStorage() {
+    return `
+      // 存储sessionStorage
+
+      // key: 键值
+      // value: 值
+
+      const setSessionStorage = (key, value) => {
+        if (!key) return;
+        if (typeof value !== 'string') {
+          value = JSON.stringify(value);
+        }
+        window.sessionStorage.setItem(key, value)
+      };
+
+    `;
+  }
+
+  // *删除sessionStorage
+  removeSessionStorage() {
+    return `
+      // 删除sessionStorage
+
+      // key: 键值
+
+      const sessionStorageRemove = (key) => {
+        if (!key) return;
+          window.sessionStorage.removeItem(key)
+      };
+
+    `;
+  }
+
+  // >>>cookie操作<<<
+
+  // >>>格式校验<<<
+
+  // >>>设备判断<<<
+
+  // >>>浏览器操作<<<
+
+  // >>>时间操作<<<
 }

@@ -8,7 +8,7 @@
       </a>
     </div>
     <ul nz-menu nzMode="inline" nzTheme="dark" *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
-      <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon" [nzOpen]="!!i">
+      <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item [routerLink]="val.router">
             {{ val.exhibitStr }}

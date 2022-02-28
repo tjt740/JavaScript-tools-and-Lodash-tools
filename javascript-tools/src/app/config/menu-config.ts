@@ -227,4 +227,94 @@ export const MenuConfig = [
       }
     ],
   },
+
+  // Tjt: 存储(localStorage/sessionStorage)操作
+  {
+    title: '存储操作',
+    icon: 'download',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '获取localStorage',
+        router: '/index/util-11',
+      },
+      {
+        exhibitStr: '存储localStorage',
+        router: '/index/util-12',
+      },
+      {
+        exhibitStr: '删除localStorage',
+        router: '/index/util-13',
+      },
+      {
+        exhibitStr: '获取sessionStorage',
+        router: '/index/util-14',
+      },
+      {
+        exhibitStr: '存储sessionStorage',
+        router: '/index/util-15',
+      },
+      {
+        exhibitStr: '删除sessionStorage',
+        router: '/index/util-16',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      }
+    ],
+  },
+
+  // Tjt: cookie操作
+  {
+    title: 'cookie操作',
+    icon: 'download',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: 'xxx',
+        router: '',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      }
+    ],
+  },
+
+  // Tjt: 格式校验
+
+  // Tjt: 设备判断
+
+  // Tjt: 浏览器操作
+
+  // Tjt: 时间操作
 ];
