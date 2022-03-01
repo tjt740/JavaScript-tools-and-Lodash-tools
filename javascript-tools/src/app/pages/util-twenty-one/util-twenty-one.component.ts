@@ -14,6 +14,7 @@ export class UtilTwentyOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.haveCNChars();
   }
 
 }

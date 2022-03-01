@@ -14,6 +14,6 @@ export class UtilTwentyThreeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isIPv6();
   }
-
 }

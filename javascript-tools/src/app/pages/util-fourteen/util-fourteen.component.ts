@@ -14,6 +14,7 @@ export class UtilFourteenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getSessionStorage()
   }
 
 }

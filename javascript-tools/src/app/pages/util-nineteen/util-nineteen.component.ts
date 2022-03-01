@@ -14,6 +14,7 @@ export class UtilNineteenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.delCookie();
   }
 
 }

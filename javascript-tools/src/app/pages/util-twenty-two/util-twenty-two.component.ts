@@ -14,6 +14,7 @@ export class UtilTwentyTwoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isPostCode();
   }
 
 }

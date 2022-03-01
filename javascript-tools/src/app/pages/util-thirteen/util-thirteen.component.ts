@@ -14,6 +14,7 @@ export class UtilThirteenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.removeLocalStorage()
   }
 
 }

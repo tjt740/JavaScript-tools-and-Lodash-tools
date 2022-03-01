@@ -14,6 +14,7 @@ export class UtilTwelveComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.setLocalStorage()
   }
 
 }

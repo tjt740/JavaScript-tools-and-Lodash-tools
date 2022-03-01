@@ -14,6 +14,7 @@ export class UtilElevenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getLocalStorage()
   }
 
 }

@@ -272,46 +272,60 @@ export const MenuConfig = [
   // Tjt: cookie操作
   {
     title: 'cookie操作',
-    icon: 'download',
+    icon: 'sliders',
     id: Math.random(),
     childRoute: [
       {
-        exhibitStr: 'xxx',
-        router: '',
+        exhibitStr: '获取cookie',
+        router: '/index/util-17',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '设置cookie',
+        router: '/index/util-18',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '删除cookie',
+        router: '/index/util-19',
       },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      }
     ],
   },
 
   // Tjt: 格式校验
-
+  {
+    title: '格式校验',
+    icon: 'safety-certificate',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '校验身份证号码',
+        router: '/index/util-20',
+      },
+      {
+        exhibitStr: '校验是否包含中文',
+        router: '/index/util-21',
+      },
+      {
+        exhibitStr: '校验是否为中国大陆的邮编',
+        router: '/index/util-22',
+      },
+      {
+        exhibitStr: '校验是否为IPv6地址',
+        router: '/index/util-23',
+      },
+      {
+        exhibitStr: '校验是否为邮箱地址',
+        router: '/index/util-24',
+      },
+      {
+        exhibitStr: '校验是否为中国大陆手机号',
+        router: '/index/util-25',
+      },
+      {
+        exhibitStr: '校验是否包含emoji表情',
+        router: '/index/util-26',
+      }
+    ],
+  },
   // Tjt: 设备判断
 
   // Tjt: 浏览器操作

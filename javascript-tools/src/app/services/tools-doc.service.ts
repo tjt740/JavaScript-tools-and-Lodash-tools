@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class ToolsDocService {
   constructor() {}
 
-  // >>>数字操作<<<
-
+  // Ps:数字操作
   // *随机数字
   randomNum() {
     return `
@@ -144,8 +143,7 @@ export class ToolsDocService {
     `;
   }
 
-  // >>>字符串操作<<<
-
+  // Ps:字符串操作
   // *随机生成自定义长度的字符串
   randomStr() {
     return `
@@ -185,7 +183,7 @@ export class ToolsDocService {
     `;
   }
 
-  // *手机号中间几位变成*
+  // *手机号中间几位变成'*'
   telFormat() {
     return `
       // 手机号中间几位变成*
@@ -246,8 +244,7 @@ export class ToolsDocService {
     `;
   }
 
-  // >>>数组操作<<<
-
+  // Ps:数组操作
   // *数组乱序
   randomArray() {
     return `
@@ -284,11 +281,11 @@ export class ToolsDocService {
     `;
   }
 
-  // >>>JSON操作<<<
+  // Ps:JSON操作
 
-  // >>>URL操作<<<
+  // Ps:URL操作
 
-  // >>>存储(localStorage/sessionStorage)操作<<<
+  // Ps:存储(localStorage/sessionStorage)操作
 
   // *获取localStorage
   getLocalStorage() {
@@ -388,13 +385,208 @@ export class ToolsDocService {
     `;
   }
 
-  // >>>cookie操作<<<
+  // Ps:cookie操作
+  // *获取cookie
+  getCookie() {
+    return `
+      // 获取cookie
 
-  // >>>格式校验<<<
+      // key: 键值
 
-  // >>>设备判断<<<
+      const getCookie = (key) => {
+        const cookieStr = unescape(document.cookie);
+            const arr = cookieStr.split('; ');
+            let cookieValue = '';
+            for (let i = 0; i < arr.length; i++) {
+                const temp = arr[i].split('=');
+                if (temp[0] === key) {
+                    cookieValue = temp[1];
+                    break;
+            }
+        }
+        return cookieValue;
+      };
 
-  // >>>浏览器操作<<<
+    `;
+  }
 
-  // >>>时间操作<<<
+  // *设置cookie
+  setCookie() {
+    return `
+      // 设置cookie
+
+      // key:    键值
+      // value:  值
+      // days:   持续天数
+
+      const setCookie = (key, value, days) => {
+        const days = 30;
+        const exp = new Date();
+        exp.setTime(exp.getTime() + days*24*60*60*1000);
+        document.cookie = key + '=' + value + ';expires=' + exp.toUTCString();
+      };
+
+    `;
+  }
+
+  // *删除cookie
+  delCookie() {
+    return `
+      // 删除cookie
+
+      // key: 键值
+
+      const delCookie = (key) => {
+        document.cookie = encodeURIComponent(key) + '=;expires=' + new Date();
+      };
+
+    `;
+  }
+
+  // Ps:格式校验
+  // *校验身份证号码
+  checkCardNo() {
+    return `
+      // 校验身份证号码
+
+      // value: 值
+
+      const checkCardNo = (value) => {
+        const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        return reg.test(value);
+      };
+
+    `;
+  };
+
+  // *校验是否包含中文
+  haveCNChars() {
+    return `
+      // 校验是否包含中文
+
+      // value: 值
+
+      const haveCNChars = (value) => {
+        const reg = /[\\u4e00-\\u9fa5]/;
+        return reg.test(value);
+      };
+
+    `;
+  };
+
+  // *校验是否为中国大陆的邮政编码
+  isPostCode() {
+    return `
+      // 校验是否为中国大陆的邮政编码
+
+      // value: 值
+
+      const isPostCode = (value) => {
+        const reg = /^[1-9][0-9]{5}$/;
+        return reg.test(value.toString());
+      };
+
+    `;
+  };
+
+  // *校验是否为IPv6地址
+  isIPv6() {
+    return `
+      // 校验是否为IPv6地址
+
+      // value: 值
+
+      const isIPv6 = (str) => {
+        return Boolean(str.match(/:/g)?str.match(/:/g).length<=7:false && /::/.test(str)?/^([\da-f]{1,4}(:|::)){1,6}[\da-f]{1,4}$/i.test(str):/^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i.test(str));
+      };
+
+    `;
+  };
+
+  // *校验是否为邮箱地址
+  isEmail() {
+    return `
+      // 校验是否为邮箱地址
+
+      // value: 值
+
+      const isEmail = (value) => {
+        const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        return reg.test(value);
+      };
+
+    `;
+  };
+
+  // *校验是否为中国大陆手机号
+  isTel() {
+    return `
+      // 校验是否为中国大陆手机号
+
+      // value: 值
+
+      const isTel = (value) => {
+        const reg = /^1[3,4,5,6,7,8,9][0-9]{9}$/;
+        return reg.test(value.toString());
+      };
+
+    `;
+  };
+
+  // *校验是否包含emoji表情
+  isEmojiCharacter() {
+    return `
+      // 校验是否包含emoji表情
+
+      // value: 值
+
+      const isEmojiCharacter = (value) => {
+        value = String(value);
+        for (let i = 0; i < value.length; i++) {
+            const hs = value.charCodeAt(i);
+            if (0xd800 <= hs && hs <= 0xdbff) {
+                if (value.length > 1) {
+                    const ls = value.charCodeAt(i + 1);
+                    const uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
+                    if (0x1d000 <= uc && uc <= 0x1f77f) {
+                        return true;
+                    }
+                }
+            } else if (value.length > 1) {
+                const ls = value.charCodeAt(i + 1);
+                if (ls == 0x20e3) {
+                    return true;
+                }
+            } else {
+                if (0x2100 <= hs && hs <= 0x27ff) {
+                    return true;
+                } else if (0x2B05 <= hs && hs <= 0x2b07) {
+                    return true;
+                } else if (0x2934 <= hs && hs <= 0x2935) {
+                    return true;
+                } else if (0x3297 <= hs && hs <= 0x3299) {
+                    return true;
+                } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030
+                        || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b
+                        || hs == 0x2b50) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    `;
+  };
+
+  // *
+
+
+
+
+  // Ps:设备判断
+
+  // Ps:浏览器操作
+
+  // Ps:时间操作
 }

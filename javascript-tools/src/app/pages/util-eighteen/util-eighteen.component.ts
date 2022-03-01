@@ -14,6 +14,7 @@ export class UtilEighteenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.setCookie();
   }
 
 }

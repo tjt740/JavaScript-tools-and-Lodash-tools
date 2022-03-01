@@ -14,6 +14,7 @@ export class UtilTwentyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.checkCardNo();
   }
 
 }

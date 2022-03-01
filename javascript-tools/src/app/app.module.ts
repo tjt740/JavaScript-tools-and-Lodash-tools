@@ -43,6 +43,23 @@ import { UtilTwentyComponent } from './pages/util-twenty/util-twenty.component';
 import { UtilTwentyOneComponent } from './pages/util-twenty-one/util-twenty-one.component';
 import { UtilTwentyTwoComponent } from './pages/util-twenty-two/util-twenty-two.component';
 import { UtilTwentyThreeComponent } from './pages/util-twenty-three/util-twenty-three.component';
+import { UtilTwentyFourComponent } from './pages/util-twenty-four/util-twenty-four.component';
+import { UtilTwentyFiveComponent } from './pages/util-twenty-five/util-twenty-five.component';
+import { UtilTwentySixComponent } from './pages/util-twenty-six/util-twenty-six.component';
+import { UtilTwentySevenComponent } from './pages/util-twenty-seven/util-twenty-seven.component';
+import { UtilTwentyEightComponent } from './pages/util-twenty-eight/util-twenty-eight.component';
+import { UtilTwentyNineComponent } from './pages/util-twenty-nine/util-twenty-nine.component';
+import { UtilThirtyComponent } from './pages/util-thirty/util-thirty.component';
+import { UtilThirtyOneComponent } from './pages/util-thirty-one/util-thirty-one.component';
+import { UtilThirtyTwoComponent } from './pages/util-thirty-two/util-thirty-two.component';
+import { UtilThirtyThreeComponent } from './pages/util-thirty-three/util-thirty-three.component';
+import { UtilThirtyFourComponent } from './pages/util-thirty-four/util-thirty-four.component';
+import { UtilThirtyFiveComponent } from './pages/util-thirty-five/util-thirty-five.component';
+import { UtilThirtySixComponent } from './pages/util-thirty-six/util-thirty-six.component';
+import { UtilThirtySevenComponent } from './pages/util-thirty-seven/util-thirty-seven.component';
+import { UtilThirtyEightComponent } from './pages/util-thirty-eight/util-thirty-eight.component';
+import { UtilThirtyNineComponent } from './pages/util-thirty-nine/util-thirty-nine.component';
+import { UtilFortyComponent } from './pages/util-forty/util-forty.component';
 
 
 // 组件
@@ -91,7 +108,24 @@ registerLocaleData(en);
     UtilTwentyComponent,
     UtilTwentyOneComponent,
     UtilTwentyTwoComponent,
-    UtilTwentyThreeComponent
+    UtilTwentyThreeComponent,
+    UtilTwentyFourComponent,
+    UtilTwentyFiveComponent,
+    UtilTwentySixComponent,
+    UtilTwentySevenComponent,
+    UtilTwentyEightComponent,
+    UtilTwentyNineComponent,
+    UtilThirtyComponent,
+    UtilThirtyOneComponent,
+    UtilThirtyTwoComponent,
+    UtilThirtyThreeComponent,
+    UtilThirtyFourComponent,
+    UtilThirtyFiveComponent,
+    UtilThirtySixComponent,
+    UtilThirtySevenComponent,
+    UtilThirtyEightComponent,
+    UtilThirtyNineComponent,
+    UtilFortyComponent
   ],
   imports: [
     BrowserModule,
