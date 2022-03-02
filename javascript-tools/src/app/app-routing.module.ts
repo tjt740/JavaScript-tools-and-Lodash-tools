@@ -42,7 +42,26 @@ import { UtilThirtySevenComponent } from './pages/util-thirty-seven/util-thirty-
 import { UtilThirtyEightComponent } from './pages/util-thirty-eight/util-thirty-eight.component';
 import { UtilThirtyNineComponent } from './pages/util-thirty-nine/util-thirty-nine.component';
 import { UtilFortyComponent } from './pages/util-forty/util-forty.component';
-
+import { UtilFortyOneComponent } from './pages/util-forty-one/util-forty-one.component';
+import { UtilFortyTwoComponent } from './pages/util-forty-two/util-forty-two.component';
+import { UtilFortyThreeComponent } from './pages/util-forty-three/util-forty-three.component';
+import { UtilFortyFourComponent } from './pages/util-forty-four/util-forty-four.component';
+import { UtilFortyFiveComponent } from './pages/util-forty-five/util-forty-five.component';
+import { UtilFortySixComponent } from './pages/util-forty-six/util-forty-six.component';
+import { UtilFortySevenComponent } from './pages/util-forty-seven/util-forty-seven.component';
+import { UtilFortyEightComponent } from './pages/util-forty-eight/util-forty-eight.component';
+import { UtilFortyNineComponent } from './pages/util-forty-nine/util-forty-nine.component';
+import { UtilFiftyComponent } from './pages/util-fifty/util-fifty.component';
+import { UtilFiftyOneComponent } from './pages/util-fifty-one/util-fifty-one.component';
+import { UtilFiftyTwoComponent } from './pages/util-fifty-two/util-fifty-two.component';
+import { UtilFiftyThreeComponent } from './pages/util-fifty-three/util-fifty-three.component';
+import { UtilFiftyFourComponent } from './pages/util-fifty-four/util-fifty-four.component';
+import { UtilFiftyFiveComponent } from './pages/util-fifty-five/util-fifty-five.component';
+import { UtilFiftySixComponent } from './pages/util-fifty-six/util-fifty-six.component';
+import { UtilFiftySevenComponent } from './pages/util-fifty-seven/util-fifty-seven.component';
+import { UtilFiftyEightComponent } from './pages/util-fifty-eight/util-fifty-eight.component';
+import { UtilFiftyNineComponent } from './pages/util-fifty-nine/util-fifty-nine.component';
+import { UtilSixtyComponent } from './pages/util-sixty/util-sixty.component';
 
 const routes: Routes = [
   {
@@ -100,7 +119,8 @@ const routes: Routes = [
       {
         path: 'util-13',
         component: UtilThirteenComponent,
-      },  {
+      },
+      {
         path: 'util-14',
         component: UtilFourteenComponent,
       },
@@ -119,7 +139,8 @@ const routes: Routes = [
       {
         path: 'util-18',
         component: UtilEighteenComponent,
-      },     {
+      },
+      {
         path: 'util-19',
         component: UtilNineteenComponent,
       },
@@ -206,7 +227,87 @@ const routes: Routes = [
       {
         path: 'util-40',
         component: UtilFortyComponent,
-      }
+      },
+      {
+        path: 'util-41',
+        component: UtilFortyOneComponent,
+      },
+      {
+        path: 'util-42',
+        component: UtilFortyTwoComponent,
+      },
+      {
+        path: 'util-43',
+        component: UtilFortyThreeComponent,
+      },
+      {
+        path: 'util-44',
+        component: UtilFortyFourComponent,
+      },
+      {
+        path: 'util-45',
+        component: UtilFortyFiveComponent,
+      },
+      {
+        path: 'util-46',
+        component: UtilFortySixComponent,
+      },
+      {
+        path: 'util-47',
+        component: UtilFortySevenComponent,
+      },
+      {
+        path: 'util-48',
+        component: UtilFortyEightComponent,
+      },
+      {
+        path: 'util-49',
+        component: UtilFortyNineComponent,
+      },
+      {
+        path: 'util-50',
+        component: UtilFiftyComponent,
+      },
+      {
+        path: 'util-51',
+        component: UtilFiftyOneComponent,
+      },
+      {
+        path: 'util-52',
+        component: UtilFiftyTwoComponent,
+      },
+      {
+        path: 'util-53',
+        component: UtilFiftyThreeComponent,
+      },
+      {
+        path: 'util-54',
+        component: UtilFiftyFourComponent,
+      },
+      {
+        path: 'util-55',
+        component: UtilFiftyFiveComponent,
+      },
+      {
+        path: 'util-56',
+        component: UtilFiftySixComponent,
+      },
+      {
+        path: 'util-57',
+        component: UtilFiftySevenComponent,
+      },
+      {
+        path: 'util-58',
+        component: UtilFiftyEightComponent,
+      },
+      {
+        path: 'util-59',
+        component: UtilFiftyNineComponent,
+      },
+      {
+        path: 'util-60',
+        component: UtilSixtyComponent,
+      },
     ],
   },
   // 重定向路由
@@ -216,15 +317,15 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   // 404 路由
-  {
-    path: '**',
-    //*1) component: NoFoundComponent,
-    //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
-    loadChildren: () =>
-      import('./pages/no-found/no-found-routing.module').then(
-        (m) => m.NoFoundRoutingModule
-      ),
-  },
+  // {
+  //   path: '**',
+  //   //*1) component: NoFoundComponent,
+  //   //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
+  //   loadChildren: () =>
+  //     import('./pages/no-found/no-found-routing.module').then(
+  //       (m) => m.NoFoundRoutingModule
+  //     ),
+  // },
 ];
 
 @NgModule({

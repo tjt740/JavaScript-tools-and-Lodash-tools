@@ -194,8 +194,8 @@ export const MenuConfig = [
     id: Math.random(),
     childRoute: [
       {
-        exhibitStr: 'xxx',
-        router: '',
+        exhibitStr: '获取URL上参数信息',
+        router: '/index/util-27',
       },
       {
         exhibitStr: '',

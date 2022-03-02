@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
-  selector: 'app-util-twenty-seven',
-  templateUrl: './util-twenty-seven.component.html',
-  styleUrls: ['./util-twenty-seven.component.less']
+  selector: 'app-util-fifty-four',
+  templateUrl: './util-fifty-four.component.html',
+  styleUrls: ['./util-fifty-four.component.less']
 })
-export class UtilTwentySevenComponent implements OnInit {
+export class UtilFiftyFourComponent implements OnInit {
 
   initCode: string = '';
   constructor(
@@ -15,7 +15,6 @@ export class UtilTwentySevenComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.initCode = this.toolsDoc.getUrlInfo();
   }
 
 }

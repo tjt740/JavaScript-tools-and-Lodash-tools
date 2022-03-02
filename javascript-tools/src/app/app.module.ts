@@ -60,12 +60,32 @@ import { UtilThirtySevenComponent } from './pages/util-thirty-seven/util-thirty-
 import { UtilThirtyEightComponent } from './pages/util-thirty-eight/util-thirty-eight.component';
 import { UtilThirtyNineComponent } from './pages/util-thirty-nine/util-thirty-nine.component';
 import { UtilFortyComponent } from './pages/util-forty/util-forty.component';
-
+import { UtilFortyOneComponent } from './pages/util-forty-one/util-forty-one.component';
+import { UtilFortyTwoComponent } from './pages/util-forty-two/util-forty-two.component';
+import { UtilFortyThreeComponent } from './pages/util-forty-three/util-forty-three.component';
+import { UtilFortyFourComponent } from './pages/util-forty-four/util-forty-four.component';
+import { UtilFortyFiveComponent } from './pages/util-forty-five/util-forty-five.component';
+import { UtilFortySixComponent } from './pages/util-forty-six/util-forty-six.component';
+import { UtilFortySevenComponent } from './pages/util-forty-seven/util-forty-seven.component';
+import { UtilFortyEightComponent } from './pages/util-forty-eight/util-forty-eight.component';
+import { UtilFortyNineComponent } from './pages/util-forty-nine/util-forty-nine.component';
+import { UtilFiftyComponent } from './pages/util-fifty/util-fifty.component';
+import { UtilFiftyOneComponent } from './pages/util-fifty-one/util-fifty-one.component';
+import { UtilFiftyTwoComponent } from './pages/util-fifty-two/util-fifty-two.component';
+import { UtilFiftyThreeComponent } from './pages/util-fifty-three/util-fifty-three.component';
+import { UtilFiftyFourComponent } from './pages/util-fifty-four/util-fifty-four.component';
+import { UtilFiftyFiveComponent } from './pages/util-fifty-five/util-fifty-five.component';
+import { UtilFiftySixComponent } from './pages/util-fifty-six/util-fifty-six.component';
+import { UtilFiftySevenComponent } from './pages/util-fifty-seven/util-fifty-seven.component';
+import { UtilFiftyEightComponent } from './pages/util-fifty-eight/util-fifty-eight.component';
+import { UtilFiftyNineComponent } from './pages/util-fifty-nine/util-fifty-nine.component';
+import { UtilSixtyComponent } from './pages/util-sixty/util-sixty.component';
 
 // 组件
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 
 // 服务
@@ -125,7 +145,27 @@ registerLocaleData(en);
     UtilThirtySevenComponent,
     UtilThirtyEightComponent,
     UtilThirtyNineComponent,
-    UtilFortyComponent
+    UtilFortyComponent,
+    UtilFortyOneComponent,
+    UtilFortyTwoComponent,
+    UtilFortyThreeComponent,
+    UtilFortyFourComponent,
+    UtilFortyFiveComponent,
+    UtilFortySixComponent,
+    UtilFortySevenComponent,
+    UtilFortyEightComponent,
+    UtilFortyNineComponent,
+    UtilFiftyComponent,
+    UtilFiftyOneComponent,
+    UtilFiftyTwoComponent,
+    UtilFiftyThreeComponent,
+    UtilFiftyFourComponent,
+    UtilFiftyFiveComponent,
+    UtilFiftySixComponent,
+    UtilFiftySevenComponent,
+    UtilFiftyEightComponent,
+    UtilFiftyNineComponent,
+    UtilSixtyComponent
   ],
   imports: [
     BrowserModule,

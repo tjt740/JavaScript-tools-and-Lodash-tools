@@ -284,9 +284,39 @@ export class ToolsDocService {
   // Ps:JSON操作
 
   // Ps:URL操作
+  // *获取URL上参数
+  getUrlInfo() {
+    return `
+      // 获取URL上参数
+
+      const getUrlInfo = ()=> {
+        let urlInfo = {} as any;
+        let flag = window.location.href.split('').includes('?'); //判断是否传参。
+
+        if (flag) {
+          let keyWords = window.location.href.split('?')[1].split('&');
+          for (let i = 0; i < keyWords.length; i++) {
+            let arr1 = keyWords[i].split('=');
+            urlInfo[arr1[0]] = arr1[1];
+          }
+          let key = Object.keys(urlInfo)[0];
+
+          console.log('key:', key);         // url上的键值
+          console.log('urlInfo:', urlInfo); // url上键值所对应的参数集合json
+
+          return urlInfo;
+        } else {
+          console.log('未携带参数');
+        }
+      };
+
+    `;
+  }
+
+  // *
+
 
   // Ps:存储(localStorage/sessionStorage)操作
-
   // *获取localStorage
   getLocalStorage() {
     return `
@@ -578,10 +608,6 @@ export class ToolsDocService {
 
     `;
   };
-
-  // *
-
-
 
 
   // Ps:设备判断
