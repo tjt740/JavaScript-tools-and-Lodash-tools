@@ -295,6 +295,10 @@ export class ToolsDocService {
 
         if (flag) {
           let keyWords = window.location.href.split('?')[1].split('&');
+
+          // '?' :  获取https://hzcac2-dev.alibaba.net/app/admin/admin-layout/case-manage-list?pageCode=case-manage-secretary#id=ELPEeS-2QNz3w4yjxO_3iQ (？后的内容)。
+          // 如果想要获取（#)后面的内容, 就改成 let keyWords = window.location.href.split('#')[1].split('&');
+
           for (let i = 0; i < keyWords.length; i++) {
             let arr1 = keyWords[i].split('=');
             urlInfo[arr1[0]] = arr1[1];
@@ -303,8 +307,8 @@ export class ToolsDocService {
 
           console.log('key:', key);         // url上的键值
           console.log('urlInfo:', urlInfo); // url上键值所对应的参数集合json
+          return urlInfo;                   // 函数返回值
 
-          return urlInfo;
         } else {
           console.log('未携带参数');
         }
