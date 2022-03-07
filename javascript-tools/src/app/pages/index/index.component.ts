@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
 
   routeConfig: any;
 
-  constructor(protected route: Router) {}
+  constructor( protected route: Router) {}
 
   ngOnInit(): void {
     // 获取左边menu的菜单栏详情
@@ -31,5 +31,11 @@ export class IndexComponent implements OnInit {
 
   trackFn(item: any) {
     return item.id;
+  }
+  refreshPage() {
+
+    console.log('刷新');
+
+
   }
 }
