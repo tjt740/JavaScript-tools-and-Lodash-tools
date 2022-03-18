@@ -12,28 +12,7 @@ export class UtilTwentyEightComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.urlAddParams({
-      name: '谭金涛',
-      work: 'IT',
-    })
-
-
-
+    this.initCode = this.toolsDoc.isMobile();
   }
 
-  urlAddParams(obj: {} | any) {
-    let params = [];
-    for (let key in obj) {
-      params.push(`${key}=${obj[key]}`);
-    }
-    return encodeURIComponent(params.join('&'));
-  }
-
-
-  replaceParamVal(paramName: string, replaceWith: string) {
-    const oUrl = location.href.toString();
-    const re = eval('/('+ paramName+'=)([^&]*)/gi');
-    location.href = oUrl.replace(re,paramName+'='+replaceWith);
-    return location.href;
- }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
   selector: 'app-util-thirty-eight',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./util-thirty-eight.component.less']
 })
 export class UtilThirtyEightComponent implements OnInit {
-
-  constructor() { }
+  initCode: string = '';
+  constructor(public toolsDoc: ToolsDocService) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getClientWidth();
   }
 
 }

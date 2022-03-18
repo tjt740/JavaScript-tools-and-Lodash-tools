@@ -15,6 +15,7 @@ export class UtilThirtyOneComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isPcType();
   }
 
 }

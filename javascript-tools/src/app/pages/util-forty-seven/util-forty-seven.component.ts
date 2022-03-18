@@ -16,4 +16,6 @@ export class UtilFortySevenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }

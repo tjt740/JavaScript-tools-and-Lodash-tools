@@ -29,6 +29,31 @@
     z-index: 10;
     min-height: 100vh;
     box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+    height: 100vh;
+    overflow: auto;
+  }
+  .ant-menu-item{
+    overflow-x: auto;
+  }
+  /*滚动条样式*/
+  .ant-menu-item::-webkit-scrollbar,.menu-sidebar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 4px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+  }
+
+  .ant-menu-item::-webkit-scrollbar,.menu-sidebar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .ant-menu-item::-webkit-scrollbar,.menu-sidebar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
   }
 
   .header-trigger {

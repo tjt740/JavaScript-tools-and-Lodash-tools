@@ -15,6 +15,7 @@ export class UtilThirtyTwoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.broswer();
   }
 
 }

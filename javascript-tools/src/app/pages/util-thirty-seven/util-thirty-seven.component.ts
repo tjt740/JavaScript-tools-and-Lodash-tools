@@ -11,6 +11,6 @@ export class UtilThirtySevenComponent implements OnInit {
   constructor(public toolsDoc: ToolsDocService) {}
 
  ngOnInit(): void {
-
+   this.initCode = this.toolsDoc.getClientHeight();
  }
 }

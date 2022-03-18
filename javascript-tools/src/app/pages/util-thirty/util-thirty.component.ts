@@ -14,6 +14,7 @@ export class UtilThirtyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isAndroidMobileDevice();
   }
 
 }

@@ -326,9 +326,89 @@ export const MenuConfig = [
       }
     ],
   },
+
   // Tjt: 设备判断
+  {
+    title: '设备判断',
+    icon: 'instagram',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '判断是移动还是PC设备',
+        router: '/index/util-28',
+      },
+      {
+        exhibitStr: '判断是否是苹果设备',
+        router: '/index/util-29',
+      },
+      {
+        exhibitStr: '判断是否是安卓设备',
+        router: '/index/util-30',
+      },
+      {
+        exhibitStr: '判断是Windows还是Mac系统',
+        router: '/index/util-31',
+      },
+      {
+        exhibitStr: '判断是否是微信/QQ内置浏览器',
+        router: '/index/util-32',
+      },
+      {
+        exhibitStr: '获取浏览器型号和版本',
+        router: '/index/util-33',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      }
+    ],
+  },
+
 
   // Tjt: 浏览器操作
+  {
+    title: '浏览器操作',
+    icon: 'desktop',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '滚动到页面顶部',
+        router: '/index/util-34',
+      },
+      {
+        exhibitStr: '滚动到页面底部',
+        router: '/index/util-35',
+      },
+      {
+        exhibitStr: '滚动到指定元素区域',
+        router: '/index/util-36',
+      },
+      {
+        exhibitStr: '获取可视窗口高度',
+        router: '/index/util-37',
+      },
+      {
+        exhibitStr: '获取可视窗口宽度',
+        router: '/index/util-38',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      },
+      {
+        exhibitStr: '',
+        router: '/index/util-',
+      }
+    ],
+  },
 
   // Tjt: 时间操作
 ];

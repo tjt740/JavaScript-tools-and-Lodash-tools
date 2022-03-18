@@ -15,6 +15,7 @@ export class UtilThirtyThreeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getExplorerInfo();
   }
 
 }

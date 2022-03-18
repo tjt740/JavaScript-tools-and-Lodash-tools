@@ -14,6 +14,7 @@ export class UtilThirtyFiveComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.scrollToBottom();
   }
 
 }

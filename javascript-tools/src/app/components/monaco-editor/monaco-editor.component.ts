@@ -102,5 +102,6 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges {
     });
   }
 
-
+  refreshPage() {
+  }
 }

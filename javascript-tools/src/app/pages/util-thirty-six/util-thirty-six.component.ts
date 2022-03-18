@@ -15,6 +15,7 @@ export class UtilThirtySixComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.smoothScroll();
   }
 
 }

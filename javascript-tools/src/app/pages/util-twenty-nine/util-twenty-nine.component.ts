@@ -15,6 +15,8 @@ export class UtilTwentyNineComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isAppleMobileDevice();
+
   }
 
 }

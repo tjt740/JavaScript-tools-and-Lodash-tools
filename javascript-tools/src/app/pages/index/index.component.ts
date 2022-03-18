@@ -32,10 +32,4 @@ export class IndexComponent implements OnInit {
   trackFn(item: any) {
     return item.id;
   }
-  refreshPage() {
-
-    console.log('刷新');
-
-
-  }
 }
