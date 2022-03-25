@@ -14,6 +14,7 @@ export class UtilFortyTwoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.nowTime();
   }
 
 }

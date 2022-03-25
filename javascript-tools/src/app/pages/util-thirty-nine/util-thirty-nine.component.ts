@@ -15,6 +15,7 @@ export class UtilThirtyNineComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.toFullScreen();
   }
 
 }

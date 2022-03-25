@@ -14,6 +14,7 @@ export class UtilFortyEightComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isArray();
   }
 
 }

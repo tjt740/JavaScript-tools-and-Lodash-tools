@@ -14,6 +14,7 @@ export class UtilFortyOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.dateFormater();
   }
 
 }

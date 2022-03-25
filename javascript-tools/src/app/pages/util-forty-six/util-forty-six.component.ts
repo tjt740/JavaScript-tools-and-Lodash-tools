@@ -14,6 +14,7 @@ export class UtilFortySixComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.preventDefault();
   }
 
 }

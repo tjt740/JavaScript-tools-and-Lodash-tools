@@ -14,6 +14,7 @@ export class UtilFortyFourComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.eventRelieve();
   }
 
 }

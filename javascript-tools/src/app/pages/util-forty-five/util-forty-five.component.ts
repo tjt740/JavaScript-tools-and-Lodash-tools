@@ -14,6 +14,7 @@ export class UtilFortyFiveComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.preventBubble();
   }
 
 }

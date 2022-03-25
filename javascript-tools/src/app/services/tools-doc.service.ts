@@ -143,6 +143,7 @@ export class ToolsDocService {
     `;
   }
 
+
   // Ps:字符串操作
   // *随机生成自定义长度的字符串
   randomStr() {
@@ -283,6 +284,7 @@ export class ToolsDocService {
 
   // Ps:JSON操作
 
+
   // Ps:URL操作
   // *获取URL上参数
   getUrlInfo() {
@@ -316,8 +318,6 @@ export class ToolsDocService {
 
     `;
   }
-
-  // *
 
   // Ps:存储(localStorage/sessionStorage)操作
   // *获取localStorage
@@ -612,6 +612,55 @@ export class ToolsDocService {
     `;
   }
 
+  // Ps:信息判断
+  // *判断是否是数字
+  isNumber() {
+    return `
+      // 判断是否是数字
+
+      // value: 值
+
+      function isNumber(value){
+        return Object.prototype.toString.call(value) === '[object Number]' && !isNaN(value);
+      };
+
+      isNumber(-1)   // true;
+      isNumber('-1') // false;
+      isNumber(-'1') // true;
+      isNumber(0)    // true;
+
+    `;
+  }
+
+  // *判断是否是数组
+  isArray() {
+    return `
+      // 判断是否是数组
+
+      let arr = [];
+      let json = {};
+      let fn = () =>{};
+      let str = '谭金涛';
+
+      // 1. 通过Array.isArray()判断;
+            Array.isArray(arr)    // true
+            Array.isArray(json)   // false
+
+      // 2. 通过Object.prototype.toString.call()判断;
+            Object.prototype.toString.call(arr) ==="[object Array]";    // true
+            Object.prototype.toString.call(fn) ==="[object Function]";  // true
+
+      // 3. 通过instanceof判断;
+            arr instanceof Array;   // true
+            json instanceof Array;  // false
+
+      // 4. 通过constructor判断;
+            arr.constructor === Array   // true
+            json.constructor === Array  // 报错
+
+    `;
+  };
+
   // Ps:设备判断
   // *判断是移动还是PC设备
   isMobile() {
@@ -747,7 +796,7 @@ export class ToolsDocService {
     };
 
     `;
-  };
+  }
 
   // *滚动到页面底部
   scrollToBottom() {
@@ -759,7 +808,7 @@ export class ToolsDocService {
       };
 
     `;
-  };
+  }
 
   // *滚动到指定元素区域
   smoothScroll() {
@@ -775,7 +824,7 @@ export class ToolsDocService {
       };
 
     `;
-  };
+  }
 
   // *获取可视窗口高度
   getClientHeight() {
@@ -794,7 +843,7 @@ export class ToolsDocService {
       };
 
     `;
-  };
+  }
 
   // *获取可视窗口宽度
   getClientWidth() {
@@ -802,12 +851,190 @@ export class ToolsDocService {
       // 获取可视窗口宽度
 
       const getClientWidth = () => {
-        return (document.compatMode == "BackCompat" ? document.body : document.documentElement.clientWidth;
+        return (document.compatMode == "BackCompat" ? document.body : document.documentElement.clientWidth);
       };
 
     `;
-  };
+  }
 
+  // *打开浏览器全屏
+  toFullScreen() {
+    return `
+      // 打开浏览器全屏
+
+      const toFullScreen = () => {
+        let element = document.body;
+        if (element.requestFullscreen) {
+          element.requestFullscreen()
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen()
+        } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen()
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullScreen()
+        }
+      };
+
+    `;
+  }
+
+  // *退出浏览器全屏
+  exitFullscreen() {
+    return `
+      // 退出浏览器全屏
+
+      const exitFullscreen = () => {
+        if (document.exitFullscreen) {
+          document.exitFullscreen()
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen()
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen()
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen()
+        }
+      };
+
+    `;
+  }
+
+  // Ps:DOM操作
+  // *事件监听
+  listenEvent() {
+    return `
+      // 事件监听
+
+      // 主流浏览器:
+        obj.addEventListener('EventName', functionName, boolean);
+          // obj: 触发事件的目标节点  不见得一定要加。 看兼容
+          // 'EventName': 事件的名称 （不加on） click、mouseover...
+          // functionName: 函数的名字（fn1/fn2...;
+          // boolean : true/false(默认false不冒泡);
+           /*
+              true : 事件在捕获阶段执行   body -> parent -> son  打印从外到里
+              false（默认）： 事件在冒泡阶段执行  son -> parent -> body  打印从里到外
+           */
+
+
+      // IE8以下:
+        obj.attachEvent('on' + 'EventName', functionName, boolean);
+          // 'EventName': 事件名字。 （必须加on） onclick、onmouseover...
+
+      //----------------------------------------------------------------------
+      // ★注意:
+        // (1) attachEvent是后绑定先执行(fn2、fn1)，addEventListener是先绑定先执行(fn1、fn2)。
+        // (2) attachEvent 的this指向window, addEventListener 的this指向当前元素
+
+    `;
+  }
+
+  // *事件解绑
+  eventRelieve() {
+    return `
+      // 事件解绑
+
+      // 主流浏览器:
+            obj.removeEventListener('EventName',functionName,boolean);
+
+      // IE8以下:
+            obj.detachEvent('on'+'EventName',functionName,boolean);
+
+    `;
+  }
+  // *阻止冒泡事件
+  preventBubble() {
+    return `
+      // 阻止冒泡事件
+
+      function preventBubble() {
+        var e = e || window.event;
+
+        if (e.stopPropagation) {
+          e.stopPropagation()   // W3C 阻止冒泡;
+        } else {
+          e.cancelBubble = true // IE 阻止冒泡;
+        }
+
+      };
+
+      eventFun(box, 'click', preventBubble, false);
+
+    `;
+  }
+
+  // *阻止默认行为
+  preventDefault() {
+    return `
+      // 阻止默认行为
+
+      function preventDefault() {
+        var e = e || window.event;
+
+        if (e.preventDefault) {
+          e.preventDefault() // W3C 阻止默认行为;
+        } else {
+          e.returnValue = false // IE 阻止默认行为;
+        }
+
+      };
+
+      eventFun(box, 'click', preventDefault, false);
+
+    `;
+  }
 
   // Ps:时间操作
+  // *格式化时间
+  dateFormater() {
+    return `
+      // 格式化时间
+
+      // formater: 格式 YYYY-MM-DD HH:mm:ss 、 yyyy.MM.DD HH:mm:ss ...
+      // time: 时间 new Date().getTime() 1647854267083（可不传）
+
+      const dateFormater = (formater, time) => {
+        let date = time ? new Date(time) : new Date(),
+            Y = date.getFullYear() + '',
+            M = date.getMonth() + 1,
+            D = date.getDate(),
+            H = date.getHours(),
+            m = date.getMinutes(),
+            s = date.getSeconds();
+        return formater.replace(/YYYY|yyyy/g, Y)
+            .replace(/YY|yy/g, Y.slice(2, 4))
+            .replace(/MM/g, (M < 10 ? '0' : '') + M)
+            .replace(/DD/g, (D < 10 ? '0' : '') + D)
+            .replace(/HH|hh/g, (H < 10 ? '0' : '') + H)
+            .replace(/mm/g, (m < 10 ? '0' : '') + m)
+            .replace(/ss/g, (s < 10 ? '0' : '') + s)
+      };
+
+      dateFormater('YYYY-MM-DD HH:mm:ss') // '2022-03-21 14:40:19'
+      dateFormater('YYYYMMDDHHmmss')      // '20220321144026'
+      dateFormater('yyyy.MM.DD HH:mm:ss') // '2022.03.21 14:41:02'
+
+    `;
+  }
+
+  // *当前时间
+  nowTime() {
+    return `
+      // 当前时间
+
+      const nowTime = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const date = now.getDate() >= 10 ? now.getDate() : ('0' + now.getDate());
+        const hour = now.getHours() >= 10 ? now.getHours() : ('0' + now.getHours());
+        const miu = now.getMinutes() >= 10 ? now.getMinutes() : ('0' + now.getMinutes());
+        const sec = now.getSeconds() >= 10 ? now.getSeconds() : ('0' + now.getSeconds());
+        return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
+      };
+
+    `;
+  }
+
+  // Ps:JavaScript操作
+
 }

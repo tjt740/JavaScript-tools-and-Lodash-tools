@@ -14,6 +14,7 @@ export class UtilFortySevenComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.isNumber();
   }
 
 

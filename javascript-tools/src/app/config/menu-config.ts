@@ -11,7 +11,7 @@ export const MenuConfig = [
       },
       {
         exhibitStr: '随机获取数组中的某个数',
-        router: '/index/util-5'
+        router: '/index/util-5',
       },
       {
         exhibitStr: '',
@@ -52,7 +52,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -93,7 +93,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -134,7 +134,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -183,7 +183,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -224,7 +224,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -265,7 +265,7 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
 
@@ -323,7 +323,24 @@ export const MenuConfig = [
       {
         exhibitStr: '校验是否包含emoji表情',
         router: '/index/util-26',
-      }
+      },
+    ],
+  },
+
+  // Tjt: 信息判断
+  {
+    title: '信息判断',
+    icon: 'message',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '判断是否是数字',
+        router: '/index/util-47',
+      },
+      {
+        exhibitStr: '判断是否是数组',
+        router: '/index/util-48',
+      },
     ],
   },
 
@@ -364,10 +381,9 @@ export const MenuConfig = [
       {
         exhibitStr: '',
         router: '/index/util-',
-      }
+      },
     ],
   },
-
 
   // Tjt: 浏览器操作
   {
@@ -396,19 +412,75 @@ export const MenuConfig = [
         router: '/index/util-38',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '打开浏览器全屏',
+        router: '/index/util-39',
+      },
+      {
+        exhibitStr: '退出浏览器全屏',
+        router: '/index/util-40',
       },
       {
         exhibitStr: '',
         router: '/index/util-',
       },
+    ],
+  },
+
+  // Tjt:DOM操作
+  {
+    title: 'DOM操作',
+    icon: 'box-plot',
+    id: Math.random(),
+    childRoute: [
       {
-        exhibitStr: '',
-        router: '/index/util-',
-      }
+        exhibitStr: '事件监听',
+        router: '/index/util-43',
+      },
+      {
+        exhibitStr: '事件解绑',
+        router: '/index/util-44',
+      },
+      {
+        exhibitStr: '阻止冒泡事件',
+        router: '/index/util-45',
+      },
+      {
+        exhibitStr: '阻止默认行为',
+        router: '/index/util-46',
+      },
     ],
   },
 
   // Tjt: 时间操作
+  {
+    title: '时间操作',
+    icon: 'field-time',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '格式化时间',
+        router: '/index/util-41',
+      },
+      {
+        exhibitStr: '当前时间',
+        router: '/index/util-42',
+      },
+    ],
+  },
+  // Tjt: JavaScript操作
+  {
+    title: 'JavaScript操作',
+    icon: 'code',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '格式化时间',
+        router: '/index/util-41',
+      },
+      {
+        exhibitStr: '当前时间',
+        router: '/index/util-42',
+      },
+    ],
+  },
 ];

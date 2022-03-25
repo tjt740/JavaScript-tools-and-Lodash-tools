@@ -14,6 +14,7 @@ export class UtilFortyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.exitFullscreen();
   }
 
 }

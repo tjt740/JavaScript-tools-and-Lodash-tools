@@ -14,6 +14,7 @@ export class UtilFortyThreeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.listenEvent();
   }
 
 }
