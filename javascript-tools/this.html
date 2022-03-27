@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this指向</title>
+
+</head>
+
+
+<body>
+
+</body>
+
+
+
+<script>
+  var name = '谭金涛';
+
+  var json2 = {
+    name: '戚思宁'
+  }
+
+  var json1 = {
+    name: '大司马',
+
+    show1() {
+      console.log('show1==> this:', this);
+      console.log('show1==> this.name:', this.name);
+    },
+
+    show2: () => {
+      console.log('show2==> this:', this);
+      console.log('show2==> this.name:', this.name);
+    },
+
+    show3() {
+      console.log(this)
+      return function () {
+        console.log('show3中return的this:', this);
+        console.log('show3==> this.name:', this.name);
+      }
+    },
+
+    show4() {
+      console.log(this)
+      return () => {
+        console.log('show4中return的this:', this);
+        console.log('show4==> this.name:', this.name);
+      }
+    },
+
+    show5: () => {
+      console.log(this);
+      return () => {
+        console.log('show5中return的this:', this);
+        console.log('show5==> this.name:', this.name);
+      }
+    },
+
+    show6: () => {
+      console.log(this);
+      return function () {
+        console.log('show6中return的this:', this);
+        console.log('show6==> this.name:', this.name);
+      }
+    }
+  };
+
+  // json1.show1();                // show1==> this.name: 大司马;
+  // json1.show1.call(json2);      // show1==> this.name: 戚思宁;
+
+  // json1.show2();                // show2==> this.name: 谭金涛;
+  // json1.show2.call(json2);      // show2==> this.name: 谭金涛;
+
+  json1.show3()(); // show3==> this.name: 谭金涛;
+  // json1.show3().call(json2)     // show3==> this.name: 戚思宁;
+  // json1.show3.call(json2);    // show3==> this.name: 谭金涛;
+
+  json1.show4()(); // show4==> this.name: 大司马;
+  // json1.show4().call(json2)     // show4==> this.name: 大司马;
+  // json1.show4.call(json2)();    // show4==> this.name: 戚思宁;
+
+  json1.show5()(); // show5==> this.name: 谭金涛;
+  // json1.show5().call(json2);    // show5==> this.name: 谭金涛;
+  // json1.show5.call(json2)();    // show5==> this.name: 戚思宁;
+
+  json1.show6()(); // show6==> this.name: 谭金涛;
+  // json1.show6().call(json2);    // show6==> this.name: 戚思宁;
+  // json1.show6.call(json2)()    // show6==> this.name: 谭金涛
+
+</script>
+
+</html>
