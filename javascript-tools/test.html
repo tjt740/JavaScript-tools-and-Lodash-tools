@@ -139,13 +139,41 @@
     <div class="item item3"> 3 </div>
   </div>
 
+  <input type="text" placeholder="防抖" id="debounce">
+  <input type="text" placeholder="节流" id="throttle">
 </body>
 
 
 
 <script>
+  const debounceDom = document.getElementById('debounce');
+  const throttle = document.getElementById('throttle');
+
+  function debounce(fn, ms) {
+    let timer = null
+    return (...arg) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        fn.apply(this, arg)
+      }, ms)
+    }
+  }
+
+  let fn = debounce(function (e) {
+    console.log(`防抖成功：${e.target.value}`)
+    },)
+
+  // 第一种:
+  debounceDom.oninput = (e) => {
+    fn(e,3000)
+  }
+
+  // 第二种:
+  // debounceDom.addEventListener('input',fn,false);
+
+
   let items = document.getElementsByClassName('item');
-  console.log(items);
+  // console.log(items);
 
   Array.from(items).forEach(i => {
     i.onclick = () => {

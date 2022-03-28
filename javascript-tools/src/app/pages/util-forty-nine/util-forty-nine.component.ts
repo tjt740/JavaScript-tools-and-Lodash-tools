@@ -14,6 +14,7 @@ export class UtilFortyNineComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.sortItemArray();
   }
 
 }

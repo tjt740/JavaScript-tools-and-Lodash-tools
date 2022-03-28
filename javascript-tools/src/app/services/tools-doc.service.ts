@@ -279,6 +279,36 @@ export class ToolsDocService {
       sample(['1',2,'3',4,5])  // '3'
       sample([{a:1},{a:2},{a:3},{a:4},{a:5}])  // {a: 2}
       sample([1,2,3,4,5])  // 2
+
+    `;
+  }
+
+  // *数组按照数组中某一对象进行排序
+  sortItemArray() {
+    return `
+      // 数组按照数组中某一对象进行排序
+
+      // a,b : Array.sort(a,b) <固定>形参;
+      // xxx : 目标数组需要进行排序的key;
+      // a.xxx - b.xxx 正序 | b.xxx - a.xxx 倒序;
+
+      function sortItemArray (a,b) {
+        return a.label - b.label; // (正序) 1 2 3 4 ...
+        return b.xxx - a.xxx;     // (倒序) 4 3 2 1 ...
+      };
+
+      let oldArr = [
+        {"value":"甲","label":1},
+        {"value":"丁","label":4},
+        {"value":"戊","label":5},
+        {"value":"乙","label":2},
+        {"value":"己","label":6},
+        {"value":"丙","label":3}
+      ];
+
+      let newArr1 = oldArr.sort(sortItemArray); // 正序 a-b
+      let newArr2 = oldArr.sort(sortItemArray); // 倒序 b-a
+
     `;
   }
 
@@ -612,7 +642,7 @@ export class ToolsDocService {
     `;
   }
 
-  // Ps:信息判断
+  // Ps:判断类型
   // *判断是否是数字
   isNumber() {
     return `
@@ -941,6 +971,42 @@ export class ToolsDocService {
 
     `;
   }
+
+  // *事件委托
+  eventDelegation() {
+    return `
+      <ul class="ul-box">
+        <li class="li-box">01</li>
+        <li class="li-box">02</li>
+        <li class="li-box">03</li>
+        <li class="li-box">04</li>
+        <li class="li-box">05</li>
+      </ul>
+
+      // 事件委托 (不消耗性能)
+
+      // 主流浏览器:
+      const ulBox = document.querySelector('.ul-box');
+
+      ulBox.onclick = (e) => {
+        if (e.target.nodeName.toLowerCase() == 'li') { // nodeName 都是大写，用toLowerCase()转为小写
+          console.log(e.target) // 01 02 03 ...
+        }
+      }
+
+      // 兼容IE写法:
+      var ul = document.getElementsByTagName('ul')[0] // 用var为了兼容IE let也可以。 在父级上定义。
+      ul.onclick = function (e) {
+        var e = e || window.event
+        var that = e.target || e.srcElement
+        if (that.nodeName.toLowerCase() == 'li') {
+          console.log(that) // 01 02 03 ...
+        }
+      }
+
+    `;
+  }
+
   // *阻止冒泡事件
   preventBubble() {
     return `
@@ -1036,5 +1102,45 @@ export class ToolsDocService {
   }
 
   // Ps:JavaScript操作
+  // *防抖
+  debounce() {
+    return `
+      // 防抖: 多次触发事件时，只执行一次回调函数。在事件触发n秒后，再执行回调，在n秒内触发则重新计算。
 
+      <input type="text" placeholder="防抖" id="debounce">
+
+      const debounceDom = document.getElementById('debounce');
+
+
+      function debounce(fn, ms) {
+        let timer = null
+        return (...arg) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(this, arg)
+          }, ms)
+        }
+      }
+
+      let fn = debounce(function (e) {
+        console.log('防抖成功: ' + e.target.value);
+      }, ms)
+
+      // 第一种:
+      debounceDom.oninput = (e) => {
+
+        debounce(function (v) {
+          console.log(防抖成功: e.target.value)
+        },2000)()
+
+      }
+
+      // 第二种:
+      debounceDom.addEventListener('input',fn,false);
+
+    `;
+  }
+
+
+  // *节流
 }

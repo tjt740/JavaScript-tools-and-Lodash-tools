@@ -14,6 +14,7 @@ export class UtilFiftyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.eventDelegation();
   }
 
 }

@@ -14,8 +14,8 @@ export const MenuConfig = [
         router: '/index/util-5',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '数组按照数组中某一对象进行排序',
+        router: '/index/util-49',
       },
       {
         exhibitStr: '',
@@ -327,9 +327,9 @@ export const MenuConfig = [
     ],
   },
 
-  // Tjt: 信息判断
+  // Tjt: 判断类型
   {
-    title: '信息判断',
+    title: '判断类型',
     icon: 'message',
     id: Math.random(),
     childRoute: [
@@ -426,31 +426,6 @@ export const MenuConfig = [
     ],
   },
 
-  // Tjt:DOM操作
-  {
-    title: 'DOM操作',
-    icon: 'box-plot',
-    id: Math.random(),
-    childRoute: [
-      {
-        exhibitStr: '事件监听',
-        router: '/index/util-43',
-      },
-      {
-        exhibitStr: '事件解绑',
-        router: '/index/util-44',
-      },
-      {
-        exhibitStr: '阻止冒泡事件',
-        router: '/index/util-45',
-      },
-      {
-        exhibitStr: '阻止默认行为',
-        router: '/index/util-46',
-      },
-    ],
-  },
-
   // Tjt: 时间操作
   {
     title: '时间操作',
@@ -467,6 +442,36 @@ export const MenuConfig = [
       },
     ],
   },
+
+  // Tjt:DOM操作
+  {
+    title: 'DOM操作',
+    icon: 'box-plot',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '事件监听',
+        router: '/index/util-43',
+      },
+      {
+        exhibitStr: '事件解绑',
+        router: '/index/util-44',
+      },
+      {
+        exhibitStr: '事件委托',
+        router: '/index/util-50',
+      },
+      {
+        exhibitStr: '阻止冒泡事件',
+        router: '/index/util-45',
+      },
+      {
+        exhibitStr: '阻止默认行为',
+        router: '/index/util-46',
+      },
+    ],
+  },
+
   // Tjt: JavaScript操作
   {
     title: 'JavaScript操作',
