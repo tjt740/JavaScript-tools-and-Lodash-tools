@@ -14,6 +14,7 @@ export class UtilFiftyThreeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.swapItems();
   }
 
 }

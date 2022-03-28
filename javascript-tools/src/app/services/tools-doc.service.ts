@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ToolsDocService {
-  constructor() {}
+  constructor() { }
 
   // Ps:数字操作
   // *随机数字
@@ -308,6 +308,25 @@ export class ToolsDocService {
 
       let newArr1 = oldArr.sort(sortItemArray); // 正序 a-b
       let newArr2 = oldArr.sort(sortItemArray); // 倒序 b-a
+
+    `;
+  }
+
+  swapItems() {
+    return `
+      // 交换数组中两个元素
+
+      // arr: 数组
+      // index1: 数组需要交换的下标1
+      // index2: 数组需要交换的下标2
+
+      function swapItems (arr, index1, index2) {
+        arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+        return arr;
+      };
+
+      swapItems([1,3,2,4,5],2,1)         // [1, 2, 3, 4, 5]
+      swapItems([{a:1},{c:3},{b:2}],1,2) // [{a:1},{b:2},{c:3}]
 
     `;
   }
@@ -940,10 +959,10 @@ export class ToolsDocService {
           // 'EventName': 事件的名称 （不加on） click、mouseover...
           // functionName: 函数的名字（fn1/fn2...;
           // boolean : true/false(默认false不冒泡);
-           /*
-              true : 事件在捕获阶段执行   body -> parent -> son  打印从外到里
-              false（默认）： 事件在冒泡阶段执行  son -> parent -> body  打印从里到外
-           */
+          /*
+            true : 事件在捕获阶段执行   body -> parent -> son  打印从外到里
+            false（默认）： 事件在冒泡阶段执行  son -> parent -> body  打印从里到外
+          */
 
 
       // IE8以下:
@@ -1105,42 +1124,71 @@ export class ToolsDocService {
   // *防抖
   debounce() {
     return `
-      // 防抖: 多次触发事件时，只执行一次回调函数。在事件触发n秒后，再执行回调，在n秒内触发则重新计算。
+      // 防抖: 在没有连续事件触发n秒后，执行一次回调函数，在n秒内重新触发事件则重新计算时间。
 
-      <input type="text" placeholder="防抖" id="debounce">
+      // fn: 防抖结束后触发的回调函数
+      // ms: 毫秒数
+
+      /* <input type="text" placeholder="防抖" id="debounce"> */
 
       const debounceDom = document.getElementById('debounce');
 
-
       function debounce(fn, ms) {
-        let timer = null
+        let timer = null;
         return (...arg) => {
           clearTimeout(timer);
           timer = setTimeout(() => {
-            fn.apply(this, arg)
+            fn.apply(this, arg);
           }, ms)
         }
       }
 
-      let fn = debounce(function (e) {
-        console.log('防抖成功: ' + e.target.value);
-      }, ms)
-
-      // 第一种:
-      debounceDom.oninput = (e) => {
-
-        debounce(function (v) {
-          console.log(防抖成功: e.target.value)
-        },2000)()
-
+      function fn(e) {
+        console.log(e);
+        console.log(防抖成功: e.target.value);
       }
 
-      // 第二种:
-      debounceDom.addEventListener('input',fn,false);
+      debounceDom.addEventListener('input', debounce(fn, 2000), false);
 
     `;
   }
 
-
   // *节流
+  throttle() {
+    return `
+      // 节流: 连续事件发生时，每隔n秒触发一次事件。
+
+      // fn: n秒内会被触发一次的回调函数
+      // ms: 毫秒数
+
+      /* <input type="text" placeholder="节流" id="throttle"> */
+
+      const throttleDom = document.getElementById("throttle");
+
+      function throttle(fn, ms) {
+        let time = null;
+        let mark = true; // 标记
+        return (...arg) => {
+          if (mark === false) {
+            return;
+          }
+          clearTimeout(time);
+          mark = false;
+          time = setTimeout(() => {
+            fn.apply(this, arg);
+            mark = true;
+          }, ms);
+        };
+      }
+
+      function fn(e) {
+        console.log(e);
+        console.log(节流成功:e.target.value);
+      }
+
+      throttleDom.addEventListener("input", throttle(fn, 2000), false);
+
+    `;
+  }
+
 }

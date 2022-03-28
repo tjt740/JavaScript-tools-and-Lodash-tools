@@ -14,6 +14,7 @@ export class UtilFiftyTwoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.throttle();
   }
 
 }

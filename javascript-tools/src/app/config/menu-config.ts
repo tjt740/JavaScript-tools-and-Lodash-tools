@@ -18,8 +18,8 @@ export const MenuConfig = [
         router: '/index/util-49',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '交换数组中两个元素',
+        router: '/index/util-53',
       },
       {
         exhibitStr: '',
@@ -479,12 +479,12 @@ export const MenuConfig = [
     id: Math.random(),
     childRoute: [
       {
-        exhibitStr: '格式化时间',
-        router: '/index/util-41',
+        exhibitStr: '防抖',
+        router: '/index/util-51',
       },
       {
-        exhibitStr: '当前时间',
-        router: '/index/util-42',
+        exhibitStr: '节流',
+        router: '/index/util-52',
       },
     ],
   },

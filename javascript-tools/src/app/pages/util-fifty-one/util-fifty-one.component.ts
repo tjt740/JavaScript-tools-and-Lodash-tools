@@ -14,6 +14,7 @@ export class UtilFiftyOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.debounce();
   }
 
 }
