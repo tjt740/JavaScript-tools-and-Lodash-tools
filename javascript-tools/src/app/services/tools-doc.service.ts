@@ -312,6 +312,7 @@ export class ToolsDocService {
     `;
   }
 
+  // *交换数组中两个元素
   swapItems() {
     return `
       // 交换数组中两个元素
@@ -1191,4 +1192,79 @@ export class ToolsDocService {
     `;
   }
 
+  // *数据类型判断
+  getType() {
+    return `
+      // 数据类型判断
+
+      // val: 想要进行判断的参数
+
+      function getType(value) {
+        if (value === null) {
+            return value + "";
+        }
+        // 判断数据是引用类型的情况
+        if (typeof value === "object") {
+            let valueClass = Object.prototype.toString.call(value),
+                type = valueClass.split(" ")[1].split("");
+            type.pop();
+            return type.join("").toLowerCase();
+        } else {
+            // 判断数据是基本数据类型的情况和函数的情况
+            return typeof value;
+        }
+      };
+
+      getType()       // 'undefined'
+      getType(null)   // 'null'
+      getType([])     // 'array'
+
+    `;
+  }
+
+  // *深克隆/深拷贝
+  deepClone() {
+    return `
+      // 深克隆/深拷贝
+
+      // obj: 想要被克隆的对象
+
+      function deepClone(obj, hash = new WeakMap()) {
+        // 日期对象直接返回一个新的日期对象
+        if (obj instanceof Date) {
+            return new Date(obj);
+        }
+        //正则对象直接返回一个新的正则对象
+        if (obj instanceof RegExp) {
+            return new RegExp(obj);
+        }
+        //如果循环引用,就用 weakMap 来解决
+        if (hash.has(obj)) {
+            return hash.get(obj);
+        }
+        // 获取对象所有自身属性的描述
+        let allDesc = Object.getOwnPropertyDescriptors(obj);
+        // 遍历传入参数所有键的特性
+        let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc);
+
+        hash.set(obj, cloneObj);
+        for (let key of Reflect.ownKeys(obj)) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+                cloneObj[key] = deepClone(obj[key], hash);
+            } else {
+                cloneObj[key] = obj[key];
+            }
+        }
+        return cloneObj;
+      };
+
+
+      let arr = [[1, 2, [3]], [() => { return 4 }, [5, [6]]], { a: 7, b() { return 8 } }]
+      let cloneArr = deepClone(arr);  //  [Array(3), Array(2), {…}]
+
+      let date = new Date();
+      let cloneDate = deepClone(date); // Wed Mar 30 2022 23:54:58 GMT+0800 (中国标准时间)
+
+    `;
+  }
 }

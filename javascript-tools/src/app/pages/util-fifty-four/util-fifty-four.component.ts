@@ -15,6 +15,7 @@ export class UtilFiftyFourComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.getType();
   }
 
 }

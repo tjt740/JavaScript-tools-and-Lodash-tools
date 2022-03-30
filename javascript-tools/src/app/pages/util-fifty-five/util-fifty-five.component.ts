@@ -15,6 +15,8 @@ export class UtilFiftyFiveComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.initCode = this.toolsDoc.deepClone();
   }
 
 }

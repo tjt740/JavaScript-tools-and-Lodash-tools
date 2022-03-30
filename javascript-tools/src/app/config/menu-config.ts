@@ -486,6 +486,15 @@ export const MenuConfig = [
         exhibitStr: '节流',
         router: '/index/util-52',
       },
+      {
+        exhibitStr: '数据类型判断',
+        router: '/index/util-54',
+      },
+      {
+        exhibitStr: '深拷贝/深克隆',
+        router: '/index/util-55',
+      },
+
     ],
   },
 ];
