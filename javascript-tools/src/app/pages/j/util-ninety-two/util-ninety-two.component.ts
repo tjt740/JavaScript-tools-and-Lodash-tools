@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
 
 @Component({
   selector: 'app-util-ninety-two',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UtilNinetyTwoComponent implements OnInit {
 
-  constructor() { }
+  initCode: string = '';
+  constructor(
+    public toolsDoc: ToolsDocService,
+  ) {}
 
   ngOnInit(): void {
   }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ToolsDocService {
-  constructor() { }
+  constructor() {}
 
   // Ps:数字操作
   // *随机数字
