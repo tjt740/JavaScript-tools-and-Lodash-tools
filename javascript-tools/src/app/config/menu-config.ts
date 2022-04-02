@@ -494,7 +494,10 @@ export const MenuConfig = [
         exhibitStr: '深拷贝/深克隆',
         router: '/index/util-55',
       },
-
+      {
+        exhibitStr: '模糊查询/模糊匹配',
+        router: '/index/util-56',
+      },
     ],
   },
 ];

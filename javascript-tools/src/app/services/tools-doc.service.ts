@@ -1267,4 +1267,41 @@ export class ToolsDocService {
 
     `;
   }
+
+  // *模糊查询/模糊匹配
+  blurrySearch() {
+    return `
+      // 模糊查询/模糊匹配
+
+      // allDataList: 想要被模糊匹配的数组
+
+      // searchContent: 模糊匹配的内容
+
+      function blurrySearch(allDataList, searchContent) {
+        return allDataList.filter(v => v.name.match(searchContent));
+      };
+
+      let allTeacherList = [
+        {
+        "id": 15649876456456,
+        "name": "戚思宁",
+        "code": "4311221"
+        },
+        {
+            "id": 15649876456457,
+            "name": "谭金涛",
+            "code": "1311641",
+
+        },
+        {
+            "id": 15649876456458,
+            "name": "柳晔",
+            "code": "4311271",
+        }
+      ];
+
+      let teacherList = blurrySearch(allTeacherList,'涛')  // [{ "id": 15649876456457, "name": "谭金涛","code": "1311641"}]
+
+    `;
+  }
 }

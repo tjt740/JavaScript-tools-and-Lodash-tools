@@ -14,6 +14,7 @@ export class UtilFiftySixComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCode = this.toolsDoc.blurrySearch();
   }
 
 }
