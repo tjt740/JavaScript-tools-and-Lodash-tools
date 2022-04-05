@@ -125,7 +125,7 @@ import { UtilNinetyNineComponent } from './pages/j/util-ninety-nine/util-ninety-
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 // 服务
 
@@ -254,7 +254,8 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzButtonModule
+    NzButtonModule,
+    NzSelectModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
