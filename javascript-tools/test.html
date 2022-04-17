@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>测试</title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #eeeeee;
+    }
+
+    .item {
+      width: 150px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      cursor: pointer;
+      /* 禁止收缩 */
+      flex-shrink: 0;
+    }
+
+    .choose {
+      text-decoration: underline;
+    }
+
+    .item1 {
+      background: #e6f7ff;
+      border: 1px solid #91d5ff;
+      border-radius: 2px;
+      background-color: #e6f7ff;
+      flex-grow: 1;
+      /*
+        flex-grow 长大
+        这个是 items 容器的属性，设置 items 占整个【容器方向轴】的长度比例。
+          0: 默认值，不放大。
+          initial: 设置默认值，与0等效，不放大。
+          n:  放大因子, 正数。
+      */
+      flex-shrink: 0;
+      /* flex-shrink 收缩
+        这个是 items 容器的属性，当 container “空间不足” && “禁止换行” 时, flex-shrink才有意义。
+          1: 默认值	允许项目收缩。
+          initial:	设置初始默认值,与 1 等效。
+          0:	禁止收缩,保持原始尺寸。
+          n:	收缩因子: 正数。
+      */
+    }
+
+    .item2 {
+      background: #fff1f0;
+      border: 1px solid #ffa39e;
+      border-radius: 2px;
+      background-color: #fff1f0;
+      flex-grow: 1;
+      flex-shrink: 2;
+    }
+
+    .item3 {
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+      border-radius: 2px;
+      background-color: #f6ffed;
+      flex-grow: 2;
+      flex-shrink: 1;
+    }
+
+  </style>
+  <style>
+    #box {
+      width: 1200px;
+      height: 750px;
+      margin: 0 auto;
+      background-color: #ffffff;
+
+      /*  flex布局  */
+      /* container 的属性 */
+
+      display: flex;
+      flex-direction: row;
+      /*
+        这个是 container 容器的属性，设置的是 items 在项目方向轴排序的方向。
+          横向、纵向 (
+          row: 横向排列
+          row-reverse: 横向反向排列
+          column: 纵向排列
+          column-reverse: 纵向反向排列
+      */
+      flex-wrap: nowrap;
+      /*
+        这个是 container 容器的属性，设置的是 items 在方向轴上排列满了是否换行。
+          nowrap (默认值): 不换行压缩宽度
+          wrap:    换行
+          wrap-reverses: 反向换行
+      */
+      align-items: center;
+      /*
+        这个是 container 容器的属性，设置的是 items 【在项目交叉轴上对齐样式】
+            flex-start：交叉轴的起点对齐
+            flex-end：交叉轴的终点对齐
+            center：交叉轴的中点对齐
+            baseline: 项目的第一行文字的基线对齐
+            stretch（默认值）伸展：如果项目未设置高度或设为auto，将占满整个容器的高度
+      */
+      justify-content: space-evenly;
+      /*
+        这个是 container 容器的属性，设置的是 items 【在项目方向轴上的对齐方式】
+            flex-start 方向轴的起点对齐
+            flex-end   方向轴的终点对齐
+            center     方向轴的中点对齐
+            space-between 方向轴的两端对齐，靠着容器壁，剩余空间平分
+            space-around  方向轴的分散对齐，不靠着容器壁，剩余空间在每个项目二侧平均分配
+            space-evenly  方向轴的平均对齐，不靠着容器壁，剩余空间平分
+      */
+
+      /*  */
+      /*  */
+      /*  */
+      /*  */
+      /*  */
+      /*  */
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+  </div>
+
+</body>
+
+<script>
+  let items = document.getElementsByClassName("item");
+
+  Array.from(items).forEach((i) => {
+    i.onclick = () => {
+      Array.from(items).forEach((val) => val.classList.remove("choose"));
+      i.classList.add("choose");
+    };
+  });
+
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<nz-layout class="app-layout">
+  <!-- menu -->
+  <nz-sider class="menu-sidebar" nzWidth="256px">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>NG-ZORRO文档</h1>
+      </a>
+    </div>
+    <ul nz-menu nzMode="inline" nzTheme="dark" *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
+      <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+        <ul *ngFor="let val of item.childRoute">
+          <li nz-menu-item [routerLink]="val.router">
+            {{ val.exhibitStr }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- 主体 -->
+  <nz-layout>
+    <nz-header *ngIf="!isIndex">
+      <button id='goBack' nz-button nzType="default" nzShape="circle" (click)="goBack()">
+        <i nz-icon nzType="left" nzTheme="outline"></i>
+      </button>
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="输入关键词进行查找" [(ngModel)]="selectedValue"
+        [nzOptions]="listOfGroupOption" (ngModelChange)="search($event)"></nz-select>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <ng-container [ngTemplateOutlet]="open" *ngIf="isIndex"></ng-container>
+        <!-- 渲染视图 -->
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+<ng-template #open>
+  <app-open-animation></app-open-animation>
+</ng-template>
