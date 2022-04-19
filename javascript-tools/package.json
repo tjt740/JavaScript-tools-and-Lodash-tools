@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:github":"ng build --prod --output-path docs --base-href /JavaScript-tools-and-Lodash-tools/"
+    "build:github":"ng build --prod --output-path docs --base-href "
   },
   "private": true,
   "dependencies": {
