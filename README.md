@@ -1,4 +1,12 @@
-# JavaScript-tool-function
+# JavaScript-tool-function  
 
-🍑 这里汇集了谭金涛常用的JS方法。
+🍑 常用的JS方法学习;
+
+
+# lodash-study-demo
+🥐 常用的lodash方法学习;
+
+
+**现已支持模糊查询**
+
 

@@ -22,32 +22,15 @@ export const MenuConfig = [
         router: '/index/util-53',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '将数组拆分成多个【size】长的区块，组成新数组',
+        router: '/index/util-57',
       },
       {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
-      },
-      {
-        exhibitStr: '',
-        router: '/index/util-',
+        exhibitStr: '剔除数组中的假值，返回新数组',
+        router: '/index/util-58',
+      },{
+        exhibitStr: '将【Array】与任何数组或值拼接，返回新数组',
+        router: '/index/util-59',
       },
       {
         exhibitStr: '',

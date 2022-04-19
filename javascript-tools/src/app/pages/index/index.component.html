@@ -3,11 +3,15 @@
   <nz-sider class="menu-sidebar" nzWidth="256px">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>NG-ZORRO文档</h1>
+        <img [src]="ngLogoImg" alt="logo">
+        <span>ng-zorro</span>
+      </a>
+      <a href="https://www.lodashjs.com/" target="_blank">
+        <img [src]="lodashLogoImg" alt="logo">
+        <span>lodash</span>
       </a>
     </div>
-    <ul nz-menu nzMode="inline" nzTheme="dark" *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
+    <ul nz-menu nzMode="inline"  *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
       <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item [routerLink]="val.router">
@@ -26,6 +30,7 @@
       </button>
       <nz-select nzShowSearch nzAllowClear nzPlaceHolder="输入关键词进行查找" [(ngModel)]="selectedValue"
         [nzOptions]="listOfGroupOption" (ngModelChange)="search($event)"></nz-select>
+        <h3>请打开控制台看效果</h3>
     </nz-header>
     <nz-content>
       <div class="inner-content">
