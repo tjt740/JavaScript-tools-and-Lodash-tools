@@ -1,9 +1,9 @@
-# JavaScript-tool-function  
+# JavaScript-tools 
 
 🍑 常用的JS方法学习;
 
 
-# lodash-study-demo
+# lodash-study
 🥐 常用的lodash方法学习;
 
 
