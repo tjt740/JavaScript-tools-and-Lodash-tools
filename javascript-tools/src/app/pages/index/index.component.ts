@@ -10,7 +10,8 @@ import * as all from '../../config/menu-config';
 })
 export class IndexComponent implements OnInit {
   isCollapsed = false;
-
+  ngLogoImg = 'https://ng.ant.design/assets/img/logo.svg';
+  lodashLogoImg = './assets/images/lodash-logo.png';
   isIndex: string | boolean = '';
   routeConfig: any;
   selectedValue = null;

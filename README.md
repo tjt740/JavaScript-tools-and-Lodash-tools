@@ -1,6 +1,10 @@
-# JavaScript-tool-function
+# JavaScript-tool-function  
 
-🍑 这里汇集了谭金涛常用的JS方法。
-💨 monaco-editor + angular 13.2.0
+🍑 常用的JS方法学习;
 
-**支持了模糊匹配**
+
+# lodash-study-demo
+🥐 常用的lodash方法学习;
+
+
+**现已支持模糊查询**
