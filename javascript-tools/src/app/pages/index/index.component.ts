@@ -27,7 +27,6 @@ export class IndexComponent implements OnInit {
     this.routeConfig = all.MenuConfig;
 
     // search搜索;
-
     this.mockAll.map((val: any) => {
       return val.childRoute.map((v: any) => {
         v.groupLabel = val.title;
@@ -41,14 +40,17 @@ export class IndexComponent implements OnInit {
     this.listOfGroupOption = this.mockAll
       .flatMap((v: any) => v.childRoute)
       .filter((v: any) => v.label);
-    // console.log(all.MenuConfig)
+
+    // 初始化动画页面
+      this.isIndex = window.location.pathname === '/' || '/index' || false;
   }
 
-  ngAfterContentChecked(): void {
-    this.isIndex = window.location.pathname === '/index' || false;
+  hideAnimation(){
+    this.isIndex = false;
   }
 
   goBack() {
+    this.isIndex = true;
     this.route.navigateByUrl('/index');
   }
 
