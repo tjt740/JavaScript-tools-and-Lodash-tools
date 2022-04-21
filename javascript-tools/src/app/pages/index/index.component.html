@@ -14,7 +14,7 @@
     <ul nz-menu nzMode="inline"  *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
       <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
-          <li nz-menu-item [routerLink]="val.router">
+          <li nz-menu-item [routerLink]="val.router" (click)="hideAnimation()">
             {{ val.exhibitStr }}
           </li>
         </ul>
