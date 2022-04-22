@@ -42,4 +42,18 @@
 ​​![](course/4.png)
 
 
-**PS: 最好每次都吧新创建的分支合到master再部署到Github Pages**
+**PS: 最好每次都把新创建的分支合到master上再部署到Github Pages**
+
+
+>简化【打包+发布】命令
+
+`在package.json文件中添加:` 
+
+```
+ "github:ghpages":"ng deploy --base-href=https://tjt740.github.io/JavaScript-tools-and-Lodash-tools/"
+```
+
+`在项目中执行简化后的【打包+发布】命令`
+```
+  npm run github:ghpages
+```
