@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:github": "ng build --prod --output-path docs --base-href "
+    "github:ghpages":"ng deploy --base-href=https://tjt740.github.io/JavaScript-tools-and-Lodash-tools/"
   },
   "private": true,
   "dependencies": {
