@@ -15,6 +15,6 @@ export class NoFoundComponent implements OnInit {
   ngOnInit(): void {
   }
   redirect() {
-    this.router.navigate(['index']);
+    this.router.navigateByUrl('/index');
   }
 }
