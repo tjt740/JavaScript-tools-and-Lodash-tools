@@ -357,15 +357,15 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   // 404 路由
-  // {
-  //   path: '**',
-  //   //*1) component: NoFoundComponent,
-  //   //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
-  //   loadChildren: () =>
-  //     import('./pages/no-found/no-found-routing.module').then(
-  //       (m) => m.NoFoundRoutingModule
-  //     ),
-  // },
+  {
+    path: '**',
+    //*1) component: NoFoundComponent,
+    //*2) 路由懒加载 (有点麻烦，需要创建 index-routing-modules.ts 将index路由导出)
+    loadChildren: () =>
+      import('./pages/no-found/no-found-routing.module').then(
+        (m) => m.NoFoundRoutingModule
+      ),
+  },
 ];
 
 @NgModule({
