@@ -42,7 +42,9 @@ export class IndexComponent implements OnInit {
       .filter((v: any) => v.label);
 
     // 初始化动画页面
-      this.isIndex = window.location.pathname === '/' || '/index' || false;
+
+    console.log(window.location.pathname)
+      this.isIndex = window.location.pathname === '/index' || false;
   }
 
   hideAnimation(){
