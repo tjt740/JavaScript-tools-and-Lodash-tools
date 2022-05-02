@@ -1,6 +1,6 @@
 <nz-layout class="app-layout">
   <!-- menu -->
-  <nz-sider class="menu-sidebar" nzWidth="256px">
+  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" >
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img [src]="ngLogoImg" alt="logo">
@@ -14,7 +14,7 @@
     <ul nz-menu nzMode="inline"  *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
       <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
-          <li nz-menu-item [routerLink]="val.router" (click)="hideAnimation()">
+          <li nz-menu-item (click)="hideAnimationAndChooseTool(val)">
             {{ val.exhibitStr }}
           </li>
         </ul>
@@ -35,8 +35,8 @@
     <nz-content>
       <div class="inner-content">
         <ng-container [ngTemplateOutlet]="open" *ngIf="isIndex"></ng-container>
-        <!-- 渲染视图 -->
-        <router-outlet></router-outlet>
+        <!-- 渲染视图组件-->
+        <app-render [renderData]="toolsData" *ngIf="!isIndex"></app-render>
       </div>
     </nz-content>
   </nz-layout>

@@ -7,65 +7,6 @@ export class ToolsDocService {
   constructor() {}
 
   // Ps:数字操作
-  // *将数组拆分成多个【size】长的区块，生成新数组。
-  chunkArray() {
-    return `
-        /*
-          将数组拆分成多个【size】长的区块，生成新数组。
-          如果【Array】无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
-        */
-
-        _.chunk(Array, [size=1])
-
-        let arr1 = ['a1', 'b2', 'c3', 'd4', 'e5']
-        let arr2 = [['a', 'b'], 'c', 'd','e']
-
-        let newArr1 = _.chunk(arr1, 2);
-        // → [['a1', 'b2'], ['c3', 'd4'], ['e5']];
-
-        let newArr2 = _.chunk(arr2, 2);
-        // → [[["a","b"],"c"], ["d","e"]];
-
-      `;
-  }
-
-  // *剔除数组中的假值，返回新数组
-  compactArray() {
-    return `
-        /*
-          剔除数组中的假值，返回新数组。
-          例如false, null,0, "", undefined, 和 NaN 都是被认为是“假值”。
-        */
-
-        _.compact(Array);
-
-        let newArr1 = _.compact([0, 1, false, 2, '', 3]);
-        // → [1,2,3];
-
-        let newArr2 = _.compact([[NaN, 0, false], '0', 740]);
-        // → [[NaN, 0, false],'0', 740];
-
-      `;
-  }
-
-  // *将【Array】与任何数组或值拼接，返回新数组
-  concatArray() {
-    return `
-        // 将【Array】与任何数组或值拼接，返回新数组
-
-        _.concat(Array,[values]);
-
-        let arr = [1, 2, 3, 4];
-
-        let newArr1 = _.concat(arr, 5, 6, [7]);
-        // → [1, 2, 3, 4, 5, 6, 7];
-
-        // @ts-ignore
-        var newArr2 = _.concat(arr, 2, [3], [[4]]);
-        // → [1, 2, 3, 4, 5, 6, [7]];
-
-      `;
-  }
 
   // *随机数字
   randomNum() {
@@ -390,14 +331,112 @@ export class ToolsDocService {
 
     `;
   }
+  // *[Ld]将数组拆分成多个【size】长的区块，组成新数组
+  chunkArray() {
+    return `
+        /*
+          将数组拆分成多个【size】长的区块，生成新数组。
+          如果【Array】无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
+        */
 
+        _.chunk(Array, [size=1])
+
+        let arr1 = ['a1', 'b2', 'c3', 'd4', 'e5']
+        let arr2 = [['a', 'b'], 'c', 'd','e']
+
+        let newArr1 = _.chunk(arr1, 2);
+        // → [['a1', 'b2'], ['c3', 'd4'], ['e5']];
+
+        let newArr2 = _.chunk(arr2, 2);
+        // → [[["a","b"],"c"], ["d","e"]];
+
+      `;
+  }
+
+  // *[Ld]剔除数组中的假值，返回新数组
+  compactArray() {
+    return `
+        /*
+          剔除数组中的假值，返回新数组。
+          例如false, null,0, "", undefined, 和 NaN 都是被认为是“假值”。
+        */
+
+        _.compact(Array);
+
+        let newArr1 = _.compact([0, 1, false, 2, '', 3]);
+        // → [1,2,3];
+
+        let newArr2 = _.compact([[NaN, 0, false], '0', 740]);
+        // → [[NaN, 0, false],'0', 740];
+
+      `;
+  }
+
+  // *[Ld]将【Array】与任何数组或值拼接，返回新数组
+  concatArray() {
+    return `
+        /*
+          将【Array】与任何数组、值拼接，返回新数组
+        */
+
+        _.concat(Array,[values]);
+
+        let arr = [1, 2, 3, 4];
+
+        let newArr1 = _.concat(arr, 5, 6, [7]);
+        // → [1, 2, 3, 4, 5, 6, 7];
+
+        // @ts-ignore
+        var newArr2 = _.concat(arr, 2, [3], [[4]]);
+        // → [1, 2, 3, 4, 5, 6, [7]];
+
+      `;
+  }
+
+  // *[Ld]筛选出【Array】中需要被排除的值[values]，返回新数组
+  difference() {
+    return `
+      /*
+        筛选出【Array】中需要被排除的值[values]，返回新数组
+          Array: 被检查的数组
+          [values]:(...Array) 需要被排除的值（必须是数组形式）
+      */
+
+      _.difference(Array, [values]);
+
+      let arr = [1, 2, 3];
+      let newArr1 = _.difference(arr, [2, 3]);
+      // → [1];
+
+      let arr2 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+      let newArr2 = _.difference(arr2, ['一', '二', '三', '四']);
+      // → ['零', '五', '六', '七', '八', '九'];
+
+    `;
+  };
   // Ps:JSON操作
+  // *遍历json数组
+  mapJson() {
+    return `
+      // 遍历json数组
+      let json = {a:'谭金涛',b:'戚思宁',c:'柳晔',d:'徐晨彦'};
+
+      let arr= [];
+
+      for(let i=0; i<Object.keys(json).length;i++){
+        arr.push(json[Object.keys(json)[i]])
+      };
+
+      console.log(arr);   // ['谭金涛', '戚思宁', '柳晔', '徐晨彦']
+
+    `;
+  }
 
   // Ps:URL操作
-  // *获取URL上参数
+  // *获取URL上参数信息
   getUrlInfo() {
     return `
-      // 获取URL上参数
+      // 获取URL上参数信息
 
       const getUrlInfo = ()=> {
         let urlInfo = {} as any;

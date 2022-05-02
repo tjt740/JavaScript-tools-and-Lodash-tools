@@ -17,3 +17,7 @@ b文件夹：eleven - nineteen;
 c文件夹：20 - 29 
 d文件夹：30 - 39 
 ...
+
+
+创建pages页面:
+  ng g c 路径/自定义页面名 -m app
