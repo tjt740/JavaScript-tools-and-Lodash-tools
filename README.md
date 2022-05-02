@@ -31,15 +31,15 @@
 ```
 
 4. 在Github中的 *Settings* 中的选择 *Pages*
-![](course/1.png)
-![](course/2.png)
+![](./course/1.png)
+![](./course/2.png)
 
 
 5. 选择 *gh-pages* 分支，*/root*，然后Save
-![](course/3.png)
+![](./course/3.png)
 
 6. 点击链接【完成】
-​​![](course/4.png)
+​​![](./course/4.png)
 
 
 **PS: 最好每次都把新创建的分支合到master上再部署到Github Pages**
