@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // 左侧菜单栏
 import * as all from '../../config/menu-config';
+import { ToolsDocService } from 'src/app/services/tools-doc.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-index',
@@ -9,6 +11,8 @@ import * as all from '../../config/menu-config';
   styleUrls: ['./index.component.less'],
 })
 export class IndexComponent implements OnInit {
+  constructor(private toolsDoc: ToolsDocService, protected route: Router) {}
+
   isCollapsed = false;
   ngLogoImg = 'https://ng.ant.design/assets/img/logo.svg';
   lodashLogoImg = './assets/images/lodash-logo.png';
@@ -16,16 +20,16 @@ export class IndexComponent implements OnInit {
   routeConfig: any;
   selectedValue = null;
   listOfGroupOption: any = [];
+  // todo:侧边栏宽度自适应问题没解决;
+  siderWidth = '260px';
+  toolsData = '';
 
   // mock MenuConfig
   mockAll = JSON.parse(JSON.stringify(all.MenuConfig));
 
-  constructor(protected route: Router) {}
-
   ngOnInit(): void {
     // 获取左边menu的菜单栏详情
     this.routeConfig = all.MenuConfig;
-
     // search搜索;
     this.mockAll.map((val: any) => {
       return val.childRoute.map((v: any) => {
@@ -41,13 +45,21 @@ export class IndexComponent implements OnInit {
       .flatMap((v: any) => v.childRoute)
       .filter((v: any) => v.label);
 
-    // 初始化动画页面
+    // 根据路由匹配tools内容
+    this.matchUrl(window.location.pathname);
 
-    console.log(window.location.pathname)
-      this.isIndex = window.location.pathname === '/index' || false;
+    // 初始化动画页面
+    this.isIndex =
+      window.location.pathname === '/index' ||
+      window.location.pathname === '/JavaScript-tools-and-Lodash-tools/index' ||
+      false;
   }
 
-  hideAnimation(){
+  hideAnimationAndChooseTool(value: any) {
+    window.location.hash = value.router.replace('/index/', '');
+    const { functionName } = value;
+    // @ts-ignore
+    this.toolsData = this.toolsDoc[functionName]();
     this.isIndex = false;
   }
 
@@ -61,8 +73,23 @@ export class IndexComponent implements OnInit {
   }
 
   search(value: any): void {
-    // console.log(value);
+    // 根据路由匹配tools内容
+    this.matchUrl(value);
     this.route.navigate([value]);
-  };
+  }
 
+  matchUrl(url: string) {
+    if (url.includes('/index')) {
+      // 鉴于ghpages 的路由跟本地路由不匹配，采取的折中方案。
+      let formatUrl = url.replace('/JavaScript-tools-and-Lodash-tools', '');
+
+      // 获取当前url所匹配到的menuConfig数据
+      let matchData = _.find(this.listOfGroupOption, function (o) {
+        return o.value === formatUrl;
+      });
+
+      // @ts-ignore
+      if (matchData) this.toolsData = this.toolsDoc[matchData['functionName']]();
+    }
+  }
 }

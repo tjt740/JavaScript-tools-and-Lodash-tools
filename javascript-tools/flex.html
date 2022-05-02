@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>测试</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       width: 100%;
       height: 100%;
@@ -72,7 +77,7 @@
   <style>
     #box {
       width: 1200px;
-      height: 750px;
+      height: auto;
       margin: 0 auto;
       background-color: #ffffff;
 
@@ -80,7 +85,7 @@
       /* container 的属性 */
 
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       /*
         这个是 container 容器的属性，设置的是 items 在项目方向轴排序的方向。
           横向、纵向 (
@@ -105,7 +110,7 @@
             baseline: 项目的第一行文字的基线对齐
             stretch（默认值）伸展：如果项目未设置高度或设为auto，将占满整个容器的高度
       */
-      justify-content: space-evenly;
+      /* justify-content: space-evenly; */
       /*
         这个是 container 容器的属性，设置的是 items 【在项目方向轴上的对齐方式】
             flex-start 方向轴的起点对齐
@@ -129,15 +134,41 @@
 
 <body>
   <div id="box">
+
+    <div class="item item1" id="item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
     <div class="item item1">1</div>
     <div class="item item2">2</div>
     <div class="item item3">3</div>
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <button id="btn"> 会都顶部</button>
   </div>
 
 </body>
 
 <script>
   let items = document.getElementsByClassName("item");
+  // 例：
+  // 平滑滚动到 id='item1'的dom位置。
+  document.getElementById('btn').onclick = () => {
+    smoothScroll('#item1');
+  }
+
+
+  const smoothScroll = (element) => {
+    console.log(document.querySelector(element))
+    document.querySelector(element).scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
+
+
 
   Array.from(items).forEach((i) => {
     i.onclick = () => {
@@ -146,16 +177,15 @@
     };
   });
 
+
+  /* 人类密码 */
   // let alive = true;
-
-
-
-  if (alive) {
-    while (actuality >= expected) {
-      expected += actuality * 0.618;
-    };
-    (anxiety += anxiety * 0.618) && doSth();
-  };
+  // if (alive) {
+  //   while (actuality >= expected) {
+  //     expected += actuality * 0.618;
+  //   };
+  //   (anxiety += anxiety * 0.618) && doSth();
+  // };
 
 </script>
 
