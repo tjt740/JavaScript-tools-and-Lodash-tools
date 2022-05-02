@@ -89,8 +89,7 @@ export class IndexComponent implements OnInit {
       });
 
       // @ts-ignore
-      if (matchData)
-        this.toolsData = this.toolsDoc[matchData['functionName']]();
+      if (matchData) this.toolsData = this.toolsDoc[matchData['functionName']]();
     }
   }
 }
