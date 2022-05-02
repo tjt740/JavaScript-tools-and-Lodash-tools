@@ -1,5 +1,3 @@
-import { ToolsDocService } from 'src/app/services/tools-doc.service';
-
 export const MenuConfig = [
   // Tjt: 数组操作
   {
@@ -133,7 +131,6 @@ export const MenuConfig = [
         router: '/index/util-27',
         functionName: 'getUrlInfo',
       },
-
     ],
   },
 

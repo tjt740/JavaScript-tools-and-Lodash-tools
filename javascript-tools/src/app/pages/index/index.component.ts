@@ -20,8 +20,10 @@ export class IndexComponent implements OnInit {
   routeConfig: any;
   selectedValue = null;
   listOfGroupOption: any = [];
+  // todo:侧边栏宽度自适应问题没解决;
   siderWidth = '260px';
   toolsData = '';
+
   // mock MenuConfig
   mockAll = JSON.parse(JSON.stringify(all.MenuConfig));
 
@@ -54,8 +56,7 @@ export class IndexComponent implements OnInit {
   }
 
   hideAnimationAndChooseTool(value: any) {
-    console.log(value)
-    window.location.hash = value.router.replace('/index/','');
+    window.location.hash = value.router.replace('/index/', '');
     const { functionName } = value;
     // @ts-ignore
     this.toolsData = this.toolsDoc[functionName]();
@@ -77,23 +78,19 @@ export class IndexComponent implements OnInit {
     this.route.navigate([value]);
   }
 
-  matchUrl(url:string) {
+  matchUrl(url: string) {
     if (url.includes('/index')) {
       // 鉴于ghpages 的路由跟本地路由不匹配，采取的折中方案。
-      let formatUrl = url.replace(
-        '/JavaScript-tools-and-Lodash-tools',
-        ''
-      );
+      let formatUrl = url.replace('/JavaScript-tools-and-Lodash-tools', '');
 
       // 获取当前url所匹配到的menuConfig数据
       let matchData = _.find(this.listOfGroupOption, function (o) {
         return o.value === formatUrl;
       });
 
-
       // @ts-ignore
-      if (matchData) this.toolsData = this.toolsDoc[matchData['functionName']]();
-
+      if (matchData)
+        this.toolsData = this.toolsDoc[matchData['functionName']]();
     }
   }
 }

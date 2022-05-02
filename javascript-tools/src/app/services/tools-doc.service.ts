@@ -413,7 +413,7 @@ export class ToolsDocService {
       // → ['零', '五', '六', '七', '八', '九'];
 
     `;
-  };
+  }
   // Ps:JSON操作
   // *遍历json数组
   mapJson() {
@@ -927,7 +927,7 @@ export class ToolsDocService {
   }
 
   // Ps:浏览器操作
-  // *滚动到页面顶部
+  // *平滑滚动到页面顶部
   scrollToTop() {
     return `
     // 滚动到页面顶部
@@ -936,10 +936,11 @@ export class ToolsDocService {
       const height = document.documentElement.scrollTop || document.body.scrollTop;
 
       if (height > 0) {
+          // 24： 24hz
+          window.scrollTo(0, height - height / 24);
+          // 动画帧
           window.requestAnimationFrame(scrollToTop);
-          window.scrollTo(0, height - height / 8);
       }
-
     };
 
     `;
@@ -950,19 +951,39 @@ export class ToolsDocService {
     return `
       // 滚动到页面底部
 
+      // change: 滚动变化速度；
+      let change = 0
       const scrollToBottom = () => {
-        window.scrollTo(0, document.documentElement.clientHeight);
+
+        change += 24
+
+        const height = document.documentElement.offsetHeight;
+
+        window.scrollTo(0, change);
+
+        if (height > change) {
+          // 动画帧
+          window.requestAnimationFrame(scrollToBottom);
+        } else {
+          change = 0
+        }
       };
 
     `;
   }
 
-  // *滚动到指定元素区域
+  // *平滑滚动到指定元素区域
   smoothScroll() {
     return `
       // 滚动到指定元素区域
 
       // element: 类名 ==> '.tjt740'
+
+      // 例：
+      // 平滑滚动到 id='item1'的dom位置。
+      document.getElementById('btn').onclick = () => {
+        smoothScroll('#item1');
+      }
 
       const smoothScroll = (element) => {
         document.querySelector(element).scrollIntoView({

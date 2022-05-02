@@ -1,6 +1,6 @@
 <nz-layout class="app-layout">
   <!-- menu -->
-  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" >
+  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img [src]="ngLogoImg" alt="logo">
@@ -11,7 +11,7 @@
         <span>Lodash</span>
       </a>
     </div>
-    <ul nz-menu nzMode="inline"  *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
+    <ul nz-menu nzMode="inline" *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
       <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item (click)="hideAnimationAndChooseTool(val)">
@@ -30,7 +30,7 @@
       </button>
       <nz-select nzShowSearch nzAllowClear nzPlaceHolder="输入关键词进行查找" [(ngModel)]="selectedValue"
         [nzOptions]="listOfGroupOption" (ngModelChange)="search($event)"></nz-select>
-        <h3>请打开控制台看效果</h3>
+      <h3>请打开控制台看效果</h3>
     </nz-header>
     <nz-content>
       <div class="inner-content">
