@@ -45,9 +45,6 @@ export class IndexComponent implements OnInit {
       .flatMap((v: any) => v.childRoute)
       .filter((v: any) => v.label);
 
-    // 根据路由匹配tools内容
-    this.matchUrl(window.location.pathname);
-
     // 初始化动画页面
     this.isIndex =
       window.location.pathname === '/index' ||
@@ -55,8 +52,14 @@ export class IndexComponent implements OnInit {
       false;
   }
 
+  ngAfterContentInit(): void {
+    // 根据路由匹配tools内容
+    this.matchUrl(window.location.pathname);
+  }
+
   hideAnimationAndChooseTool(value: any) {
     window.location.hash = value.router.replace('/index/', '');
+
     const { functionName } = value;
     // @ts-ignore
     this.toolsData = this.toolsDoc[functionName]();
@@ -73,9 +76,16 @@ export class IndexComponent implements OnInit {
   }
 
   search(value: any): void {
-    // 根据路由匹配tools内容
-    this.matchUrl(value);
-    this.route.navigate([value]);
+    if (value) {
+      // hash重置
+      window.location.hash = '';
+
+      // 根据路由匹配tools内容
+      this.matchUrl(value);
+
+      // hash设置
+      window.location.hash = value.replace('/index/', '');
+    }
   }
 
   matchUrl(url: string) {
@@ -83,13 +93,22 @@ export class IndexComponent implements OnInit {
       // 鉴于ghpages 的路由跟本地路由不匹配，采取的折中方案。
       let formatUrl = url.replace('/JavaScript-tools-and-Lodash-tools', '');
 
+      // 如果有hash
+      if (window.location.hash) {
+        formatUrl = formatUrl + window.location.hash.replace('#', '/');
+      }
+
       // 获取当前url所匹配到的menuConfig数据
       let matchData = _.find(this.listOfGroupOption, function (o) {
         return o.value === formatUrl;
       });
 
-      // @ts-ignore
-      if (matchData) this.toolsData = this.toolsDoc[matchData['functionName']]();
+      if (matchData) {
+        // @ts-ignore
+        this.toolsData = this.toolsDoc[matchData['functionName']]();
+        this.isIndex = false;
+      }
     }
   }
+
 }
