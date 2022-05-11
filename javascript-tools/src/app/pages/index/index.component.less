@@ -196,5 +196,30 @@
     height: 100%;
   }
 
+  .drag-icon {
+    position: absolute;
+    z-index: 9999;
+    left: 235px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    .zuoyouhuadong {
+      font-size: 50px;
+    }
+  }
+
+  .body {
+    min-width: 35%;
+    height: 100%;
+    overflow-x: auto;
+  }
 }
