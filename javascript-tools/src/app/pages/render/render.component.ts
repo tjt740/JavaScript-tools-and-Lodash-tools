@@ -22,5 +22,20 @@ export class RenderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const users = [
+      { userName: '谭金涛' },
+      { userName: '戚思宁' },
+      { userName: '柳晔', },
+      { userName: '徐晨彦'}
+    ];
+
+    const a = _.dropWhile(users, function (o) {
+      return o.userName !== '戚思宁';
+    });
+    console.log(a);
+
+    // const b = _.dropWhile(users, { 'userName': '柳晔', 'active': false })
+    // console.log(b);
+  }
 }

@@ -414,6 +414,106 @@ export class ToolsDocService {
 
     `;
   }
+
+  // *[Ld]获取数组中最后一个元素
+  getLastElement() {
+    return `
+      /*
+        获取数组中最后一项
+      */
+
+      _.last(Array);
+
+      const arr = [1, 2, 3, 4, 5];
+      const lastElement = _.last(arr);
+      // → 5;
+
+    `
+  }
+
+  // *[Ld]创建一个切片数组，去除Array前面的n个元素。（n默认值为1。）
+  dropStartArray() {
+    return `
+      /*
+        创建一个切片数组，去除array★前面的★n个元素（n默认值为1。）
+
+        Array: 被裁剪的数组
+        n: 裁剪数组★前★的n位
+
+      */
+
+      _.drop(array, n=1)
+
+      const arr1 = [1, 2, 3, 4, 5];
+      const dorpArr1 = _.drop(arr1);
+      // → [2, 3, 4, 5];
+
+      const arr2 = ['一', '二', '三', '四'];
+      const dorpArr2 = _.drop(arr2, 2);
+      // → ['三', '四'];
+
+      const arr3 = ['壹', '贰', '叁', '肆'];
+      const dorpArr3 = _.drop(arr3, 10);
+      // → []
+
+      const arr4 = ['h', 'e', 'l', 'l', 'o'];
+      const dorpArr4 = _.drop(arr4, 0);
+      // → ['h', 'e', 'l', 'l', 'o'];
+
+    `
+  }
+
+  // *[Ld]创建一个切片数组，去除Array后面的n个元素。（n默认值为1。）
+  dropEndArray() {
+    return `
+      /*
+        创建一个切片数组，去除array★后面的★n个元素（n默认值为1。）
+
+        Array: 被裁剪的数组
+        n: 裁剪数组★后★的n位
+
+      */
+
+      _.dropRight(array, n=1)
+
+      const arr1 = [1, 2, 3, 4, 5];
+      const dorpArr1 = _.dropRight(arr1);
+      // → [1, 2, 3, 4];
+
+      const arr2 = ['一', '二', '三', '四'];
+      const dorpArr2 = _.dropRight(arr2, 2);
+      // → ['一', '二'];
+
+      const arr3 = ['壹', '贰', '叁', '肆'];
+      const dorpArr3 = _.dropRight(arr3, 10);
+      // → []
+
+      const arr4 = ['h', 'e', 'l', 'l', 'o'];
+      const dorpArr4 = _.dropRight(arr4, 0);
+      // → ['h', 'e', 'l', 'l', 'o'];
+
+    `
+  }
+
+  // *[Ld]创建一个切片数组，去除符合条件的元素,返回新数组;
+  dropWhileArray() {
+    return `
+      /*
+        创建一个切片数组，去除符合条件的元素,返回新数组;
+
+        Array: 要查询的数组。
+        condition: 条件 （fn、{}、[]）
+
+      */
+
+      _.dropWhile(array, condition);
+
+
+
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json数组
   mapJson() {

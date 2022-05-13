@@ -45,6 +45,26 @@ export const MenuConfig = [
         router: '/index/util-60',
         functionName: 'difference',
       },
+      {
+        exhibitStr: '[Ld]获取数组中最后一个元素',
+        router: '/index/util-61',
+        functionName: 'getLastElement',
+      },
+      {
+        exhibitStr: '[Ld]创建一个切片数组，去除Array★前面的★n个元素,返回新数组',
+        router: '/index/util-62',
+        functionName: 'dropStartArray',
+      },
+      {
+        exhibitStr: '[Ld]创建一个切片数组，去除Array★后面的★n个元素,返回新数组',
+        router: '/index/util-63',
+        functionName: 'dropEndArray',
+      },
+      {
+        exhibitStr: '[Ld]创建一个切片数组，去除符合条件的元素,返回新数组',
+        router: '/index/util-64',
+        functionName: 'dropWhileArray',
+      },
     ],
   },
 
