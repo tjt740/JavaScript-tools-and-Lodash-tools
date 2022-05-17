@@ -61,9 +61,9 @@ export const MenuConfig = [
         functionName: 'dropEndArray',
       },
       {
-        exhibitStr: '[Ld]创建一个切片数组，去除符合条件的元素,返回新数组',
+        exhibitStr: '[Ld]使用 value 值来填充（替换） Array，会改变原数组',
         router: '/index/util-64',
-        functionName: 'dropWhileArray',
+        functionName: 'fillArray',
       },
     ],
   },

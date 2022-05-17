@@ -495,18 +495,21 @@ export class ToolsDocService {
     `
   }
 
-  // *[Ld]创建一个切片数组，去除符合条件的元素,返回新数组;
-  dropWhileArray() {
+  // *[Ld]创建一个新数组，使用 value 值来填充（替换） Array;
+  fillArray() {
     return `
       /*
-        创建一个切片数组，去除符合条件的元素,返回新数组;
+      使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
+      PS:这个方法会改变原 array（注：不是创建新数组）
 
-        Array: 要查询的数组。
-        condition: 条件 （fn、{}、[]）
+      Array: 要填充改变的数组
+        value: 填充给Array的值
+        [start=0]: 开始下标
+        [end=array.length]: 结束下标（length） 类似于字符串的substr
 
       */
 
-      _.dropWhile(array, condition);
+      _.fill(array, value, [start=0], [end=array.length]);
 
 
 
@@ -978,7 +981,7 @@ export class ToolsDocService {
       const broswer = () => {
         const ua = navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == "micromessenger") {
-            return "weixin";
+            return "VX";
         } else if (ua.match(/QQ/i) == "qq") {
             return "QQ";
         }

@@ -23,19 +23,15 @@ export class RenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const users = [
-      { userName: '谭金涛' },
-      { userName: '戚思宁' },
-      { userName: '柳晔', },
-      { userName: '徐晨彦'}
-    ];
+    const arr1 = [1, 2, 3, 4, 5];
+    const newArr1 = _.fill(arr1, 'tjt');
+    console.log('newArr1:', newArr1);
+    console.log('arr1:', arr1);
 
-    const a = _.dropWhile(users, function (o) {
-      return o.userName !== '戚思宁';
-    });
-    console.log(a);
+    const arr2 = [1, 2, 3, 4, 5];
+    const newArr2 = _.fill(arr2, 'qsn',1,4);
+    console.log('newArr2:', newArr2);
+    console.log('arr2:', arr2);
 
-    // const b = _.dropWhile(users, { 'userName': '柳晔', 'active': false })
-    // console.log(b);
   }
 }
