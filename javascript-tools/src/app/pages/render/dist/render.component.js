@@ -21,14 +21,17 @@ var RenderComponent = /** @class */ (function () {
         }
     };
     RenderComponent.prototype.ngOnInit = function () {
-        var arr1 = [1, 2, 3, 4, 5];
-        var newArr1 = _.fill(arr1, 'tjt');
-        console.log('newArr1:', newArr1);
-        console.log('arr1:', arr1);
-        var arr2 = [1, 2, 3, 4, 5];
-        var newArr2 = _.fill(arr2, 'qsn', 1, 4);
-        console.log('newArr2:', newArr2);
-        console.log('arr2:', arr2);
+        var list = [
+            { userName: '谭金涛', active: false },
+            { userName: '戚思宁', active: false },
+            { userName: '柳晔', active: true },
+            { userName: '徐晨彦', active: true },
+        ];
+        _.head(list);
+        // →  { userName: '谭金涛', active: false }
+        var arr = [1, 2, 3];
+        _.head(arr);
+        // 1
     };
     __decorate([
         core_1.Input()
