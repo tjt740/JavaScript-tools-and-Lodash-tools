@@ -81,6 +81,11 @@ export const MenuConfig = [
         functionName: 'findLastIndex',
       },
 
+      {
+        exhibitStr: '[Ld]返回value在数组中的下标，没有则返回-1',
+        router: '/index/util-68',
+        functionName: 'indexOfArray',
+      },
     ],
   },
 

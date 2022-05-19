@@ -636,6 +636,31 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]返回value在数组中的下标，没有则返回-1
+  indexOfArray() {
+    return `
+      /*
+        返回value在数组中的下标，没有则返回-1
+
+        array: 需要被检索的数组
+        value: 需要被查找的值
+        [fromIndex=0]: 从下标几开始查找，默认是0
+
+      */
+
+      _.indexOf(array,value,[fromIndex=0])
+
+      const arr = [1, 2, 3, 1, 2, 3];
+
+      _.indexOf(arr, 2);
+      // → 1
+
+      _.indexOf(arr, 2, 3);
+      // → 4
+
+    `
+  }
+
   // Ps:JSON操作
   // *遍历json数组
   mapJson() {

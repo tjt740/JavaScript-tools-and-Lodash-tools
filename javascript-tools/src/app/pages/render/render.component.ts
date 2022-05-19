@@ -23,17 +23,11 @@ export class RenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const list = [
-      { userName: '谭金涛', active: false },
-      { userName: '戚思宁', active: false },
-      { userName: '柳晔', active: true },
-      { userName: '徐晨彦', active: true },
-    ];
-    _.head(list);
-    // →  { userName: '谭金涛', active: false }
+    const arr = [1, 2, 3, 1, 2, 3];
+    console.log(_.indexOf(arr, 2));
+    // → 1
 
-    const arr = [1, 2, 3];
-    _.head(arr)
-    // 1
+    console.log(_.indexOf(arr, 2, 3));
+    // → 4
   }
 }
