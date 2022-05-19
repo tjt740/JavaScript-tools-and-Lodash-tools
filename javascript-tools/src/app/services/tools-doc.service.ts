@@ -339,7 +339,7 @@ export class ToolsDocService {
           如果【Array】无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
         */
 
-        _.chunk(Array, [size=1])
+        _.chunk(array, [size=1])
 
         let arr1 = ['a1', 'b2', 'c3', 'd4', 'e5']
         let arr2 = [['a', 'b'], 'c', 'd','e']
@@ -361,12 +361,12 @@ export class ToolsDocService {
           例如false, null,0, "", undefined, 和 NaN 都是被认为是“假值”。
         */
 
-        _.compact(Array);
+        _.compact(array);
 
-        let newArr1 = _.compact([0, 1, false, 2, '', 3]);
+        _.compact([0, 1, false, 2, '', 3]);
         // → [1,2,3];
 
-        let newArr2 = _.compact([[NaN, 0, false], '0', 740]);
+        _.compact([[NaN, 0, false], '0', 740]);
         // → [[NaN, 0, false],'0', 740];
 
       `;
@@ -383,11 +383,10 @@ export class ToolsDocService {
 
         let arr = [1, 2, 3, 4];
 
-        let newArr1 = _.concat(arr, 5, 6, [7]);
+        _.concat(arr, 5, 6, [7]);
         // → [1, 2, 3, 4, 5, 6, 7];
 
-        // @ts-ignore
-        var newArr2 = _.concat(arr, 2, [3], [[4]]);
+        _.concat(arr, 2, [3], [[4]]);
         // → [1, 2, 3, 4, 5, 6, [7]];
 
       `;
@@ -398,22 +397,245 @@ export class ToolsDocService {
     return `
       /*
         筛选出【Array】中需要被排除的值[values]，返回新数组
-          Array: 被检查的数组
+          array: 被检查的数组
           [values]:(...Array) 需要被排除的值（必须是数组形式）
       */
 
-      _.difference(Array, [values]);
+      _.difference(array, [values]);
 
       let arr = [1, 2, 3];
-      let newArr1 = _.difference(arr, [2, 3]);
+      _.difference(arr, [2, 3]);
       // → [1];
 
       let arr2 = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-      let newArr2 = _.difference(arr2, ['一', '二', '三', '四']);
+      _.difference(arr2, ['一', '二', '三', '四']);
       // → ['零', '五', '六', '七', '八', '九'];
 
     `;
   }
+  // *[Ld]获取数组中第一个元素
+  getFirstElement() {
+    return `
+      /*
+        获取数组中第一个元素
+
+        array: 被查找的数组
+      */
+
+      _.head(array)
+
+      const list = [
+        { userName: '谭金涛', active: false },
+        { userName: '戚思宁', active: false },
+        { userName: '柳晔', active: true },
+        { userName: '徐晨彦', active: true },
+      ];
+
+      _.head(list);
+      // →  { userName: '谭金涛', active: false }
+
+
+      const arr = [1, 2, 3];
+      _.head(arr)
+      // 1
+
+    `;
+  }
+
+  // *[Ld]获取数组中最后一个元素
+  getLastElement() {
+    return `
+      /*
+        获取数组中最后一项
+      */
+
+      _.last(array);
+
+      const arr = [1, 2, 3, 4, 5];
+      _.last(arr);
+      // → 5;
+
+    `;
+  }
+
+  // *[Ld]创建一个切片数组，去除Array前面的n个元素。（n默认值为1。）
+  dropStartArray() {
+    return `
+      /*
+        创建一个切片数组，去除array★前面的★n个元素（n默认值为1。）
+
+        array: 被裁剪的数组
+        n: 裁剪数组★前★的n位
+
+      */
+
+      _.drop(array, n=1)
+
+      const arr1 = [1, 2, 3, 4, 5];
+      _.drop(arr1);
+      // → [2, 3, 4, 5];
+
+      const arr2 = ['一', '二', '三', '四'];
+      _.drop(arr2, 2);
+      // → ['三', '四'];
+
+      const arr3 = ['壹', '贰', '叁', '肆'];
+      _.drop(arr3, 10);
+      // → []
+
+      const arr4 = ['h', 'e', 'l', 'l', 'o'];
+      _.drop(arr4, 0);
+      // → ['h', 'e', 'l', 'l', 'o'];
+
+    `;
+  }
+
+  // *[Ld]创建一个切片数组，去除Array后面的n个元素。（n默认值为1。）
+  dropEndArray() {
+    return `
+      /*
+        创建一个切片数组，去除array★后面的★n个元素（n默认值为1。）
+
+        array: 被裁剪的数组
+        n: 裁剪数组★后★的n位
+
+      */
+
+      _.dropRight(array, n=1)
+
+      const arr1 = [1, 2, 3, 4, 5];
+      _.dropRight(arr1);
+      // → [1, 2, 3, 4];
+
+      const arr2 = ['一', '二', '三', '四'];
+      _.dropRight(arr2, 2);
+      // → ['一', '二'];
+
+      const arr3 = ['壹', '贰', '叁', '肆'];
+      _.dropRight(arr3, 10);
+      // → []
+
+      const arr4 = ['h', 'e', 'l', 'l', 'o'];
+      _.dropRight(arr4, 0);
+      // → ['h', 'e', 'l', 'l', 'o'];
+
+    `;
+  }
+
+  // *[Ld]创建一个新数组，使用 value 值来填充（替换） Array;
+  fillArray() {
+    return `
+      /*
+      使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
+      PS:这个方法会改变原 array（注：不是创建新数组）
+
+      Array: 要填充改变的数组
+        value: 填充给Array的值
+        [start=0]: 开始下标
+        [end=array.length]: 结束下标（length） 类似于字符串的substr
+
+      */
+
+      _.fill(array, value, [start=0], [end=array.length]);
+
+      const arr1 = [1, 2, 3, 4, 5];
+      const newArr1 = _.fill(arr1, 'tjt');
+      console.log('newArr1:', newArr1); // → ['tjt', 'tjt', 'tjt', 'tjt', 'tjt']
+      console.log('arr1:', arr1);// → ['tjt', 'tjt', 'tjt', 'tjt', 'tjt']
+
+      const arr2 = [1, 2, 3, 4, 5];
+      const newArr2 = _.fill(arr2, 'qsn',1,4);
+      console.log('newArr2:', newArr2); // → [1, 'qsn', 'qsn', 'qsn', 5]
+      console.log('arr2:', arr2);  // → [1, 'qsn', 'qsn', 'qsn', 5]
+
+      const newArr3 = _.fill(new Array(3), 7);
+      console.log('newArr3:', newArr3); // → [7, 7, 7]
+
+    `;
+  }
+
+  // *[Ld]返回数组中符合条件的第一个下标【从前向后】
+  findIndex() {
+    return `
+      /*
+      返回数组中符合条件的第一个下标【从前向后】。
+      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+
+       array: 要搜索的数组
+       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+      */
+
+      _.findIndex(array,condition)
+
+      const users = [
+        { userName: '谭金涛', active: false },
+        { userName: '戚思宁', active: false },
+        { userName: '柳晔', active: true },
+        { userName: '徐晨彦', active: true },
+      ];
+
+      _.findIndex(users, { userName: '戚思宁' });
+      // → 1
+
+      _.findIndex(users, ['active', true]);
+      // → 2
+
+      _.findIndex(users, function (o) {
+        return o.userName === '徐晨彦';
+      });
+      // → 3
+
+
+      const arr = [1, 2, 3, 4, 5];
+      _.findIndex(arr, function (o) {
+        return o === 3;
+      });
+      // → 2
+
+    `;
+  }
+
+  // *[Ld]返回数组中符合条件的第一个下标【从后向前】
+  findLastIndex() {
+    return `
+      /*
+      返回数组中符合条件的第一个下标【从后向前】。
+      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+
+       array: 要搜索的数组
+       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+      */
+
+      _.findLastIndex(array,condition)
+
+      const users = [
+        { userName: '谭金涛', active: false },
+        { userName: '谭金涛', active: false },
+        { userName: '谭金涛', active: true },
+        { userName: '谭金涛', active: false },
+      ];
+
+      _.findLastIndex(users, { userName: '谭金涛' });
+      // → 3
+
+      _.findLastIndex(users, ['active', true]);
+      // → 2
+
+      _.findLastIndex(users, function (o) {
+        return o.userName === '谭金涛' && o.active===false;
+      });
+      // → 3
+
+
+      const arr = [1, 2, 3, 2, 5];
+      _.findLastIndex(arr, function (o) {
+        return o === 2;
+      });
+      // → 3
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json数组
   mapJson() {
@@ -878,7 +1100,7 @@ export class ToolsDocService {
       const broswer = () => {
         const ua = navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == "micromessenger") {
-            return "weixin";
+            return "VX";
         } else if (ua.match(/QQ/i) == "qq") {
             return "QQ";
         }

@@ -45,6 +45,42 @@ export const MenuConfig = [
         router: '/index/util-60',
         functionName: 'difference',
       },
+      {
+        exhibitStr: '[Ld]获取数组中第一个元素',
+        router: '/index/util-67',
+        functionName: 'getFirstElement',
+      },
+      {
+        exhibitStr: '[Ld]获取数组中最后一个元素',
+        router: '/index/util-61',
+        functionName: 'getLastElement',
+      },
+      {
+        exhibitStr: '[Ld]创建一个切片数组，去除Array★【前面的】★n个元素,返回新数组',
+        router: '/index/util-62',
+        functionName: 'dropStartArray',
+      },
+      {
+        exhibitStr: '[Ld]创建一个切片数组，去除Array★【后面的】★n个元素,返回新数组',
+        router: '/index/util-63',
+        functionName: 'dropEndArray',
+      },
+      {
+        exhibitStr: '[Ld]使用 value 值来填充（替换） Array，会改变原数组',
+        router: '/index/util-64',
+        functionName: 'fillArray',
+      },
+      {
+        exhibitStr: '[Ld]【从前向后】返回数组中符合条件的第一个下标',
+        router: '/index/util-65',
+        functionName: 'findIndex',
+      },
+      {
+        exhibitStr: '[Ld]【从后向前】返回数组中符合条件的第一个下标',
+        router: '/index/util-66',
+        functionName: 'findLastIndex',
+      },
+
     ],
   },
 
