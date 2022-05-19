@@ -22,12 +22,5 @@ export class RenderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    const arr = [1, 2, 3, 1, 2, 3];
-    console.log(_.indexOf(arr, 2));
-    // → 1
-
-    console.log(_.indexOf(arr, 2, 3));
-    // → 4
-  }
+  ngOnInit(): void {}
 }

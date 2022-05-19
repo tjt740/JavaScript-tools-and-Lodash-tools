@@ -658,7 +658,27 @@ export class ToolsDocService {
       _.indexOf(arr, 2, 3);
       // → 4
 
-    `
+    `;
+  }
+
+  // *[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+  initialArray() {
+    return `
+      /*
+        返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+
+        array: 需要被去除最后一个元素的数组
+
+      */
+
+      _.initial(array);
+
+      const arr = [1, 2, 3];
+
+      _.initial(arr);
+      // → [1, 2]
+
+    `;
   }
 
   // Ps:JSON操作

@@ -80,11 +80,15 @@ export const MenuConfig = [
         router: '/index/util-66',
         functionName: 'findLastIndex',
       },
-
       {
         exhibitStr: '[Ld]返回value在数组中的下标，没有则返回-1',
         router: '/index/util-68',
         functionName: 'indexOfArray',
+      },
+      {
+        exhibitStr: '[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）',
+        router: '/index/util-69',
+        functionName: 'initialArray',
       },
     ],
   },
