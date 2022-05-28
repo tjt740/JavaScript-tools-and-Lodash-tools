@@ -176,6 +176,11 @@ export const MenuConfig = [
         router: '/index/util-27',
         functionName: 'getUrlInfo',
       },
+      {
+        exhibitStr: '获取URL上某一键值对应的值',
+        router: '/index/util-70',
+        functionName: 'getUrlKeyInfo',
+      },
     ],
   },
 

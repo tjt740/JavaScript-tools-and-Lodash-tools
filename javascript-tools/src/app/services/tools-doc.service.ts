@@ -705,8 +705,12 @@ export class ToolsDocService {
     return `
       // 获取URL上参数信息
 
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlInfo() // {ie: 'UTF-8', wd: 'baidu'}
+
       const getUrlInfo = ()=> {
-        let urlInfo = {} as any;
+        let urlInfo = {};
         let flag = window.location.href.split('').includes('?'); //判断是否传参。
 
         if (flag) {
@@ -730,8 +734,27 @@ export class ToolsDocService {
         }
       };
 
+
     `;
   }
+
+  // *获取URL上某一键值对应的值
+  getUrlKeyInfo() {
+    return `
+      // 获取URL上某一键值对应的值
+
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlKeyInfo('wd') // 'baidu'
+
+      const getUrlKeyInfo =(urlKey)=>{
+        return new URLSearchParams(window.location.search)
+        .get(urlKey)
+      }
+
+    `
+  }
+
 
   // Ps:存储(localStorage/sessionStorage)操作
   // *获取localStorage
