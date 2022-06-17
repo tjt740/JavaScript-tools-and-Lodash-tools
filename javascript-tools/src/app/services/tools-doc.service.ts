@@ -699,6 +699,45 @@ export class ToolsDocService {
     `;
   }
 
+  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+  isObjEmpty() {
+    return `
+      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+
+      false: json中 有不为空/假值的值。
+      true: json 中 全为空值undefiend/假值。
+
+      const isObjEmpty = (obj) => {
+          let flag = true;
+          if (obj) {
+              flag = false;
+              let arr = Object.keys(obj).map(function (i) {
+                  return obj[i];
+              });
+              let arrV2 = [];
+              for (let j of arr) {
+                  if (!j) {
+                      arrV2.push(j);
+                  }
+              }
+              if (arrV2.length == arr.length) {
+                  flag = true;
+              }
+              return flag;
+          }
+          return flag;
+      };
+
+      const emptyJson = {name:null,age:undefined,tall:'',work:false};
+      isObjEmpty(emptyJson); // true json中全为假值。
+
+      const json = {a:1,b:2,c:undefined};
+      isObjEmpty(json); // true json中不是全为假值。
+
+    `;
+  }
+
+
   // Ps:URL操作
   // *获取URL上参数信息
   getUrlInfo() {

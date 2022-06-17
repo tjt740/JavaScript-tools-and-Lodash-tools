@@ -162,6 +162,12 @@ export const MenuConfig = [
         router: '/index/util-61',
         functionName: 'mapJson',
       },
+      {
+        exhibitStr: '判断json对象里是否全为假值(undefined)',
+        router: '/index/util-71',
+        functionName: 'isObjEmpty',
+      },
+      // *
     ],
   },
 

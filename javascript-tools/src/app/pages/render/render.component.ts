@@ -22,5 +22,15 @@ export class RenderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(
+      _.includes(
+        [
+          { user: 'fred', age: 40 },
+          { user: 'tjt', age: 40 },
+        ],
+        {age: 40 },
+      )
+    );
+  }
 }
