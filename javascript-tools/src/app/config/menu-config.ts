@@ -11,6 +11,21 @@ export const MenuConfig = [
         functionName: 'randomArray',
       },
       {
+        exhibitStr: '匹配两个数组中相等值，组成新数组',
+        router: '/index/util-72',
+        functionName: 'filterArray',
+      },
+      {
+        exhibitStr: '从数组中过滤出假值',
+        router: '/index/util-73',
+        functionName: 'filterBooleanArray',
+      },
+      {
+        exhibitStr: '数组求和、取数组最大值、最小值',
+        router: '/index/util-74',
+        functionName: 'reduceArray',
+      },
+      {
         exhibitStr: '随机获取数组中的某个数',
         router: '/index/util-5',
         functionName: 'randomArrayNum',

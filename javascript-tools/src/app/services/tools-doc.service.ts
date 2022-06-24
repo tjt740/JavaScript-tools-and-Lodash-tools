@@ -267,6 +267,62 @@ export class ToolsDocService {
     `;
   }
 
+  // *筛选出两个数组相同值组成数
+  filterArray() {
+    return `
+      // 筛选出两个数组相同值组成数
+
+      // arr: 被匹配的数组
+      // matchArr: 条件数组
+
+      let arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+
+      let matchArr = ['1','3','7','9'];
+
+      方法1:
+        let newArr = arr.map(i => matchArr.map(o => { if (o === i.name) return i })).flat(Infinity).filter(Boolean);
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+      方法2:
+        let newArr = arr.filter(i=> matchArr.includes(i.name));
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+    `;
+  }
+
+  // *从数组中过滤出假值
+  filterBooleanArray() {
+    return `
+      // 从数组中过滤出虚假值，0，undefined，null，false，""，''可以通过以下方法省略。
+
+      const array = [3, 0, 6, 7, '', false];
+
+      const newArr = array.filter(Boolean);
+
+      //  [3, 6, 7]
+
+    `;
+  }
+
+  // *数组求和、取数组最大值、最小值
+  reduceArray() {
+    return `
+      // 数组求和、取数组最大值、最小值
+
+      const arr = [1, 4, 7, 2, 5, 8, 3];
+
+      // 求和:
+      arr.reduce((a, b) => a + b);  // 30
+
+      // 取最大值:
+      arr.reduce((a, b) => (a > b ? a : b)); // 8
+
+      // 取最小值:
+      arr.reduce((a, b) => (a < b ? a : b)); // 1
+
+    `;
+  }
+
   // *随机获取数组中的某个数
   randomArrayNum() {
     return `
