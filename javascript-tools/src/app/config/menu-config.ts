@@ -21,6 +21,11 @@ export const MenuConfig = [
         functionName: 'filterBooleanArray',
       },
       {
+        exhibitStr: '筛选出两个数组相同值组成数',
+        router: '/index/util-75',
+        functionName: 'filterBooleanArray',
+      },
+      {
         exhibitStr: '数组求和、取数组最大值、最小值',
         router: '/index/util-74',
         functionName: 'reduceArray',
