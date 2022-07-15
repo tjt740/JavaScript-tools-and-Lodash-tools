@@ -19,7 +19,6 @@ export class IndexComponent implements OnInit {
 
   constructor(private toolsDoc: ToolsDocService, protected route: Router) {}
 
-  isCollapsed = false;
   ngLogoImg = 'https://ng.ant.design/assets/img/logo.svg';
   lodashLogoImg = './assets/images/lodash-logo.png';
   isIndex: string | boolean = '';

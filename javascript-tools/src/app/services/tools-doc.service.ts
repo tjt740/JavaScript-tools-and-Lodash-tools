@@ -267,10 +267,10 @@ export class ToolsDocService {
     `;
   }
 
-  // *筛选出两个数组相同值组成数
+  // *筛选出两个数组相同值组成数组
   filterArray() {
     return `
-      // 筛选出两个数组相同值组成数
+      // 筛选出两个数组相同值组成数组
 
       // arr: 被匹配的数组
       // matchArr: 条件数组
@@ -761,7 +761,7 @@ export class ToolsDocService {
       // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
 
       false: json中 有不为空/假值的值。
-      true: json 中 全为空值undefiend/假值。
+      true: json 中 全为空值undefined/假值。
 
       const isObjEmpty = (obj) => {
           let flag = true;

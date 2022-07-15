@@ -1,6 +1,6 @@
 <nz-layout class="app-layout">
   <!-- menu -->
-  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" #siderDom>
+  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" #siderDom >
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img [src]="ngLogoImg" alt="logo">
@@ -34,7 +34,7 @@
       <button id='goBack' nz-button nzType="default" nzShape="circle" (click)="goBack()">
         <i nz-icon nzType="left" nzTheme="outline"></i>
       </button>
-      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="输入关键词进行查找" [(ngModel)]="selectedValue"
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="🔎 输入关键词进行查找" [(ngModel)]="selectedValue"
         [nzOptions]="listOfGroupOption" (ngModelChange)="search($event)"></nz-select>
       <h3>请打开控制台看效果</h3>
     </nz-header>

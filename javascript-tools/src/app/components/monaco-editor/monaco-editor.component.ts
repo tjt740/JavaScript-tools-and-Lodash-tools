@@ -4,7 +4,6 @@ import {
   AfterViewInit,
   ViewChild,
   forwardRef,
-  NgZone,
   Output,
   EventEmitter,
   OnChanges,

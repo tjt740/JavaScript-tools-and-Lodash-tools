@@ -21,7 +21,7 @@ export const MenuConfig = [
         functionName: 'filterBooleanArray',
       },
       {
-        exhibitStr: '筛选出两个数组相同值组成数',
+        exhibitStr: '筛选出两个数组相同值组成数组',
         router: '/index/util-75',
         functionName: 'filterArray',
       },
