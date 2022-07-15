@@ -850,6 +850,72 @@ export class ToolsDocService {
     `
   }
 
+  // *与location相关的一些操作
+  aboutLocation() {
+    return `
+      // 与location相关的一些操作
+
+        window.history.back()     // 返回前一条页面
+
+        window.history.forward()  // 返回后一条页面
+
+        window.history.go()
+          /*
+              0:   返回当前的页面
+              -1:	  返回前一次页面
+              1:   返回后一次页面
+            -n/n:	  返回前n次页面 / 后n次页面
+          */
+
+        window.open(url,null,style)  // 打开新窗口,用逗号隔开","
+          /*
+              第一个参数：'新开窗口的URL'
+            ☆ 第二个参数： 填写形参（新窗口打开），不填写形参（本窗口刷新）
+              第三个参数： 设置新打开的窗口大小 'width=400px,height=400px'
+
+              window.open('http://jd.com','','width=200px,height=200px') ★必须是 width=xxxpx, 不能写css样式★
+          */
+
+        window.close()  // 关闭当前页面
+
+        window.location.reload() // 重载当前页面
+
+        window.location.href ='xxxx' // 让页面原地跳转至当前URL
+
+        window.location.hash="#admin" // 更改路由hash值,不会触发页面刷新
+
+        window.location.search='?key=xxxxx' // 返回或者设置URL问号(?)后面的值,会触发页面刷新
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            ?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+          */
+
+        window.location.port // 返回浏览器端口号
+          /*
+            http://localhost:53079/index#util-75
+
+            53079
+          */
+
+        window.location.hostname  // 返回或者设置主机名
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            hzcac2-dev.alibaba.net
+          */
+
+        window.location.pathname='xxxxx' 返回或者设置路由部分,会触发页面刷新
+          /*
+            window.location.pathname= '/app/admin/admin-layout/examine-approve-list'
+          */
+
+        encodeURIComponent('谭金涛'); // 字符串转encode码
+        decodeURI('%E8%B0%AD%E9%87%91%E6%B6%9B'); // encode码转字符串
+
+
+    `
+  }
 
   // Ps:存储(localStorage/sessionStorage)操作
   // *获取localStorage

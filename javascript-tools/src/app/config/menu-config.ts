@@ -207,6 +207,12 @@ export const MenuConfig = [
         router: '/index/util-70',
         functionName: 'getUrlKeyInfo',
       },
+      {
+        exhibitStr: '与location相关的一些操作',
+        router: '/index/util-76',
+        functionName: 'aboutLocation',
+      },
+
     ],
   },
 
