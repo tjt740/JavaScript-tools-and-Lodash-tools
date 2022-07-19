@@ -21,9 +21,9 @@ export const MenuConfig = [
         functionName: 'filterBooleanArray',
       },
       {
-        exhibitStr: '筛选出两个数组相同值组成数组',
+        exhibitStr: '筛选出数组中重复最多的值',
         router: '/index/util-75',
-        functionName: 'filterArray',
+        functionName: 'filterArrayRepetition',
       },
       {
         exhibitStr: '数组求和、取数组最大值、最小值',
@@ -508,6 +508,20 @@ export const MenuConfig = [
         exhibitStr: '模糊查询/模糊匹配',
         router: '/index/util-56',
         functionName: 'blurrySearch',
+      },
+    ],
+  },
+
+  // Tjt: 封装API请求（fetch）
+  {
+    title: '封装Api 接口请求（基于fetch封装）',
+    icon: 'code',
+    id: Math.random(),
+    childRoute: [
+      {
+        exhibitStr: '封装fetch的get、post、delete、put请求方法',
+        router: '/index/util-77',
+        functionName: 'ajax',
       },
     ],
   },
