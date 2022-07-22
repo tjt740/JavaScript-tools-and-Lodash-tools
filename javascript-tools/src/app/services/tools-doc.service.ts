@@ -1459,10 +1459,10 @@ export class ToolsDocService {
     `;
   }
 
-  // *平滑滚动到指定元素区域
+  // *平滑滚动/不平滑跳转 到指定元素区域
   smoothScroll() {
     return `
-      // 滚动到指定元素区域
+      // 平滑滚动/不平滑跳转 到指定元素区域
 
       // element: 类名 ==> '.tjt740'
 
@@ -1476,6 +1476,11 @@ export class ToolsDocService {
         document.querySelector(element).scrollIntoView({
             behavior: 'smooth'
         });
+      };
+
+      // 直接跳转到指定锚点位置
+      const jumpElement = (element) =>{
+        document.querySelector(element).scrollIntoView(true);
       };
 
     `;
@@ -1910,7 +1915,7 @@ export class ToolsDocService {
     `;
   }
 
-  // Ps:封装API请求（fetch）
+  // Ps: 封装AJAX请求（基于fetch）
   ajax() {
     return `
     import { message } from 'antd';

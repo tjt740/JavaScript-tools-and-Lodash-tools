@@ -398,7 +398,7 @@ export const MenuConfig = [
         functionName: 'scrollToBottom',
       },
       {
-        exhibitStr: '滚动到指定元素区域',
+        exhibitStr: '平滑滚动/不平滑跳转 到指定元素区域',
         router: '/index/util-36',
         functionName: 'smoothScroll',
       },
@@ -512,9 +512,9 @@ export const MenuConfig = [
     ],
   },
 
-  // Tjt: 封装API请求（fetch）
+  // Tjt: 封装AJAX请求（基于fetch）
   {
-    title: '封装Api 接口请求（基于fetch封装）',
+    title: '封装AJAX请求（基于fetch）',
     icon: 'code',
     id: Math.random(),
     childRoute: [
