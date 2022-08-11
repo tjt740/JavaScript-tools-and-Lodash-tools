@@ -76,12 +76,14 @@ export const MenuConfig = [
         functionName: 'getLastElement',
       },
       {
-        exhibitStr: '[Ld]创建一个切片数组，去除Array★【前面的】★n个元素,返回新数组',
+        exhibitStr:
+          '[Ld]创建一个切片数组，去除Array★【前面的】★n个元素,返回新数组',
         router: '/index/util-62',
         functionName: 'dropStartArray',
       },
       {
-        exhibitStr: '[Ld]创建一个切片数组，去除Array★【后面的】★n个元素,返回新数组',
+        exhibitStr:
+          '[Ld]创建一个切片数组，去除Array★【后面的】★n个元素,返回新数组',
         router: '/index/util-63',
         functionName: 'dropEndArray',
       },
@@ -106,7 +108,8 @@ export const MenuConfig = [
         functionName: 'indexOfArray',
       },
       {
-        exhibitStr: '[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）',
+        exhibitStr:
+          '[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）',
         router: '/index/util-69',
         functionName: 'initialArray',
       },
@@ -212,7 +215,6 @@ export const MenuConfig = [
         router: '/index/util-76',
         functionName: 'aboutLocation',
       },
-
     ],
   },
 
@@ -508,20 +510,6 @@ export const MenuConfig = [
         exhibitStr: '模糊查询/模糊匹配',
         router: '/index/util-56',
         functionName: 'blurrySearch',
-      },
-    ],
-  },
-
-  // Tjt: 封装AJAX请求（基于fetch）
-  {
-    title: '封装AJAX请求（基于fetch）',
-    icon: 'code',
-    id: Math.random(),
-    childRoute: [
-      {
-        exhibitStr: '封装fetch的get、post、delete、put请求方法',
-        router: '/index/util-77',
-        functionName: 'ajax',
       },
     ],
   },

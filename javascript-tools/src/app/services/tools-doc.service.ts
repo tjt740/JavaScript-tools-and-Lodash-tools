@@ -829,7 +829,6 @@ export class ToolsDocService {
     `;
   }
 
-
   // Ps:URL操作
   // *获取URL上参数信息
   getUrlInfo() {
@@ -883,7 +882,7 @@ export class ToolsDocService {
         .get(urlKey)
       }
 
-    `
+    `;
   }
 
   // *与location相关的一些操作
@@ -950,7 +949,7 @@ export class ToolsDocService {
         decodeURI('%E8%B0%AD%E9%87%91%E6%B6%9B'); // encode码转字符串
 
 
-    `
+    `;
   }
 
   // Ps:存储(localStorage/sessionStorage)操作
@@ -1911,193 +1910,6 @@ export class ToolsDocService {
       ];
 
       let teacherList = blurrySearch(allTeacherList,'涛')  // [{ "id": 15649876456457, "name": "谭金涛","code": "1311641"}]
-
-    `;
-  }
-
-  // Ps: 封装AJAX请求（基于fetch）
-  ajax() {
-    return `
-    import { message } from 'antd';
-
-    export const Ajax = {
-        /**
-         * 封装fetch的get请求方法
-         */
-        GET: (url) => {
-            return new Promise((reslove, reject) => {
-                fetch(url, {
-                    method: 'GET',
-                    headers: new Headers({
-                        requestType: 'official_website',
-                    }),
-                })
-                    .then((res) => {
-                        if (res.status >= 500) {
-                            message.error('服务器出错啦');
-                            reject('服务器出错啦');
-                            return false;
-                        }
-                        if (res.status >= 400 && res.status < 500) {
-                            message.error('请求参数错误');
-                            reject('请求参数错误');
-                            return false;
-                        }
-                        return res.json();
-                    })
-                    .then((res) => {
-                        if (!res) {
-                            return false;
-                        }
-                        if (res.errno !== 0) {
-                            message.error(res.errmsg);
-                            reject(res.errmsg);
-                            return false;
-                        }
-                        reslove(res);
-                    })
-                    .catch((err) => {
-                        message.error(err);
-                        reject(err);
-                    });
-            });
-        },
-        DELETE: (url) => {
-            return new Promise((reslove, reject) => {
-                fetch(url, {
-                    method: 'DELETE',
-                    headers: new Headers({
-                        requestType: 'official_website',
-                    }),
-                })
-                    .then((res) => {
-                        if (res.status >= 500) {
-                            message.error('服务器出错啦');
-                            reject('服务器出错啦');
-                            return false;
-                        }
-                        if (res.status >= 400 && res.status < 500) {
-                            message.error('请求参数错误');
-                            reject('请求参数错误');
-                            return false;
-                        }
-                        return res.json();
-                    })
-                    .then((res) => {
-                        if (!res) {
-                            return false;
-                        }
-                        if (res.errno !== 0) {
-                            message.error(res.errmsg);
-                            reject(res.errmsg);
-                            return false;
-                        }
-                        reslove(res);
-                    })
-                    .catch((err) => {
-                        message.error(err);
-                        reject(err);
-                    });
-            });
-        },
-        /**
-         * 封装fetch的post请求方法
-         */
-        POST: (url, data) => {
-            return new Promise((reslove, reject) => {
-                fetch(url, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        requestType: 'official_website',
-                    },
-                })
-                    .then((res) => {
-                        if (res.status >= 500) {
-                            message.error('服务器出错啦');
-                            reject('服务器出错啦');
-                            return false;
-                        }
-                        if (res.status >= 400 && res.status < 500) {
-                            message.error('请求参数错误');
-                            reject('请求参数错误');
-                            return false;
-                        }
-                        return res.json();
-                    })
-                    .then((res) => {
-                        if (!res) {
-                            return false;
-                        }
-                        if (res.errno !== 0) {
-                            message.error(res.errmsg);
-                            reject(res.errmsg);
-                            return false;
-                        }
-                        reslove(res);
-                    })
-                    .catch((err) => {
-                        message.error(err);
-                        reject(err);
-                    });
-            });
-        },
-        /**
-         * 封装fetch的put请求方法
-         */
-        PUT: (url, data) => {
-            return new Promise((reslove, reject) => {
-                fetch(url, {
-                    method: 'PUT',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        requestType: 'official_website',
-                    },
-                })
-                    .then((res) => {
-                        if (res.status >= 500) {
-                            message.error('服务器出错啦');
-                            reject('服务器出错啦');
-                            return false;
-                        }
-                        if (res.status >= 400 && res.status < 500) {
-                            message.error('请求参数错误');
-                            reject('请求参数错误');
-                            return false;
-                        }
-                        return res.json();
-                    })
-                    .then((res) => {
-                        if (!res) {
-                            return false;
-                        }
-                        if (res.errno !== 0) {
-                            message.error(res.errmsg);
-                            reject(res.errmsg);
-                            return false;
-                        }
-                        reslove(res);
-                    })
-                    .catch((err) => {
-                        message.error(err);
-                        reject(err);
-                    });
-            });
-        },
-    };
-
-      // 使用:
-      import { Ajax } from '../../util/ajax'
-
-      Ajax.GET('/zhongcai/banner/queryByType?bannerType=123')
-      .then(res => {
-        // 正确路线......
-      })
-      .catch(err => {
-        // 错误路线......
-      })
 
     `;
   }

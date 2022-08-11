@@ -67,6 +67,16 @@ export class IndexComponent implements OnInit {
     this.matchUrl(window.location.pathname);
   }
 
+  ngAfterViewInit(): void {
+    let ar = document.getElementsByClassName(
+      'ant-menu-submenu-title-item-icon'
+    )[0];
+    console.log(ar);
+    // @ts-ignore
+    window.operate = ar.style.setProperty;
+    // ar.style.setProperty('--item-icon', 'red');
+  }
+
   hideAnimationAndChooseTool(value: any) {
     window.location.hash = value.router.replace('/index/', '');
 

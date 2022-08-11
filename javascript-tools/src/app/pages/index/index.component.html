@@ -1,6 +1,6 @@
 <nz-layout class="app-layout">
   <!-- menu -->
-  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" #siderDom >
+  <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" #siderDom>
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img [src]="ngLogoImg" alt="logo">
@@ -20,8 +20,8 @@
         </ul>
       </li>
     </ul>
-
   </nz-sider>
+
   <!-- 拖拽 -->
   <div class="drag-icon" draggable="true" (dragend)="dragEnd($event)" #dragIcon>
     <svg class="icon zuoyouhuadong" aria-hidden="true">
