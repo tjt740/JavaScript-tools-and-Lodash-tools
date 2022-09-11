@@ -511,6 +511,11 @@ export const MenuConfig = [
         router: '/index/util-56',
         functionName: 'blurrySearch',
       },
+      {
+        exhibitStr: '等待函数',
+        router: '/index/util-77',
+        functionName: 'waitTime',
+      },
     ],
   },
 ];

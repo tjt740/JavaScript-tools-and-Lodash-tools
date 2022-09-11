@@ -1913,4 +1913,25 @@ export class ToolsDocService {
 
     `;
   }
+
+  // *等待函数
+  waitTime() {
+    return `
+      // 等待函数
+
+      // waitTime: 时间控制器
+
+      // asyncFn: 等待时间（ms）完成后触发的函数
+
+      const waitTime = (ms) => new Promise((resolve)=> setTimeout(resolve, ms));
+
+      const asyncFn = async () => {
+        await waitTime(1000);
+        console.log('等待异步函数执行结束!');
+      };
+
+      asyncFn()  // Promise {<pending>} >>>1s后>>>> 等待异步函数执行结束！
+
+    `;
+  }
 }
