@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>加载中...</title>
+    <title>加载中...💤</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
   </head>
   <body>
     <app-root></app-root>
@@ -50,9 +52,9 @@
           document.title = `${wea} ${res.tem}°C—${city}—${week}`;
 
           // 图标
-          var url = `./assets/images/${wea}.png`;
+          const url = `./assets/images/${wea}.png`;
 
-          var link = document.createElement("link");
+          const link = document.createElement("link");
           link.setAttribute("rel", "icon");
           link.setAttribute("type", "image/x-icon");
           link.setAttribute("href", url);
