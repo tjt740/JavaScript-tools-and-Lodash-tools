@@ -5,9 +5,6 @@ import * as all from '../../config/menu-config';
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 import * as _ from 'lodash';
 
-// 图标样式
-import '../../../assets/icon/iconfont.js';
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -65,16 +62,6 @@ export class IndexComponent implements OnInit {
   ngAfterContentInit(): void {
     // 根据路由匹配tools内容
     this.matchUrl(window.location.pathname);
-  }
-
-  ngAfterViewInit(): void {
-    let ar = document.getElementsByClassName(
-      'ant-menu-submenu-title-item-icon'
-    )[0];
-    console.log(ar);
-    // @ts-ignore
-    window.operate = ar.style.setProperty;
-    // ar.style.setProperty('--item-icon', 'red');
   }
 
   hideAnimationAndChooseTool(value: any) {
