@@ -267,6 +267,98 @@ export class ToolsDocService {
     `;
   }
 
+  // *筛选出两个数组相同值组成数组
+  filterArray() {
+    return `
+      // 筛选出两个数组相同值组成数组
+
+      // arr: 被匹配的数组
+      // matchArr: 条件数组
+
+      let arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+
+      let matchArr = ['1','3','7','9'];
+
+      方法1:
+        let newArr = arr.map(i => matchArr.map(o => { if (o === i.name) return i })).flat(Infinity).filter(Boolean);
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+      方法2:
+        let newArr = arr.filter(i=> matchArr.includes(i.name));
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+    `;
+  }
+
+  // *筛选出数组中重复最多的值
+  filterArrayRepetition() {
+    return `
+      // 筛选出数组中重复最多的值，组成新数组
+      const filterArrayRepetition = (array) => {
+        let arr = []; // 存放最多次数的值
+        let temp = {}; // 保存每个数的个数
+        let res = 0; // 记录出现最多次数的个数
+        array.forEach((item) => {
+            if (temp[item] === undefined) { // 如果这个数之前没出现过
+                temp[item] = 1; // 将它的次数赋为1
+            } else {
+                temp[item]++; // 次数++
+            }
+        });
+        for (let i in temp) {
+            // 遍历下标
+            if (temp[i] > res) {// 如果这个数的次数比之前出现过的最多次数还多
+                arr.length = 0; // 清空数组
+                arr.push(i); // 将这个数加入最终答案，因为属性名是字符串，将它转换为数字
+                res = temp[i]; // 更新最大次数
+            } else if (temp[i] === res) {
+                // 出现次数相同的数字
+                arr.push(i); // 将答案加入数组
+                res = temp[i]; // 更新最大次数
+            }
+        }
+        return arr;
+    };
+
+    const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
+
+    const newArr = filterArrayRepetition(result); // ['aTSSk6oEn3TM02DEU3jPuA']
+
+    `;
+  }
+  // *从数组中过滤出假值
+  filterBooleanArray() {
+    return `
+      // 从数组中过滤出虚假值，0，undefined，null，false，""，''可以通过以下方法省略。
+
+      const array = [3, 0, 6, 7, '', false];
+
+      const newArr = array.filter(Boolean);
+
+      //  [3, 6, 7]
+
+    `;
+  }
+
+  // *数组求和、取数组最大值、最小值
+  reduceArray() {
+    return `
+      // 数组求和、取数组最大值、最小值
+
+      const arr = [1, 4, 7, 2, 5, 8, 3];
+
+      // 求和:
+      arr.reduce((a, b) => a + b);  // 30
+
+      // 取最大值:
+      arr.reduce((a, b) => (a > b ? a : b)); // 8
+
+      // 取最小值:
+      arr.reduce((a, b) => (a < b ? a : b)); // 1
+
+    `;
+  }
+
   // *随机获取数组中的某个数
   randomArrayNum() {
     return `
@@ -636,6 +728,51 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]返回value在数组中的下标，没有则返回-1
+  indexOfArray() {
+    return `
+      /*
+        返回value在数组中的下标，没有则返回-1
+
+        array: 需要被检索的数组
+        value: 需要被查找的值
+        [fromIndex=0]: 从下标几开始查找，默认是0
+
+      */
+
+      _.indexOf(array,value,[fromIndex=0])
+
+      const arr = [1, 2, 3, 1, 2, 3];
+
+      _.indexOf(arr, 2);
+      // → 1
+
+      _.indexOf(arr, 2, 3);
+      // → 4
+
+    `;
+  }
+
+  // *[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+  initialArray() {
+    return `
+      /*
+        返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+
+        array: 需要被去除最后一个元素的数组
+
+      */
+
+      _.initial(array);
+
+      const arr = [1, 2, 3];
+
+      _.initial(arr);
+      // → [1, 2]
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json数组
   mapJson() {
@@ -654,14 +791,56 @@ export class ToolsDocService {
     `;
   }
 
+  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+  isObjEmpty() {
+    return `
+      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+
+      false: json中 有不为空/假值的值。
+      true: json 中 全为空值undefined/假值。
+
+      const isObjEmpty = (obj) => {
+          let flag = true;
+          if (obj) {
+              flag = false;
+              let arr = Object.keys(obj).map(function (i) {
+                  return obj[i];
+              });
+              let arrV2 = [];
+              for (let j of arr) {
+                  if (!j) {
+                      arrV2.push(j);
+                  }
+              }
+              if (arrV2.length == arr.length) {
+                  flag = true;
+              }
+              return flag;
+          }
+          return flag;
+      };
+
+      const emptyJson = {name:null,age:undefined,tall:'',work:false};
+      isObjEmpty(emptyJson); // true json中全为假值。
+
+      const json = {a:1,b:2,c:undefined};
+      isObjEmpty(json); // true json中不是全为假值。
+
+    `;
+  }
+
   // Ps:URL操作
   // *获取URL上参数信息
   getUrlInfo() {
     return `
       // 获取URL上参数信息
 
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlInfo() // {ie: 'UTF-8', wd: 'baidu'}
+
       const getUrlInfo = ()=> {
-        let urlInfo = {} as any;
+        let urlInfo = {};
         let flag = window.location.href.split('').includes('?'); //判断是否传参。
 
         if (flag) {
@@ -684,6 +863,91 @@ export class ToolsDocService {
           console.log('未携带参数');
         }
       };
+
+
+    `;
+  }
+
+  // *获取URL上某一键值对应的值
+  getUrlKeyInfo() {
+    return `
+      // 获取URL上某一键值对应的值
+
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlKeyInfo('wd') // 'baidu'
+
+      const getUrlKeyInfo =(urlKey)=>{
+        return new URLSearchParams(window.location.search)
+        .get(urlKey)
+      }
+
+    `;
+  }
+
+  // *与location相关的一些操作
+  aboutLocation() {
+    return `
+      // 与location相关的一些操作
+
+        window.history.back()     // 返回前一条页面
+
+        window.history.forward()  // 返回后一条页面
+
+        window.history.go()
+          /*
+              0:   返回当前的页面
+              -1:	  返回前一次页面
+              1:   返回后一次页面
+            -n/n:	  返回前n次页面 / 后n次页面
+          */
+
+        window.open(url,null,style)  // 打开新窗口,用逗号隔开","
+          /*
+              第一个参数：'新开窗口的URL'
+            ☆ 第二个参数： 填写形参（新窗口打开），不填写形参（本窗口刷新）
+              第三个参数： 设置新打开的窗口大小 'width=400px,height=400px'
+
+              window.open('http://jd.com','','width=200px,height=200px') ★必须是 width=xxxpx, 不能写css样式★
+          */
+
+        window.close()  // 关闭当前页面
+
+        window.location.reload() // 重载当前页面
+
+        window.location.href ='xxxx' // 让页面原地跳转至当前URL
+
+        window.location.hash="#admin" // 更改路由hash值,不会触发页面刷新
+
+        window.location.search='?key=xxxxx' // 返回或者设置URL问号(?)后面的值,会触发页面刷新
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            ?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+          */
+
+        window.location.port // 返回浏览器端口号
+          /*
+            http://localhost:53079/index#util-75
+
+            53079
+          */
+
+        window.location.hostname  // 返回或者设置主机名
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            hzcac2-dev.alibaba.net
+          */
+
+        window.location.pathname='xxxxx' 返回或者设置路由部分,会触发页面刷新
+          /*
+            window.location.pathname= '/app/admin/admin-layout/examine-approve-list'
+          */
+
+        encodeURIComponent('谭金涛'); // 字符串转encode码
+        decodeURI('%E8%B0%AD%E9%87%91%E6%B6%9B'); // encode码转字符串
+
 
     `;
   }
@@ -1194,10 +1458,10 @@ export class ToolsDocService {
     `;
   }
 
-  // *平滑滚动到指定元素区域
+  // *平滑滚动/不平滑跳转 到指定元素区域
   smoothScroll() {
     return `
-      // 滚动到指定元素区域
+      // 平滑滚动/不平滑跳转 到指定元素区域
 
       // element: 类名 ==> '.tjt740'
 
@@ -1211,6 +1475,11 @@ export class ToolsDocService {
         document.querySelector(element).scrollIntoView({
             behavior: 'smooth'
         });
+      };
+
+      // 直接跳转到指定锚点位置
+      const jumpElement = (element) =>{
+        document.querySelector(element).scrollIntoView(true);
       };
 
     `;
@@ -1641,6 +1910,27 @@ export class ToolsDocService {
       ];
 
       let teacherList = blurrySearch(allTeacherList,'涛')  // [{ "id": 15649876456457, "name": "谭金涛","code": "1311641"}]
+
+    `;
+  }
+
+  // *等待函数
+  waitTime() {
+    return `
+      // 等待函数
+
+      // waitTime: 时间控制器
+
+      // asyncFn: 等待时间（ms）完成后触发的函数
+
+      const waitTime = (ms) => new Promise((resolve)=> setTimeout(resolve, ms));
+
+      const asyncFn = async () => {
+        await waitTime(1000);
+        console.log('等待异步函数执行结束!');
+      };
+
+      asyncFn()  // Promise {<pending>} >>>1s后>>>> 等待异步函数执行结束！
 
     `;
   }

@@ -11,6 +11,26 @@ export const MenuConfig = [
         functionName: 'randomArray',
       },
       {
+        exhibitStr: '匹配两个数组中相等值，组成新数组',
+        router: '/index/util-72',
+        functionName: 'filterArray',
+      },
+      {
+        exhibitStr: '从数组中过滤出假值',
+        router: '/index/util-73',
+        functionName: 'filterBooleanArray',
+      },
+      {
+        exhibitStr: '筛选出数组中重复最多的值',
+        router: '/index/util-75',
+        functionName: 'filterArrayRepetition',
+      },
+      {
+        exhibitStr: '数组求和、取数组最大值、最小值',
+        router: '/index/util-74',
+        functionName: 'reduceArray',
+      },
+      {
         exhibitStr: '随机获取数组中的某个数',
         router: '/index/util-5',
         functionName: 'randomArrayNum',
@@ -56,12 +76,14 @@ export const MenuConfig = [
         functionName: 'getLastElement',
       },
       {
-        exhibitStr: '[Ld]创建一个切片数组，去除Array★【前面的】★n个元素,返回新数组',
+        exhibitStr:
+          '[Ld]创建一个切片数组，去除Array★【前面的】★n个元素,返回新数组',
         router: '/index/util-62',
         functionName: 'dropStartArray',
       },
       {
-        exhibitStr: '[Ld]创建一个切片数组，去除Array★【后面的】★n个元素,返回新数组',
+        exhibitStr:
+          '[Ld]创建一个切片数组，去除Array★【后面的】★n个元素,返回新数组',
         router: '/index/util-63',
         functionName: 'dropEndArray',
       },
@@ -80,7 +102,17 @@ export const MenuConfig = [
         router: '/index/util-66',
         functionName: 'findLastIndex',
       },
-
+      {
+        exhibitStr: '[Ld]返回value在数组中的下标，没有则返回-1',
+        router: '/index/util-68',
+        functionName: 'indexOfArray',
+      },
+      {
+        exhibitStr:
+          '[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）',
+        router: '/index/util-69',
+        functionName: 'initialArray',
+      },
     ],
   },
 
@@ -153,6 +185,12 @@ export const MenuConfig = [
         router: '/index/util-61',
         functionName: 'mapJson',
       },
+      {
+        exhibitStr: '判断json对象里是否全为假值(undefined)',
+        router: '/index/util-71',
+        functionName: 'isObjEmpty',
+      },
+      // *
     ],
   },
 
@@ -166,6 +204,16 @@ export const MenuConfig = [
         exhibitStr: '获取URL上参数信息',
         router: '/index/util-27',
         functionName: 'getUrlInfo',
+      },
+      {
+        exhibitStr: '获取URL上某一键值对应的值',
+        router: '/index/util-70',
+        functionName: 'getUrlKeyInfo',
+      },
+      {
+        exhibitStr: '与location相关的一些操作',
+        router: '/index/util-76',
+        functionName: 'aboutLocation',
       },
     ],
   },
@@ -352,7 +400,7 @@ export const MenuConfig = [
         functionName: 'scrollToBottom',
       },
       {
-        exhibitStr: '滚动到指定元素区域',
+        exhibitStr: '平滑滚动/不平滑跳转 到指定元素区域',
         router: '/index/util-36',
         functionName: 'smoothScroll',
       },
@@ -462,6 +510,11 @@ export const MenuConfig = [
         exhibitStr: '模糊查询/模糊匹配',
         router: '/index/util-56',
         functionName: 'blurrySearch',
+      },
+      {
+        exhibitStr: '等待函数',
+        router: '/index/util-77',
+        functionName: 'waitTime',
       },
     ],
   },

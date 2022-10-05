@@ -5,9 +5,6 @@ import * as all from '../../config/menu-config';
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 import * as _ from 'lodash';
 
-// 图标样式
-import '../../../assets/icon/iconfont.js';
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -19,7 +16,6 @@ export class IndexComponent implements OnInit {
 
   constructor(private toolsDoc: ToolsDocService, protected route: Router) {}
 
-  isCollapsed = false;
   ngLogoImg = 'https://ng.ant.design/assets/img/logo.svg';
   lodashLogoImg = './assets/images/lodash-logo.png';
   isIndex: string | boolean = '';

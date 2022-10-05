@@ -6,7 +6,7 @@
 
   .ant-menu-sub.ant-menu-inline .ant-menu-item-group-title {
     padding-left: 32px;
-    color: red !important;
+    color: rgb(255, 0, 0) !important;
   }
 
   .ant-menu-dark.ant-menu-inline .ant-menu-item,
@@ -22,7 +22,7 @@
 
   .ant-layout-header {
     position: relative !important;
-    background-color: #EEECEC;
+    background-color: rgb(238, 236, 236);
     box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
   }
 
@@ -30,13 +30,13 @@
   .ant-menu-dark .ant-menu-sub,
   .ant-menu.ant-menu-dark .ant-menu-sub {
     color: rgba(255, 255, 255, 0.65);
-    background: #FFFFFF !important;
+    background: rgb(255, 255, 255) !important;
   }
 
   .ant-layout-sider,
   .sidebar-logo,
   .ant-menu-item {
-    background: #ffffff !important;
+    background: rgb(255, 255, 255) !important;
   }
 
   .sidebar-logo a span {
@@ -54,7 +54,6 @@
     top: 50%;
     transform: translateY(-50%);
     width: 400px;
-
   }
 
   h3 {
@@ -62,14 +61,38 @@
     position: absolute;
     left: 500px;
     top: 50%;
-    color: #101010a5;
+    color: rgba(16, 16, 16, 0.647);
+    white-space: nowrap;
     transform: translateY(-50%);
   }
+
+  /*当屏幕宽度缩小到930px时 出现新样式*/
+  @media screen and (max-width: 930px) {
+    nz-select {
+      width: 200px;
+    }
+
+    h3 {
+      left: 275px
+    }
+  }
+
+  /*当屏幕宽度超过到930px时 出现新样式*/
+  @media screen and (min-width: 930px) {
+    nz-select {
+      width: 400px;
+    }
+
+    h3 {
+      left: 500px;
+    }
+  }
+
 
   h3::before {
     content: '★';
     display: inline-block;
-    color: red
+    color: rgb(255, 0, 0)
   }
 
   .cdk-virtual-scroll-viewport {
@@ -130,7 +153,7 @@
   }
 
   .trigger:hover {
-    color: #1890ff;
+    color: hsl(209, 100%, 55%);
   }
 
   .sidebar-logo {
@@ -153,7 +176,7 @@
   .sidebar-logo h1 {
     display: inline-block;
     margin: 0 0 0 20px;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 600;
     font-size: 14px;
     font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
@@ -163,7 +186,7 @@
   .sidebar-logo h1 {
     display: inline-block;
     margin: 0 0 0 20px;
-    color: #000000;
+    color: rgb(0, 0, 0);
     font-weight: 600;
     font-size: 18px;
     font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
@@ -180,7 +203,7 @@
     position: relative;
     height: 64px;
     padding: 0;
-    background: #fff;
+    background: rgb(255, 255, 255);
     box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   }
 
