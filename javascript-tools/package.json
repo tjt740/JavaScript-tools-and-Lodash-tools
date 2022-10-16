@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "github:ghpages": "ng deploy --base-href=https://tjt740.github.io/JavaScript-tools-and-Lodash-tools/"
+    "comment":"↓↓↓↓ 使用github / gitee 创建 ghpages ★",
+    "github:ghpages": "ng deploy --base-href=https://tjt740.github.io/JavaScript-tools-and-Lodash-tools/",
+    "gitee:ghpages": "ng deploy --base-href=https://tjt740.gitee.io/JavaScript-tools-and-Lodash-tools/"
   },
   "private": true,
   "dependencies": {
