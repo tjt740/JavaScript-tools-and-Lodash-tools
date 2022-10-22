@@ -215,6 +215,11 @@ export const MenuConfig = [
         router: '/index/util-83',
         functionName: 'removeNullAndUndefinedJSON',
       },
+      {
+        exhibitStr: '打平JSON，找到键值对应的枚举，生成新数组',
+        router: '/index/util-84',
+        functionName: 'flatJSON',
+      },
     ],
   },
 

@@ -1208,12 +1208,12 @@ export class ToolsDocService {
     return `
       // 删除json中值为 null和undefined 的属性，生成新json
 
-      // dataJSON： json数据
+      // jsonData： json数据
 
-      const removeNullAndUndefinedJSON = (dataJSON) => {
+      const removeNullAndUndefinedJSON = (jsonData) => {
         const newJSON = {};
 
-        Object.entries(dataJSON).forEach((item) => {
+        Object.entries(jsonData).forEach((item) => {
             const [keys, values] = item;
             if (keys && values || keys && String(values) === '0' ) {
                 Object.defineProperty(newJSON, keys, {
@@ -1229,6 +1229,51 @@ export class ToolsDocService {
     const json = { 张三: 1, 李四: 1, undefined, 谭金涛: 3 , 'name': null ,age: 0};
 
     removeNullAndUndefinedJSON(json); // { '张三': 1, '李四': 1, '谭金涛': 3, age: 0 }
+
+    `;
+  }
+
+  // *打平JSON，找到键值对应的枚举，生成新数组
+  flatJSON() {
+    return `
+      // 打平JSON，找到键值对应的枚举，生成新数组
+
+      // jsonData： json数据
+      // contextEnum：json键值对应的枚举
+
+      const flatJSON = (jsonData, contextEnum) =>
+          Object.entries(jsonData).map((v) => {
+            const [key, value] = v;
+            if (Object.prototype.toString.call(value) === '[object Object]') {
+                return flatJSON(value, contextEnum);
+            }
+            return contextEnum[key] || null;
+      });
+
+      // 集装箱信息枚举
+      const containerContextEnum = {
+          frontId: '物品前面对应的id',
+          itemId: '物品id',
+          itemName: '物品名',
+          height: '包装箱高度',
+          width: '包装箱宽度',
+          length: '包装箱长度',
+          containerId: '包装箱id',
+          price: '价格',
+          volume: '体积',
+          weight: '重量',
+      };
+
+      // 接口数据
+      const data = {
+          containerId: '集装箱01号',
+          cube: { height: 2698, length: 12032, volume: 76351414272, width: 2352 },
+          price: 3400,
+          volume: 76351414272,
+          weight: 30400,
+      };
+
+      flatJSON(data, containerContextEnum); // [ '包装箱id', [ '包装箱高度', '包装箱长度', '体积', '包装箱宽度' ], '价格', '体积', '重量' ];
 
     `;
   }
