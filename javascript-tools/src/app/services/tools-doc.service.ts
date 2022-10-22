@@ -267,6 +267,364 @@ export class ToolsDocService {
     `;
   }
 
+  // *打平/扁平化数组
+  flatArray() {
+    return `
+      // 打平/扁平化数组
+
+      // arr: 数组
+
+      const arr = [1,[2,3],[4],[5,[6,[7]]]];
+      const newArr = arr.flat(Infinity); // [1, 2, 3, 4, 5, 6, 7]
+
+    `;
+  }
+
+  // *数组按照某属性/键值计数
+  countBy() {
+    return `
+      // 数组按照某属性/键值计数
+
+      // arr: 数组
+      // keyName: string 键值
+
+      const countBy = (arr, keyName) =>
+        arr.reduce((prev, curr) => {
+            (prev[curr[keyName]] = ++prev[curr[keyName]] || 1), prev;
+            if (!curr[keyName]) {
+                delete prev[curr[keyName]];
+            }
+            return prev;
+      }, {});
+
+      const arr = [
+          {
+              a: '谭金涛',
+              b: '戚思宁',
+              c: '柳晔',
+              d: '张三',
+          },
+          {
+              a: '柳晔',
+              b: '王语嫣',
+              c: '白帆',
+              d: '李四',
+          },
+          {
+              a: '谭金涛',
+              b: '戚思宁',
+              c: '白帆',
+          },
+          {
+              a: '谭金涛',
+              b: '王语嫣',
+              c: '白帆',
+          },
+      ];
+
+      countBy(arr, 'b'); // { '戚思宁': 2, '王语嫣': 2 }
+      countBy(arr, 'd'); // { '张三': 1, '李四': 1 }
+
+    `;
+  }
+
+  // *筛选数组中相同的元素组成新数组
+  screenSthArray() {
+    return `
+      // 筛选数组中相同的元素组成新数组
+
+      // arr: 数组
+      // keyName: string 键值
+
+      // Step1 先用map结构记录
+      function arrayToMap(data, keyName) {
+          // 当为非数组或数据长度为0，不做处理。
+          if (!(data instanceof Array) || data.length === 0) {
+              return {};
+          }
+
+          const map = {};
+          let name;
+          for (let i = 0; i < data.length; i++) {
+              // array中item为多为数组。
+              if (data[i] instanceof Array) {
+                  data[i].flat(Infinity).forEach((item) => {
+                      name = item;
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(item);
+                  });
+              }
+
+              // array中item不为json。
+              if (!(data[i] instanceof Object)) {
+                  name = data[i];
+                  if (name) {
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(data[i]);
+                  }
+              }
+
+              // array中item为json对象。
+              if (data[i] instanceof Object) {
+                  name = data[i][keyName];
+                  if (name) {
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(data[i]);
+                  }
+              }
+          }
+          return map;
+      }
+
+      // Step2 把map转成数组
+      function mapToArray(mapData) {
+          if (mapData) {
+              const formatArr = [];
+              Object.values(mapData).map((item) => formatArr.push(item));
+              return formatArr;
+          }
+          return [];
+      }
+
+      // 测试
+      const arr1 = [
+        { key: 'a', lastName: '李世民', organization: '1' },
+        { key: 'b', lastName: '朱元璋', organization: '2' },
+        { key: 'c', lastName: '铁木真', organization: '3' },
+        { key: 'c', lastName: '刘邦', organization: '4' },
+        { key: 'a', lastName: '孙悟空', organization: '1' },
+        { key: 'a', lastName: '刘彻', organization: '2' },
+        { key: 'b', lastName: '曹操', organization: '2' },
+        { key: 'a', lastName: '安吉拉', organization: '3' },
+        { lastName: '赵云', organization: '3' },
+      ];
+
+      const map1 = arrayToMap(arr1, 'key');
+      const array1 = mapToArray(map1);
+      console.log('筛选后对象：', map1);
+        //  {
+        //     a: [
+        //       { key: 'a', lastName: '李世民', organization: '1' },
+        //       { key: 'a', lastName: '孙悟空', organization: '1' },
+        //       { key: 'a', lastName: '刘彻', organization: '2' },
+        //       { key: 'a', lastName: '安吉拉', organization: '3' }
+        //     ],
+        //     b: [
+        //       { key: 'b', lastName: '朱元璋', organization: '2' },
+        //       { key: 'b', lastName: '曹操', organization: '2' }
+        //     ],
+        //     c: [
+        //       { key: 'c', lastName: '铁木真', organization: '3' },
+        //       { key: 'c', lastName: '刘邦', organization: '4' }
+        //     ]
+        //  }
+      console.log('筛选后数组：', array1);
+        //   [
+        //     [
+        //       { key: 'a', lastName: '李世民', organization: '1' },
+        //       { key: 'a', lastName: '孙悟空', organization: '1' },
+        //       { key: 'a', lastName: '刘彻', organization: '2' },
+        //       { key: 'a', lastName: '安吉拉', organization: '3' }
+        //     ],
+        //     [
+        //       { key: 'b', lastName: '朱元璋', organization: '2' },
+        //       { key: 'b', lastName: '曹操', organization: '2' }
+        //     ],
+        //     [
+        //       { key: 'c', lastName: '铁木真', organization: '3' },
+        //       { key: 'c', lastName: '刘邦', organization: '4' }
+        //     ]
+        //   ]
+
+
+      const arr2 = [
+        186766, 167040, 167040, 167040, 167040, 167040, 167040, 167040, 167040,
+        167040, 167040, 167040, 167040, 151380, 151380, 105633, 105570, 105570,
+        105570, 100980, 100980, 100062, 100062, 100062, 100062, 100062, 100062,
+        100062, 100062, 99990, 99990, 99990, 99990, 99990, 99144, 83853, 83853,
+        79233, 58080, 57600, 57596, 57596, 57596, 47520, 45880, 45880, 41011, 31329,
+        31329, 31329, 31329, 26928, 26880, 26880, 26811, 20328, 20328, 19266, 18644,
+        18585, 17490, 16800, 12106, 12106, 11286, 8769, 6976, 6976, 6976,
+      ];
+
+      const map2 = arrayToMap(arr2);
+      const array2 = mapToArray(map2);
+      console.log('筛选后对象：', map2);
+        //  {
+        //     '6976': [ 6976, 6976, 6976 ],
+        //     '8769': [ 8769 ],
+        //     '11286': [ 11286 ],
+        //     '12106': [ 12106, 12106 ],
+        //     '16800': [ 16800 ],
+        //     '17490': [ 17490 ],
+        //     '18585': [ 18585 ],
+        //     '18644': [ 18644 ],
+        //     '19266': [ 19266 ],
+        //     '20328': [ 20328, 20328 ],
+        //     '26811': [ 26811 ],
+        //     '26880': [ 26880, 26880 ],
+        //     '26928': [ 26928 ],
+        //     '31329': [ 31329, 31329, 31329, 31329 ],
+        //     '41011': [ 41011 ],
+        //     '45880': [ 45880, 45880 ],
+        //     '47520': [ 47520 ],
+        //     '57596': [ 57596, 57596, 57596 ],
+        //     '57600': [ 57600 ],
+        //     '58080': [ 58080 ],
+        //     '79233': [ 79233 ],
+        //     '83853': [ 83853, 83853 ],
+        //     '99144': [ 99144 ],
+        //     '99990': [ 99990, 99990, 99990, 99990, 99990 ],
+        //     '100062': [
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062
+        //     ],
+        //     '100980': [ 100980, 100980 ],
+        //     '105570': [ 105570, 105570, 105570 ],
+        //     '105633': [ 105633 ],
+        //     '151380': [ 151380, 151380 ],
+        //     '167040': [
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040
+        //     ],
+        //     '186766': [ 186766 ]
+        //   }
+      console.log('筛选后数组：', array2);
+        //  [
+        //     [ 6976, 6976, 6976 ],
+        //     [ 8769 ],
+        //     [ 11286 ],
+        //     [ 12106, 12106 ],
+        //     [ 16800 ],
+        //     [ 17490 ],
+        //     [ 18585 ],
+        //     [ 18644 ],
+        //     [ 19266 ],
+        //     [ 20328, 20328 ],
+        //     [ 26811 ],
+        //     [ 26880, 26880 ],
+        //     [ 26928 ],
+        //     [ 31329, 31329, 31329, 31329 ],
+        //     [ 41011 ],
+        //     [ 45880, 45880 ],
+        //     [ 47520 ],
+        //     [ 57596, 57596, 57596 ],
+        //     [ 57600 ],
+        //     [ 58080 ],
+        //     [ 79233 ],
+        //     [ 83853, 83853 ],
+        //     [ 99144 ],
+        //     [ 99990, 99990, 99990, 99990, 99990 ],
+        //     [
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062
+        //     ],
+        //     [ 100980, 100980 ],
+        //     [ 105570, 105570, 105570 ],
+        //     [ 105633 ],
+        //     [ 151380, 151380 ],
+        //     [
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040
+        //     ],
+        //     [ 186766 ]
+        //   ]
+
+      const arr3 = [
+        { name: '谭金涛', age: 23, tall: 175 },
+        { name: '戚思宁', age: 23, tall: 173 },
+        { name: '柳晔', age: 24, tall: 168 },
+        { name: '徐晨彦', age: 24, tall: 161 },
+        { name: '白帆', age: 21, tall: 161 },
+        { name: '王语嫣', age: 21, tall: 167 },
+        [7, 4, 0],
+        [1, [2, 3]],
+        [[1, 2, [4, 5]]],
+        1,
+        2,
+        3,
+      ];
+
+      const map3 = arrayToMap(arr3, 'age');
+      const array3 = mapToArray(map3);
+      console.log('筛选后对象：', map3);
+        //  {
+        //     '0': [ 0 ],
+        //     '1': [ 1, 1, 1 ],
+        //     '2': [ 2, 2, 2 ],
+        //     '3': [ 3, 3 ],
+        //     '4': [ 4, 4 ],
+        //     '5': [ 5 ],
+        //     '7': [ 7 ],
+        //     '21': [
+        //       { name: '白帆', age: 21, tall: 161 },
+        //       { name: '王语嫣', age: 21, tall: 167 }
+        //     ],
+        //     '23': [
+        //       { name: '谭金涛', age: 23, tall: 175 },
+        //       { name: '戚思宁', age: 23, tall: 173 }
+        //     ],
+        //     '24': [
+        //       { name: '柳晔', age: 24, tall: 168 },
+        //       { name: '徐晨彦', age: 24, tall: 161 }
+        //     ]
+        //  }
+      console.log('筛选后数组：', array3);
+        //   [
+        //     [ 0 ],
+        //     [ 1, 1, 1 ],
+        //     [ 2, 2, 2 ],
+        //     [ 3, 3 ],
+        //     [ 4, 4 ],
+        //     [ 5 ],
+        //     [ 7 ],
+        //     [
+        //       { name: '白帆', age: 21, tall: 161 },
+        //       { name: '王语嫣', age: 21, tall: 167 }
+        //     ],
+        //     [
+        //       { name: '谭金涛', age: 23, tall: 175 },
+        //       { name: '戚思宁', age: 23, tall: 173 }
+        //     ],
+        //     [
+        //       { name: '柳晔', age: 24, tall: 168 },
+        //       { name: '徐晨彦', age: 24, tall: 161 }
+        //     ]
+        //   ]
+
+    `;
+  }
+
+  // *获取数组最后一个元素
+  lastArrayItem() {
+    return `
+      // 获取数组最后一个元素
+
+      Array.at(-1);
+
+      [1,2,3,4,5].at(-1); // 5
+
+    `;
+  }
+
   // *筛选出两个数组相同值组成数组
   filterArray() {
     return `
@@ -774,27 +1132,43 @@ export class ToolsDocService {
   }
 
   // Ps:JSON操作
-  // *遍历json数组
+  // *遍历json转为数组
   mapJson() {
     return `
       // 遍历json数组
-      let json = {a:'谭金涛',b:'戚思宁',c:'柳晔',d:'徐晨彦'};
 
-      let arr= [];
+      // json: json格式数据
+      // keyName?:string 键值  'key' || 'value'   按照key返回新数组还是value返回新数组
 
-      for(let i=0; i<Object.keys(json).length;i++){
-        arr.push(json[Object.keys(json)[i]])
+      const jsonKeysOrValuesToArray = (jsonData,keyName) => {
+          const arr = [];
+
+          Object.entries(jsonData).map((item) => {
+              const [keys, values] = item;
+
+              if (keyName === 'key') {
+                  arr.push(keys);
+                  return;
+              }
+
+              arr.push(values);
+          });
+
+          return arr;
       };
 
-      console.log(arr);   // ['谭金涛', '戚思宁', '柳晔', '徐晨彦']
+      const json = { a: '谭金涛', b: '戚思宁', c: '柳晔', d: '徐晨彦' };
+
+      jsonKeysOrValuesToArray(json, 'key');   // [ 'a', 'b', 'c', 'd' ];
+      jsonKeysOrValuesToArray(json, 'value'); // ['谭金涛', '戚思宁', '柳晔', '徐晨彦']';
 
     `;
   }
 
-  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
   isObjEmpty() {
     return `
-      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值（undefined）
+      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
 
       false: json中 有不为空/假值的值。
       true: json 中 全为空值undefined/假值。
@@ -825,6 +1199,36 @@ export class ToolsDocService {
 
       const json = {a:1,b:2,c:undefined};
       isObjEmpty(json); // true json中不是全为假值。
+
+    `;
+  }
+
+  // *删除json中值为 null和undefined 的属性
+  removeNullAndUndefinedJSON() {
+    return `
+      // 删除json中值为 null和undefined 的属性，生成新json
+
+      // dataJSON： json数据
+
+      const removeNullAndUndefinedJSON = (dataJSON) => {
+        const newJSON = {};
+
+        Object.entries(dataJSON).forEach((item) => {
+            const [keys, values] = item;
+            if (keys && values || keys && String(values) === '0' ) {
+                Object.defineProperty(newJSON, keys, {
+                    value: values,
+                    enumerable: true,
+                    configurable: true,
+                });
+            }
+        });
+        return newJSON;
+      };
+
+    const json = { 张三: 1, 李四: 1, undefined, 谭金涛: 3 , 'name': null ,age: 0};
+
+    removeNullAndUndefinedJSON(json); // { '张三': 1, '李四': 1, '谭金涛': 3, age: 0 }
 
     `;
   }
@@ -1726,6 +2130,8 @@ export class ToolsDocService {
         const sec = now.getSeconds() >= 10 ? now.getSeconds() : ('0' + now.getSeconds());
         return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
       };
+
+      nowTime() // '2022年10月22日 21:56:36'
 
     `;
   }

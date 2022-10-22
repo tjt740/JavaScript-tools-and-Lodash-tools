@@ -3,15 +3,19 @@
   <nz-sider class="menu-sidebar" [nzWidth]="siderWidth" #siderDom>
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
-        <img [src]="ngLogoImg" alt="logo">
+        <img [src]="ngLogoImg" alt="logo" />
         <span>NG-ZORRO</span>
       </a>
       <a href="https://www.lodashjs.com/" target="_blank">
-        <img [src]="lodashLogoImg" alt="logo">
+        <img [src]="lodashLogoImg" alt="logo" />
         <span>Lodash</span>
       </a>
     </div>
-    <ul nz-menu nzMode="inline" *ngFor="let item of routeConfig; index as i; trackBy: trackFn">
+    <ul
+      nz-menu
+      nzMode="inline"
+      *ngFor="let item of routeConfig; index as i; trackBy: trackFn"
+    >
       <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item (click)="hideAnimationAndChooseTool(val)">
@@ -31,11 +35,23 @@
   <!-- 主体 -->
   <nz-layout class="body">
     <nz-header>
-      <button id='goBack' nz-button nzType="default" nzShape="circle" (click)="goBack()">
+      <button
+        id="goBack"
+        nz-button
+        nzType="default"
+        nzShape="circle"
+        (click)="goBack()"
+      >
         <i nz-icon nzType="left" nzTheme="outline"></i>
       </button>
-      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="🔎 输入关键词进行查找" [(ngModel)]="selectedValue"
-        [nzOptions]="listOfGroupOption" (ngModelChange)="search($event)"></nz-select>
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="🔎 输入关键词进行查找"
+        [(ngModel)]="selectedValue"
+        [nzOptions]="listOfGroupOption"
+        (ngModelChange)="search($event)"
+      ></nz-select>
       <h3>请打开控制台看效果</h3>
     </nz-header>
     <nz-content>

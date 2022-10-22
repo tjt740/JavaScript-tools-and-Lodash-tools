@@ -23,14 +23,10 @@ export class RenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(
-      _.includes(
-        [
-          { user: 'fred', age: 40 },
-          { user: 'tjt', age: 40 },
-        ],
-        {age: 40 },
-      )
+    console.groupCollapsed(
+      `%c 🍌window._ = lodash🍆`,
+      'color:#36ab60; font-size: 14px;'
     );
+    console.log('🌻_.xxx 使用lodash方法🌼');
   }
 }

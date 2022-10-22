@@ -3,10 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>加载中...💤</title>
-    <base href="/">
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-
   </head>
   <body>
     <app-root></app-root>
@@ -43,17 +41,18 @@
             星期二: "折磨星期二😒",
             星期三: "混沌星期三🙃",
             星期四: "疯狂星期四🍔",
-            星期五: "摸鱼星期五🐠",
-            星期六: "快乐星期六🐘",
-            星期日: "无忧星期天🦖",
+            星期五: "摸鱼星期五😆",
+            星期六: "快乐星期六😍",
+            星期日: "无忧星期天🫡",
           };
           const week = weekList[res.week];
 
-          document.title = `${wea} ${res.tem}°C—${city}—${week}`;
+          document.title = `${
+            new Date().getMonth() + 1 + "." + new Date().getDate()
+          }/ ${city}/ ${wea}/ ${res.tem}°C—${week}`;
 
           // 图标
           const url = `./assets/images/${wea}.png`;
-
           const link = document.createElement("link");
           link.setAttribute("rel", "icon");
           link.setAttribute("type", "image/x-icon");

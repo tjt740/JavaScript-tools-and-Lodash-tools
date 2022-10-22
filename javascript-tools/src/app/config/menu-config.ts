@@ -11,6 +11,26 @@ export const MenuConfig = [
         functionName: 'randomArray',
       },
       {
+        exhibitStr: '打平/扁平化数组',
+        router: '/index/util-78',
+        functionName: 'flatArray',
+      },
+      {
+        exhibitStr: '数组按照某属性/键值计数',
+        router: '/index/util-81',
+        functionName: 'countBy',
+      },
+      {
+        exhibitStr: '筛选数组中相同的元素组成新数组',
+        router: '/index/util-79',
+        functionName: 'screenSthArray',
+      },
+      {
+        exhibitStr: '获取数组最后一个元素',
+        router: '/index/util-82',
+        functionName: 'lastArrayItem',
+      },
+      {
         exhibitStr: '匹配两个数组中相等值，组成新数组',
         router: '/index/util-72',
         functionName: 'filterArray',
@@ -182,15 +202,19 @@ export const MenuConfig = [
     childRoute: [
       {
         exhibitStr: '遍历json数组',
-        router: '/index/util-61',
+        router: '/index/util-80',
         functionName: 'mapJson',
       },
       {
-        exhibitStr: '判断json对象里是否全为假值(undefined)',
+        exhibitStr: '判断json对象里是否全为假值',
         router: '/index/util-71',
         functionName: 'isObjEmpty',
       },
-      // *
+      {
+        exhibitStr: '删除json中值为 null和undefined 的属性',
+        router: '/index/util-83',
+        functionName: 'removeNullAndUndefinedJSON',
+      },
     ],
   },
 
