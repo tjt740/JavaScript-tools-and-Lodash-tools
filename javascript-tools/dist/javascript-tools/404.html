@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>加载中...💤</title>
+    <base href="https://tjt740.github.io/JavaScript-tools-and-Lodash-tools/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>body{font-feature-settings:"tnum";font-variant:tabular-nums;font-size:14px}html{-webkit-tap-highlight-color:transparent}body,html{width:100%;height:100%}*,:after,:before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;--antd-wave-shadow-color:#1890ff;--scroll-bar:0}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}body{margin:0;color:#000000d9;line-height:1.5715;background-color:#fff;font-feature-settings:"tnum"}html,body{width:100%;height:100%}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;color:#000000d9;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-variant:tabular-nums;line-height:1.5715;background-color:#fff;font-feature-settings:"tnum","tnum"}html{--antd-wave-shadow-color:#1890ff;--scroll-bar:0}body{width:100%;height:100%;overflow:hidden}</style><link rel="stylesheet" href="styles.ed51d80199c0566f.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.ed51d80199c0566f.css"></noscript></head>
+  <body>
+    <app-root></app-root>
+
+    <!-- iconfont -->
+    <script src="//at.alicdn.com/t/c/font_3387028_dir7xkd3aii.js"></script>
+    <script>
+      fetch(
+        "https://v0.yiketianqi.com/api?unescape=1&vue=1&version=v63&appid=52872973&appsecret=v7mxBDo8"
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then((res) => {
+          // 当前时间:
+          const nowTime = res.update_time.split(":").at(0);
+          // 日出时间:
+          const sunriseTime = res.sunrise.split(":").at(0);
+          // 日落时间:
+          const sunsetTime = res.sunset.split(":").at(0);
+          // 早晨天气、晚上天气:
+          const wea =
+            nowTime <= sunsetTime
+              ? (res.wea_day.includes("到") && res.wea_day.split("到").at(1)) ||
+                res.wea_day
+              : (res.wea_night.includes("到") &&
+                  res.wea_night.split("到").at(1)) ||
+                res.wea_night;
+          // 城市:
+          const city = res.city;
+          // 星期数
+          const weekList = {
+            星期一: "痛苦星期一😭",
+            星期二: "折磨星期二😒",
+            星期三: "混沌星期三🙃",
+            星期四: "疯狂星期四🍔",
+            星期五: "摸鱼星期五😆",
+            星期六: "快乐星期六😍",
+            星期日: "无忧星期天🫡",
+          };
+          const week = weekList[res.week];
+
+          document.title = `${
+            new Date().getMonth() + 1 + "." + new Date().getDate()
+          }/ ${city}/ ${wea}/ ${res.tem}°C—${week}`;
+
+          // 图标
+          const url = `./assets/images/${wea}.png`;
+          const link = document.createElement("link");
+          link.setAttribute("rel", "icon");
+          link.setAttribute("type", "image/x-icon");
+          link.setAttribute("href", url);
+          document.getElementsByTagName("head")[0].appendChild(link);
+        });
+    </script>
+  <script src="runtime.642987ce23b566ee.js" type="module"></script><script src="polyfills.38dbb63b27271ca5.js" type="module"></script><script src="main.81dfe40c6c096a45.js" type="module"></script>
+
+</body></html>
