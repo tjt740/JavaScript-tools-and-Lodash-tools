@@ -267,6 +267,456 @@ export class ToolsDocService {
     `;
   }
 
+  // *打平/扁平化数组
+  flatArray() {
+    return `
+      // 打平/扁平化数组
+
+      // arr: 数组
+
+      const arr = [1,[2,3],[4],[5,[6,[7]]]];
+      const newArr = arr.flat(Infinity); // [1, 2, 3, 4, 5, 6, 7]
+
+    `;
+  }
+
+  // *数组按照某属性/键值计数
+  countBy() {
+    return `
+      // 数组按照某属性/键值计数
+
+      // arr: 数组
+      // keyName: string 键值
+
+      const countBy = (arr, keyName) =>
+        arr.reduce((prev, curr) => {
+            (prev[curr[keyName]] = ++prev[curr[keyName]] || 1), prev;
+            if (!curr[keyName]) {
+                delete prev[curr[keyName]];
+            }
+            return prev;
+      }, {});
+
+      const arr = [
+          {
+              a: '谭金涛',
+              b: '戚思宁',
+              c: '柳晔',
+              d: '张三',
+          },
+          {
+              a: '柳晔',
+              b: '王语嫣',
+              c: '白帆',
+              d: '李四',
+          },
+          {
+              a: '谭金涛',
+              b: '戚思宁',
+              c: '白帆',
+          },
+          {
+              a: '谭金涛',
+              b: '王语嫣',
+              c: '白帆',
+          },
+      ];
+
+      countBy(arr, 'b'); // { '戚思宁': 2, '王语嫣': 2 }
+      countBy(arr, 'd'); // { '张三': 1, '李四': 1 }
+
+    `;
+  }
+
+  // *筛选数组中相同的元素组成新数组
+  screenSthArray() {
+    return `
+      // 筛选数组中相同的元素组成新数组
+
+      // arr: 数组
+      // keyName: string 键值
+
+      // Step1 先用map结构记录
+      function arrayToMap(data, keyName) {
+          // 当为非数组或数据长度为0，不做处理。
+          if (!(data instanceof Array) || data.length === 0) {
+              return {};
+          }
+
+          const map = {};
+          let name;
+          for (let i = 0; i < data.length; i++) {
+              // array中item为多为数组。
+              if (data[i] instanceof Array) {
+                  data[i].flat(Infinity).forEach((item) => {
+                      name = item;
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(item);
+                  });
+              }
+
+              // array中item不为json。
+              if (!(data[i] instanceof Object)) {
+                  name = data[i];
+                  if (name) {
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(data[i]);
+                  }
+              }
+
+              // array中item为json对象。
+              if (data[i] instanceof Object) {
+                  name = data[i][keyName];
+                  if (name) {
+                      if (!map[name]) {
+                          map[name] = [];
+                      }
+                      map[name].push(data[i]);
+                  }
+              }
+          }
+          return map;
+      }
+
+      // Step2 把map转成数组
+      function mapToArray(mapData) {
+          if (mapData) {
+              const formatArr = [];
+              Object.values(mapData).map((item) => formatArr.push(item));
+              return formatArr;
+          }
+          return [];
+      }
+
+      // 测试
+      const arr1 = [
+        { key: 'a', lastName: '李世民', organization: '1' },
+        { key: 'b', lastName: '朱元璋', organization: '2' },
+        { key: 'c', lastName: '铁木真', organization: '3' },
+        { key: 'c', lastName: '刘邦', organization: '4' },
+        { key: 'a', lastName: '孙悟空', organization: '1' },
+        { key: 'a', lastName: '刘彻', organization: '2' },
+        { key: 'b', lastName: '曹操', organization: '2' },
+        { key: 'a', lastName: '安吉拉', organization: '3' },
+        { lastName: '赵云', organization: '3' },
+      ];
+
+      const map1 = arrayToMap(arr1, 'key');
+      const array1 = mapToArray(map1);
+      console.log('筛选后对象：', map1);
+        //  {
+        //     a: [
+        //       { key: 'a', lastName: '李世民', organization: '1' },
+        //       { key: 'a', lastName: '孙悟空', organization: '1' },
+        //       { key: 'a', lastName: '刘彻', organization: '2' },
+        //       { key: 'a', lastName: '安吉拉', organization: '3' }
+        //     ],
+        //     b: [
+        //       { key: 'b', lastName: '朱元璋', organization: '2' },
+        //       { key: 'b', lastName: '曹操', organization: '2' }
+        //     ],
+        //     c: [
+        //       { key: 'c', lastName: '铁木真', organization: '3' },
+        //       { key: 'c', lastName: '刘邦', organization: '4' }
+        //     ]
+        //  }
+      console.log('筛选后数组：', array1);
+        //   [
+        //     [
+        //       { key: 'a', lastName: '李世民', organization: '1' },
+        //       { key: 'a', lastName: '孙悟空', organization: '1' },
+        //       { key: 'a', lastName: '刘彻', organization: '2' },
+        //       { key: 'a', lastName: '安吉拉', organization: '3' }
+        //     ],
+        //     [
+        //       { key: 'b', lastName: '朱元璋', organization: '2' },
+        //       { key: 'b', lastName: '曹操', organization: '2' }
+        //     ],
+        //     [
+        //       { key: 'c', lastName: '铁木真', organization: '3' },
+        //       { key: 'c', lastName: '刘邦', organization: '4' }
+        //     ]
+        //   ]
+
+
+      const arr2 = [
+        186766, 167040, 167040, 167040, 167040, 167040, 167040, 167040, 167040,
+        167040, 167040, 167040, 167040, 151380, 151380, 105633, 105570, 105570,
+        105570, 100980, 100980, 100062, 100062, 100062, 100062, 100062, 100062,
+        100062, 100062, 99990, 99990, 99990, 99990, 99990, 99144, 83853, 83853,
+        79233, 58080, 57600, 57596, 57596, 57596, 47520, 45880, 45880, 41011, 31329,
+        31329, 31329, 31329, 26928, 26880, 26880, 26811, 20328, 20328, 19266, 18644,
+        18585, 17490, 16800, 12106, 12106, 11286, 8769, 6976, 6976, 6976,
+      ];
+
+      const map2 = arrayToMap(arr2);
+      const array2 = mapToArray(map2);
+      console.log('筛选后对象：', map2);
+        //  {
+        //     '6976': [ 6976, 6976, 6976 ],
+        //     '8769': [ 8769 ],
+        //     '11286': [ 11286 ],
+        //     '12106': [ 12106, 12106 ],
+        //     '16800': [ 16800 ],
+        //     '17490': [ 17490 ],
+        //     '18585': [ 18585 ],
+        //     '18644': [ 18644 ],
+        //     '19266': [ 19266 ],
+        //     '20328': [ 20328, 20328 ],
+        //     '26811': [ 26811 ],
+        //     '26880': [ 26880, 26880 ],
+        //     '26928': [ 26928 ],
+        //     '31329': [ 31329, 31329, 31329, 31329 ],
+        //     '41011': [ 41011 ],
+        //     '45880': [ 45880, 45880 ],
+        //     '47520': [ 47520 ],
+        //     '57596': [ 57596, 57596, 57596 ],
+        //     '57600': [ 57600 ],
+        //     '58080': [ 58080 ],
+        //     '79233': [ 79233 ],
+        //     '83853': [ 83853, 83853 ],
+        //     '99144': [ 99144 ],
+        //     '99990': [ 99990, 99990, 99990, 99990, 99990 ],
+        //     '100062': [
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062
+        //     ],
+        //     '100980': [ 100980, 100980 ],
+        //     '105570': [ 105570, 105570, 105570 ],
+        //     '105633': [ 105633 ],
+        //     '151380': [ 151380, 151380 ],
+        //     '167040': [
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040
+        //     ],
+        //     '186766': [ 186766 ]
+        //   }
+      console.log('筛选后数组：', array2);
+        //  [
+        //     [ 6976, 6976, 6976 ],
+        //     [ 8769 ],
+        //     [ 11286 ],
+        //     [ 12106, 12106 ],
+        //     [ 16800 ],
+        //     [ 17490 ],
+        //     [ 18585 ],
+        //     [ 18644 ],
+        //     [ 19266 ],
+        //     [ 20328, 20328 ],
+        //     [ 26811 ],
+        //     [ 26880, 26880 ],
+        //     [ 26928 ],
+        //     [ 31329, 31329, 31329, 31329 ],
+        //     [ 41011 ],
+        //     [ 45880, 45880 ],
+        //     [ 47520 ],
+        //     [ 57596, 57596, 57596 ],
+        //     [ 57600 ],
+        //     [ 58080 ],
+        //     [ 79233 ],
+        //     [ 83853, 83853 ],
+        //     [ 99144 ],
+        //     [ 99990, 99990, 99990, 99990, 99990 ],
+        //     [
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062,
+        //       100062, 100062
+        //     ],
+        //     [ 100980, 100980 ],
+        //     [ 105570, 105570, 105570 ],
+        //     [ 105633 ],
+        //     [ 151380, 151380 ],
+        //     [
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040,
+        //       167040, 167040
+        //     ],
+        //     [ 186766 ]
+        //   ]
+
+      const arr3 = [
+        { name: '谭金涛', age: 23, tall: 175 },
+        { name: '戚思宁', age: 23, tall: 173 },
+        { name: '柳晔', age: 24, tall: 168 },
+        { name: '徐晨彦', age: 24, tall: 161 },
+        { name: '白帆', age: 21, tall: 161 },
+        { name: '王语嫣', age: 21, tall: 167 },
+        [7, 4, 0],
+        [1, [2, 3]],
+        [[1, 2, [4, 5]]],
+        1,
+        2,
+        3,
+      ];
+
+      const map3 = arrayToMap(arr3, 'age');
+      const array3 = mapToArray(map3);
+      console.log('筛选后对象：', map3);
+        //  {
+        //     '0': [ 0 ],
+        //     '1': [ 1, 1, 1 ],
+        //     '2': [ 2, 2, 2 ],
+        //     '3': [ 3, 3 ],
+        //     '4': [ 4, 4 ],
+        //     '5': [ 5 ],
+        //     '7': [ 7 ],
+        //     '21': [
+        //       { name: '白帆', age: 21, tall: 161 },
+        //       { name: '王语嫣', age: 21, tall: 167 }
+        //     ],
+        //     '23': [
+        //       { name: '谭金涛', age: 23, tall: 175 },
+        //       { name: '戚思宁', age: 23, tall: 173 }
+        //     ],
+        //     '24': [
+        //       { name: '柳晔', age: 24, tall: 168 },
+        //       { name: '徐晨彦', age: 24, tall: 161 }
+        //     ]
+        //  }
+      console.log('筛选后数组：', array3);
+        //   [
+        //     [ 0 ],
+        //     [ 1, 1, 1 ],
+        //     [ 2, 2, 2 ],
+        //     [ 3, 3 ],
+        //     [ 4, 4 ],
+        //     [ 5 ],
+        //     [ 7 ],
+        //     [
+        //       { name: '白帆', age: 21, tall: 161 },
+        //       { name: '王语嫣', age: 21, tall: 167 }
+        //     ],
+        //     [
+        //       { name: '谭金涛', age: 23, tall: 175 },
+        //       { name: '戚思宁', age: 23, tall: 173 }
+        //     ],
+        //     [
+        //       { name: '柳晔', age: 24, tall: 168 },
+        //       { name: '徐晨彦', age: 24, tall: 161 }
+        //     ]
+        //   ]
+
+    `;
+  }
+
+  // *获取数组最后一个元素
+  lastArrayItem() {
+    return `
+      // 获取数组最后一个元素
+
+      Array.at(-1);
+
+      [1,2,3,4,5].at(-1); // 5
+
+    `;
+  }
+
+  // *筛选出两个数组相同值组成数组
+  filterArray() {
+    return `
+      // 筛选出两个数组相同值组成数组
+
+      // arr: 被匹配的数组
+      // matchArr: 条件数组
+
+      let arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+
+      let matchArr = ['1','3','7','9'];
+
+      方法1:
+        let newArr = arr.map(i => matchArr.map(o => { if (o === i.name) return i })).flat(Infinity).filter(Boolean);
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+      方法2:
+        let newArr = arr.filter(i=> matchArr.includes(i.name));
+        // [{name:'1',age:1},{name:'3',age:3}]
+
+    `;
+  }
+
+  // *筛选出数组中重复最多的值
+  filterArrayRepetition() {
+    return `
+      // 筛选出数组中重复最多的值，组成新数组
+      const filterArrayRepetition = (array) => {
+        let arr = []; // 存放最多次数的值
+        let temp = {}; // 保存每个数的个数
+        let res = 0; // 记录出现最多次数的个数
+        array.forEach((item) => {
+            if (temp[item] === undefined) { // 如果这个数之前没出现过
+                temp[item] = 1; // 将它的次数赋为1
+            } else {
+                temp[item]++; // 次数++
+            }
+        });
+        for (let i in temp) {
+            // 遍历下标
+            if (temp[i] > res) {// 如果这个数的次数比之前出现过的最多次数还多
+                arr.length = 0; // 清空数组
+                arr.push(i); // 将这个数加入最终答案，因为属性名是字符串，将它转换为数字
+                res = temp[i]; // 更新最大次数
+            } else if (temp[i] === res) {
+                // 出现次数相同的数字
+                arr.push(i); // 将答案加入数组
+                res = temp[i]; // 更新最大次数
+            }
+        }
+        return arr;
+    };
+
+    const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
+
+    const newArr = filterArrayRepetition(result); // ['aTSSk6oEn3TM02DEU3jPuA']
+
+    `;
+  }
+  // *从数组中过滤出假值
+  filterBooleanArray() {
+    return `
+      // 从数组中过滤出虚假值，0，undefined，null，false，""，''可以通过以下方法省略。
+
+      const array = [3, 0, 6, 7, '', false];
+
+      const newArr = array.filter(Boolean);
+
+      //  [3, 6, 7]
+
+    `;
+  }
+
+  // *数组求和、取数组最大值、最小值
+  reduceArray() {
+    return `
+      // 数组求和、取数组最大值、最小值
+
+      const arr = [1, 4, 7, 2, 5, 8, 3];
+
+      // 求和:
+      arr.reduce((a, b) => a + b);  // 30
+
+      // 取最大值:
+      arr.reduce((a, b) => (a > b ? a : b)); // 8
+
+      // 取最小值:
+      arr.reduce((a, b) => (a < b ? a : b)); // 1
+
+    `;
+  }
+
   // *随机获取数组中的某个数
   randomArrayNum() {
     return `
@@ -636,20 +1086,194 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]返回value在数组中的下标，没有则返回-1
+  indexOfArray() {
+    return `
+      /*
+        返回value在数组中的下标，没有则返回-1
+
+        array: 需要被检索的数组
+        value: 需要被查找的值
+        [fromIndex=0]: 从下标几开始查找，默认是0
+
+      */
+
+      _.indexOf(array,value,[fromIndex=0])
+
+      const arr = [1, 2, 3, 1, 2, 3];
+
+      _.indexOf(arr, 2);
+      // → 1
+
+      _.indexOf(arr, 2, 3);
+      // → 4
+
+    `;
+  }
+
+  // *[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+  initialArray() {
+    return `
+      /*
+        返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
+
+        array: 需要被去除最后一个元素的数组
+
+      */
+
+      _.initial(array);
+
+      const arr = [1, 2, 3];
+
+      _.initial(arr);
+      // → [1, 2]
+
+    `;
+  }
+
   // Ps:JSON操作
-  // *遍历json数组
+  // *遍历json转为数组
   mapJson() {
     return `
       // 遍历json数组
-      let json = {a:'谭金涛',b:'戚思宁',c:'柳晔',d:'徐晨彦'};
 
-      let arr= [];
+      // json: json格式数据
+      // keyName?:string 键值  'key' || 'value'   按照key返回新数组还是value返回新数组
 
-      for(let i=0; i<Object.keys(json).length;i++){
-        arr.push(json[Object.keys(json)[i]])
+      const jsonKeysOrValuesToArray = (jsonData,keyName) => {
+          const arr = [];
+
+          Object.entries(jsonData).map((item) => {
+              const [keys, values] = item;
+
+              if (keyName === 'key') {
+                  arr.push(keys);
+                  return;
+              }
+
+              arr.push(values);
+          });
+
+          return arr;
       };
 
-      console.log(arr);   // ['谭金涛', '戚思宁', '柳晔', '徐晨彦']
+      const json = { a: '谭金涛', b: '戚思宁', c: '柳晔', d: '徐晨彦' };
+
+      jsonKeysOrValuesToArray(json, 'key');   // [ 'a', 'b', 'c', 'd' ];
+      jsonKeysOrValuesToArray(json, 'value'); // ['谭金涛', '戚思宁', '柳晔', '徐晨彦']';
+
+    `;
+  }
+
+  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+  isObjEmpty() {
+    return `
+      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+
+      false: json中 有不为空/假值的值。
+      true: json 中 全为空值undefined/假值。
+
+      const isObjEmpty = (obj) => {
+          let flag = true;
+          if (obj) {
+              flag = false;
+              let arr = Object.keys(obj).map(function (i) {
+                  return obj[i];
+              });
+              let arrV2 = [];
+              for (let j of arr) {
+                  if (!j) {
+                      arrV2.push(j);
+                  }
+              }
+              if (arrV2.length == arr.length) {
+                  flag = true;
+              }
+              return flag;
+          }
+          return flag;
+      };
+
+      const emptyJson = {name:null,age:undefined,tall:'',work:false};
+      isObjEmpty(emptyJson); // true json中全为假值。
+
+      const json = {a:1,b:2,c:undefined};
+      isObjEmpty(json); // true json中不是全为假值。
+
+    `;
+  }
+
+  // *删除json中值为 null和undefined 的属性
+  removeNullAndUndefinedJSON() {
+    return `
+      // 删除json中值为 null和undefined 的属性，生成新json
+
+      // jsonData： json数据
+
+      const removeNullAndUndefinedJSON = (jsonData) => {
+        const newJSON = {};
+
+        Object.entries(jsonData).forEach((item) => {
+            const [keys, values] = item;
+            if (keys && values || keys && String(values) === '0' ) {
+                Object.defineProperty(newJSON, keys, {
+                    value: values,
+                    enumerable: true,
+                    configurable: true,
+                });
+            }
+        });
+        return newJSON;
+      };
+
+    const json = { 张三: 1, 李四: 1, undefined, 谭金涛: 3 , 'name': null ,age: 0};
+
+    removeNullAndUndefinedJSON(json); // { '张三': 1, '李四': 1, '谭金涛': 3, age: 0 }
+
+    `;
+  }
+
+  // *打平JSON，找到键值对应的枚举，生成新数组
+  flatJSON() {
+    return `
+      // 打平JSON，找到键值对应的枚举，生成新数组
+
+      // jsonData： json数据
+      // contextEnum：json键值对应的枚举
+
+      const flatJSON = (jsonData, contextEnum) =>
+          Object.entries(jsonData).map((v) => {
+            const [key, value] = v;
+            if (Object.prototype.toString.call(value) === '[object Object]') {
+                return flatJSON(value, contextEnum);
+            }
+            return contextEnum[key] || null;
+      });
+
+      // 集装箱信息枚举
+      const containerContextEnum = {
+          frontId: '物品前面对应的id',
+          itemId: '物品id',
+          itemName: '物品名',
+          height: '包装箱高度',
+          width: '包装箱宽度',
+          length: '包装箱长度',
+          containerId: '包装箱id',
+          price: '价格',
+          volume: '体积',
+          weight: '重量',
+      };
+
+      // 接口数据
+      const data = {
+          containerId: '集装箱01号',
+          cube: { height: 2698, length: 12032, volume: 76351414272, width: 2352 },
+          price: 3400,
+          volume: 76351414272,
+          weight: 30400,
+      };
+
+      flatJSON(data, containerContextEnum); // [ '包装箱id', [ '包装箱高度', '包装箱长度', '体积', '包装箱宽度' ], '价格', '体积', '重量' ];
 
     `;
   }
@@ -660,8 +1284,12 @@ export class ToolsDocService {
     return `
       // 获取URL上参数信息
 
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlInfo() // {ie: 'UTF-8', wd: 'baidu'}
+
       const getUrlInfo = ()=> {
-        let urlInfo = {} as any;
+        let urlInfo = {};
         let flag = window.location.href.split('').includes('?'); //判断是否传参。
 
         if (flag) {
@@ -684,6 +1312,91 @@ export class ToolsDocService {
           console.log('未携带参数');
         }
       };
+
+
+    `;
+  }
+
+  // *获取URL上某一键值对应的值
+  getUrlKeyInfo() {
+    return `
+      // 获取URL上某一键值对应的值
+
+      // https://www.baidu.com/s?ie=UTF-8&wd=baidu
+
+      getUrlKeyInfo('wd') // 'baidu'
+
+      const getUrlKeyInfo =(urlKey)=>{
+        return new URLSearchParams(window.location.search)
+        .get(urlKey)
+      }
+
+    `;
+  }
+
+  // *与location相关的一些操作
+  aboutLocation() {
+    return `
+      // 与location相关的一些操作
+
+        window.history.back()     // 返回前一条页面
+
+        window.history.forward()  // 返回后一条页面
+
+        window.history.go()
+          /*
+              0:   返回当前的页面
+              -1:	  返回前一次页面
+              1:   返回后一次页面
+            -n/n:	  返回前n次页面 / 后n次页面
+          */
+
+        window.open(url,null,style)  // 打开新窗口,用逗号隔开","
+          /*
+              第一个参数：'新开窗口的URL'
+            ☆ 第二个参数： 填写形参（新窗口打开），不填写形参（本窗口刷新）
+              第三个参数： 设置新打开的窗口大小 'width=400px,height=400px'
+
+              window.open('http://jd.com','','width=200px,height=200px') ★必须是 width=xxxpx, 不能写css样式★
+          */
+
+        window.close()  // 关闭当前页面
+
+        window.location.reload() // 重载当前页面
+
+        window.location.href ='xxxx' // 让页面原地跳转至当前URL
+
+        window.location.hash="#admin" // 更改路由hash值,不会触发页面刷新
+
+        window.location.search='?key=xxxxx' // 返回或者设置URL问号(?)后面的值,会触发页面刷新
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            ?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+          */
+
+        window.location.port // 返回浏览器端口号
+          /*
+            http://localhost:53079/index#util-75
+
+            53079
+          */
+
+        window.location.hostname  // 返回或者设置主机名
+          /*
+            https://hzcac2-dev.alibaba.net/app/case-detail?id=kOk2H9mJH3bOpM7Bflh3JQ&pageCode=case-manage-secretary
+
+            hzcac2-dev.alibaba.net
+          */
+
+        window.location.pathname='xxxxx' 返回或者设置路由部分,会触发页面刷新
+          /*
+            window.location.pathname= '/app/admin/admin-layout/examine-approve-list'
+          */
+
+        encodeURIComponent('谭金涛'); // 字符串转encode码
+        decodeURI('%E8%B0%AD%E9%87%91%E6%B6%9B'); // encode码转字符串
+
 
     `;
   }
@@ -1194,10 +1907,10 @@ export class ToolsDocService {
     `;
   }
 
-  // *平滑滚动到指定元素区域
+  // *平滑滚动/不平滑跳转 到指定元素区域
   smoothScroll() {
     return `
-      // 滚动到指定元素区域
+      // 平滑滚动/不平滑跳转 到指定元素区域
 
       // element: 类名 ==> '.tjt740'
 
@@ -1211,6 +1924,11 @@ export class ToolsDocService {
         document.querySelector(element).scrollIntoView({
             behavior: 'smooth'
         });
+      };
+
+      // 直接跳转到指定锚点位置
+      const jumpElement = (element) =>{
+        document.querySelector(element).scrollIntoView(true);
       };
 
     `;
@@ -1458,6 +2176,8 @@ export class ToolsDocService {
         return +year + "年" + (month + 1) + "月" + date + "日 " + hour + ":" + miu + ":" + sec;
       };
 
+      nowTime() // '2022年10月22日 21:56:36'
+
     `;
   }
 
@@ -1641,6 +2361,27 @@ export class ToolsDocService {
       ];
 
       let teacherList = blurrySearch(allTeacherList,'涛')  // [{ "id": 15649876456457, "name": "谭金涛","code": "1311641"}]
+
+    `;
+  }
+
+  // *等待函数
+  waitTime() {
+    return `
+      // 等待函数
+
+      // waitTime: 时间控制器
+
+      // asyncFn: 等待时间（ms）完成后触发的函数
+
+      const waitTime = (ms) => new Promise((resolve)=> setTimeout(resolve, ms));
+
+      const asyncFn = async () => {
+        await waitTime(1000);
+        console.log('等待异步函数执行结束!');
+      };
+
+      asyncFn()  // Promise {<pending>} >>>1s后>>>> 等待异步函数执行结束！
 
     `;
   }

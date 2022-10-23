@@ -23,17 +23,10 @@ export class RenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const list = [
-      { userName: '谭金涛', active: false },
-      { userName: '戚思宁', active: false },
-      { userName: '柳晔', active: true },
-      { userName: '徐晨彦', active: true },
-    ];
-    _.head(list);
-    // →  { userName: '谭金涛', active: false }
-
-    const arr = [1, 2, 3];
-    _.head(arr)
-    // 1
+    console.groupCollapsed(
+      `%c 🍌window._ = lodash🍆`,
+      'color:#36ab60; font-size: 14px;'
+    );
+    console.log('🌻_.xxx 使用lodash方法🌼');
   }
 }

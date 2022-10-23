@@ -4,7 +4,6 @@ import {
   AfterViewInit,
   ViewChild,
   forwardRef,
-  NgZone,
   Output,
   EventEmitter,
   OnChanges,
@@ -102,6 +101,5 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  refreshPage() {
-  }
+  refreshPage() {}
 }
