@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import * as all from '../../config/menu-config';
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 import * as _ from 'lodash';
-
+import { NzIconService } from 'ng-zorro-antd/icon';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -14,7 +14,15 @@ export class IndexComponent implements OnInit {
   @ViewChild('dragIcon') dragIcon: any;
   @ViewChild('siderDom') siderDom: any;
 
-  constructor(private toolsDoc: ToolsDocService, protected route: Router) {}
+  constructor(
+    private iconService: NzIconService,
+    private toolsDoc: ToolsDocService,
+    protected route: Router
+  ) {
+    this.iconService.fetchFromIconfont({
+      scriptUrl: '//at.alicdn.com/t/c/font_3733690_pwzufpkbntj.js',
+    });
+  }
 
   ngLogoImg = 'https://ng.ant.design/assets/img/logo.svg';
   lodashLogoImg = './assets/images/lodash-logo.png';

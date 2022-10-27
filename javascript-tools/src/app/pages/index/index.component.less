@@ -72,7 +72,8 @@
     }
 
     h3 {
-      left: 275px
+      left: 300px;
+      font-weight: 200;
     }
   }
 
@@ -84,15 +85,10 @@
 
     h3 {
       left: 500px;
+      font-weight: 600;
     }
   }
 
-
-  h3::before {
-    content: '★';
-    display: inline-block;
-    color: rgb(255, 0, 0)
-  }
 
   .cdk-virtual-scroll-viewport {
     overflow: hidden !important;
@@ -109,6 +105,10 @@
     box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
     height: 100vh;
     overflow: auto;
+  }
+
+  .menu-icon {
+    font-size: 24px;
   }
 
   .ant-menu-item {

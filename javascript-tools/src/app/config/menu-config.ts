@@ -1,8 +1,9 @@
+
 export const MenuConfig = [
   // Tjt: 数组操作
   {
     title: '数组操作',
-    icon: 'smile',
+    icon: 'icon--devil',
     id: Math.random(),
     childRoute: [
       {
@@ -139,7 +140,7 @@ export const MenuConfig = [
   // Tjt: 字符串操作
   {
     title: '字符串操作',
-    icon: 'heart',
+    icon: 'icon--astonished',
     id: Math.random(),
     childRoute: [
       {
@@ -168,7 +169,7 @@ export const MenuConfig = [
   // Tjt: 数字操作
   {
     title: '数字操作',
-    icon: 'crown',
+    icon: 'icon--scared-',
     id: Math.random(),
     childRoute: [
       {
@@ -197,7 +198,7 @@ export const MenuConfig = [
   // Tjt: JSON对象操作
   {
     title: 'JSON操作',
-    icon: 'cloud',
+    icon: 'icon--cool',
     id: Math.random(),
     childRoute: [
       {
@@ -226,7 +227,7 @@ export const MenuConfig = [
   // Tjt: URL操作
   {
     title: 'URL操作',
-    icon: 'disconnect',
+    icon: 'icon--in-love',
     id: Math.random(),
     childRoute: [
       {
@@ -250,7 +251,7 @@ export const MenuConfig = [
   // Tjt: 存储(localStorage/sessionStorage)操作
   {
     title: '存储操作',
-    icon: 'download',
+    icon: 'icon--angry',
     id: Math.random(),
     childRoute: [
       {
@@ -289,7 +290,7 @@ export const MenuConfig = [
   // Tjt: cookie操作
   {
     title: 'cookie操作',
-    icon: 'sliders',
+    icon: 'icon--angel',
     id: Math.random(),
     childRoute: [
       {
@@ -313,7 +314,7 @@ export const MenuConfig = [
   // Tjt: 格式校验
   {
     title: '格式校验',
-    icon: 'safety-certificate',
+    icon: 'icon--flushed',
     id: Math.random(),
     childRoute: [
       {
@@ -357,7 +358,7 @@ export const MenuConfig = [
   // Tjt: 判断类型
   {
     title: '判断类型',
-    icon: 'message',
+    icon: 'icon--smirking',
     id: Math.random(),
     childRoute: [
       {
@@ -376,7 +377,7 @@ export const MenuConfig = [
   // Tjt: 设备判断
   {
     title: '设备判断',
-    icon: 'instagram',
+    icon: 'icon--thinking',
     id: Math.random(),
     childRoute: [
       {
@@ -415,7 +416,7 @@ export const MenuConfig = [
   // Tjt: 浏览器操作
   {
     title: '浏览器操作',
-    icon: 'desktop',
+    icon: 'icon--tongue-1',
     id: Math.random(),
     childRoute: [
       {
@@ -459,7 +460,7 @@ export const MenuConfig = [
   // Tjt: 时间操作
   {
     title: '时间操作',
-    icon: 'field-time',
+    icon: 'icon--mute',
     id: Math.random(),
     childRoute: [
       {
@@ -478,7 +479,7 @@ export const MenuConfig = [
   // Tjt:DOM操作
   {
     title: 'DOM操作',
-    icon: 'box-plot',
+    icon: 'icon--zombie',
     id: Math.random(),
     childRoute: [
       {
@@ -512,7 +513,7 @@ export const MenuConfig = [
   // Tjt: JavaScript操作
   {
     title: 'JavaScript操作',
-    icon: 'code',
+    icon: 'icon--vomiting-',
     id: Math.random(),
     childRoute: [
       {
