@@ -369,9 +369,9 @@ export const MenuConfig = [
     ],
   },
 
-  // Tjt: 判断类型
+  // Tjt: 判断/检查信息
   {
-    title: '判断类型',
+    title: '判断/检查信息',
     icon: 'icon--smirking',
     id: Math.random(),
     childRoute: [
@@ -385,6 +385,11 @@ export const MenuConfig = [
         router: '/index/util-48',
         functionName: 'isArray',
       },
+      {
+        exhibitStr: '[Ld]深比较判断对象是否相等',
+        router: '/index/util-88',
+        functionName: 'isEqual',
+      }
     ],
   },
 
@@ -562,4 +567,6 @@ export const MenuConfig = [
       },
     ],
   },
+
+
 ];

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -846,7 +847,8 @@ export class ToolsDocService {
   difference() {
     return `
       /*
-        筛选出【Array】中需要被排除的值[values]，返回新数组
+          筛选出【Array】中需要被排除的值[values]，返回新数组。
+          
           array: 被检查的数组
           [values]:(...Array) 需要被排除的值（必须是数组形式）
       */
@@ -916,7 +918,6 @@ export class ToolsDocService {
 
         array: 被裁剪的数组
         n: 裁剪数组★前★的n位
-
       */
 
       _.drop(array, n=1)
@@ -948,7 +949,6 @@ export class ToolsDocService {
 
         array: 被裁剪的数组
         n: 裁剪数组★后★的n位
-
       */
 
       _.dropRight(array, n=1)
@@ -976,10 +976,10 @@ export class ToolsDocService {
   fillArray() {
     return `
       /*
-      使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
-      PS:这个方法会改变原 array（注：不是创建新数组）
+        使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
+        PS:这个方法会改变原 array（注：不是创建新数组）
 
-      Array: 要填充改变的数组
+        Array: 要填充改变的数组
         value: 填充给Array的值
         [start=0]: 开始下标
         [end=array.length]: 结束下标（length） 类似于字符串的substr
@@ -1008,11 +1008,11 @@ export class ToolsDocService {
   findIndex() {
     return `
       /*
-      返回数组中符合条件的第一个下标【从前向后】。
-      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+        返回数组中符合条件的第一个下标【从前向后】。
+        该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
 
-       array: 要搜索的数组
-       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+        array: 要搜索的数组
+        condition: 条件 function(o){return ....} / {key:value} / ['key',value];
       */
 
       _.findIndex(array,condition)
@@ -1049,11 +1049,11 @@ export class ToolsDocService {
   findLastIndex() {
     return `
       /*
-      返回数组中符合条件的第一个下标【从后向前】。
-      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+        返回数组中符合条件的第一个下标【从后向前】。
+        该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
 
-       array: 要搜索的数组
-       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+        array: 要搜索的数组
+        condition: 条件 function(o){return ....} / {key:value} / ['key',value];
       */
 
       _.findLastIndex(array,condition)
@@ -1095,7 +1095,6 @@ export class ToolsDocService {
         array: 需要被检索的数组
         value: 需要被查找的值
         [fromIndex=0]: 从下标几开始查找，默认是0
-
       */
 
       _.indexOf(array,value,[fromIndex=0])
@@ -1118,7 +1117,6 @@ export class ToolsDocService {
         返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
 
         array: 需要被去除最后一个元素的数组
-
       */
 
       _.initial(array);
@@ -1191,18 +1189,17 @@ export class ToolsDocService {
   uniqWithArray() {
     return `
       /*
-      返回新的去重数组 （去重数组中相同的json）
+        返回新的去重数组 （去重数组中相同的json）
 
-      array: 需要被去重的数组
-      _.isEqual: 【深比较】两者的值是否相等  
-
-      const obj = { 'a': 1 };
-      const otherObj = { 'a': 1 };
-      
-      _.isEqual(obj, otherObj);
-      // => true
-      obj === other;
-      // => false
+        array: 需要被去重的数组
+        _.isEqual: 【深比较】两者的值是否相等 👇  _.isEqual功能
+        const obj = { 'a': 1 };
+        const otherObj = { 'a': 1 };
+        
+        _.isEqual(obj, otherObj);
+        // => true
+        obj === other;
+        // => false
       */
 
       const objArr = [{ 'a': 1, 'b': 2 }, { 'a': 2, 'b': 1 }, { 'a': 1, 'b': 2 }, { 'a': 1, b: 2 }, { c: 1, d: 2 }];
@@ -1776,7 +1773,7 @@ export class ToolsDocService {
     `;
   }
 
-  // Ps:判断类型
+  // Ps:判断/检查信息
   // *判断是否是数字
   isNumber() {
     return `
@@ -1821,6 +1818,45 @@ export class ToolsDocService {
       // 4. 通过constructor判断;
             arr.constructor === Array   // true
             json.constructor === Array  // 报错
+
+    `;
+  }
+
+  // *[Ld]深比较判断对象是否相等
+  isEqual() {
+    return `
+      /*
+        深比较判断对象是否相等
+
+        value1: 用来比较的值
+        value2: 另一个用来比较的值
+      */
+
+      _.isEqual(value1, value2);
+
+      const obj = { name: 'tjt' };
+      const otherObj = { name: 'tjt' };
+
+      _.isEqual(obj, otherObj);
+      // → true
+      
+      obj === otherObj;
+      // → false
+
+      _.isEqual(()=>1, ()=>1);
+      // → false
+
+      _.isEqual(1,1);
+      // → true
+
+      _.isEqual(null ,null);
+      // → true
+      
+      _.isEqual(NaN,NaN);
+      // → true
+
+      NaN === NaN;
+      // → false
 
     `;
   }
