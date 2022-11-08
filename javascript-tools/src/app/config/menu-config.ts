@@ -1,4 +1,3 @@
-
 export const MenuConfig = [
   // Tjt: 数组操作
   {
@@ -133,6 +132,21 @@ export const MenuConfig = [
           '[Ld]返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）',
         router: '/index/util-69',
         functionName: 'initialArray',
+      },
+      {
+        exhibitStr: '[Ld]返回新的去重后的数组',
+        router: '/index/util-85',
+        functionName: 'uniqArray',
+      },
+      {
+        exhibitStr: '[Ld]返回新的去重后的数组（1.能处理复杂数组 2.能附带去重条件）',
+        router: '/index/util-86',
+        functionName: 'uniqByArray',
+      },
+      {
+        exhibitStr: '[Ld]返回新的去重数组（去重数组中相同的json）',
+        router: '/index/util-87',
+        functionName: 'uniqWithArray',
       },
     ],
   },

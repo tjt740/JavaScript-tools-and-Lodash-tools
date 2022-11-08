@@ -1131,6 +1131,88 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]返回新的去重后的数组
+  uniqArray() {
+    return `
+      /* 
+        返回新的去重后的数组
+
+        array: 需要被去重的数组
+      */
+
+      _.uniq(array);
+
+      const arr = [4, 2, 'a', 'b', 'b', '我', '你', '你', 1, 2, 3, 4];
+
+      _.uniq(arr);
+      // → [4, 2, 'a', 'b', '我', '你', 1, 3];
+
+    `;
+  }
+
+  // *[Ld]返回新的去重数组（1.能处理复杂数组 2.能附带去重条件）
+  uniqByArray() {
+    return `
+      /*
+        返回新的去重数组，跟_.uniq(array)相似。
+        1.能处理复杂数组 
+        2.能附带去重条件
+
+        array: 需要被去重的数组
+        (Array|Function|Object|string): 数组按照什么条件去重
+      */
+
+      _.uniqBy(array, (Array|Function|Object|string));
+
+      const arr = [{name:'谭金涛',key:'tjt'},{name:'戚思宁',key:'740'},{name:'柳晔',key:'ly'},{name:'谭金涛',key:'abc'},{name:'陆游',key:'ly'}];
+
+      const uniqByArr1 = _.uniqBy(arr,(item)=> item.name); 
+      // → [{"name":"谭金涛","key":"tjt"},{"name":"戚思宁","key":"740"},{"name":"柳晔","key":"ly"},{"name":"陆游","key":"ly"}];
+
+      const uniqByArr2 = _.uniqBy(arr,(item)=> item.key); 
+      // → [{"name":"谭金涛","key":"tjt"},{"name":"戚思宁","key":"740"},{"name":"柳晔","key":"ly"},{"name":"谭金涛","key":"abc"}];
+
+      const arr2 = [1.2, 2.4, 3.3, 4, 1.3, 1.1, 2.1];
+      _.uniqBy(arr2, Math.floor);
+      // → [1.2, 2.4, 3.3, 4];
+
+      const arr3 = [{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }];
+      _.uniqBy(arr3, 'x');
+      // → [{ 'x': 1 }, { 'x': 2 }];
+
+      const arr3 = [[1, 2, 3], [1, 2, 3], [3, 2, 1], [1, 3, 2]];
+      _.uniqBy(arr3, [1, 2, 3]);
+      // → [[1,2,3],[1,3,2]];
+
+    `;
+  }
+
+  // *[Ld]返回新的去重数组（去重数组中相同的json）
+  uniqWithArray() {
+    return `
+      /*
+      返回新的去重数组 （去重数组中相同的json）
+
+      array: 需要被去重的数组
+      _.isEqual: 【深比较】两者的值是否相等  
+
+      const obj = { 'a': 1 };
+      const otherObj = { 'a': 1 };
+      
+      _.isEqual(obj, otherObj);
+      // => true
+      obj === other;
+      // => false
+      */
+
+      const objArr = [{ 'a': 1, 'b': 2 }, { 'a': 2, 'b': 1 }, { 'a': 1, 'b': 2 }, { 'a': 1, b: 2 }, { c: 1, d: 2 }];
+
+      _.uniqWith(objArr, _.isEqual);
+      // → [{"a":1,"b":2},{"a":2,"b":1},{"c":1,"d":2}];
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json转为数组
   mapJson() {
