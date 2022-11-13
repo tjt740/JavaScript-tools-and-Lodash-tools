@@ -565,6 +565,11 @@ export const MenuConfig = [
         router: '/index/util-77',
         functionName: 'waitTime',
       },
+      {
+        exhibitStr: '颜色转换',
+        router: '/index/util-89',
+        functionName: 'changeColor',
+      },
     ],
   },
 
