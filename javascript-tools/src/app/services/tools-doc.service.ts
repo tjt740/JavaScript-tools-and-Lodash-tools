@@ -1613,12 +1613,13 @@ export class ToolsDocService {
       // value:  值
       // days:   持续天数
 
-      const setCookie = (key, value, days) => {
-        const days = 30;
+      const setCookie = (key, value, days=1) => {
         const exp = new Date();
-        exp.setTime(exp.getTime() + days*24*60*60*1000);
+        exp.setTime(exp.getTime() + days*30*24*60*60*1000);
         document.cookie = key + '=' + value + ';expires=' + exp.toUTCString();
       };
+      
+      setCookie('tjt','哈哈哈哈哈哈')
 
     `;
   }
