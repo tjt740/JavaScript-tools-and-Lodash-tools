@@ -1282,10 +1282,10 @@ export class ToolsDocService {
     `;
   }
 
-  // *删除json中值为 null和undefined 的属性
+  // *删除json中假值，生成新json
   removeNullAndUndefinedJSON() {
     return `
-      // 删除json中值为 null和undefined 的属性，生成新json
+      // 删除json中假值，生成新json
 
       // jsonData： json数据
 
@@ -1611,11 +1611,11 @@ export class ToolsDocService {
 
       // key:    键值
       // value:  值
-      // days:   持续天数
+      // days:   持续月数
 
-      const setCookie = (key, value, days=1) => {
+      const setCookie = (key, value, months=1) => {
         const exp = new Date();
-        exp.setTime(exp.getTime() + days*30*24*60*60*1000);
+        exp.setTime(exp.getTime() + months*30*24*60*60*1000);
         document.cookie = key + '=' + value + ';expires=' + exp.toUTCString();
       };
       

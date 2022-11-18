@@ -139,7 +139,8 @@ export const MenuConfig = [
         functionName: 'uniqArray',
       },
       {
-        exhibitStr: '[Ld]返回新的去重后的数组（1.能处理复杂数组 2.能附带去重条件）',
+        exhibitStr:
+          '[Ld]返回新的去重后的数组（1.能处理复杂数组 2.能附带去重条件）',
         router: '/index/util-86',
         functionName: 'uniqByArray',
       },
@@ -226,7 +227,7 @@ export const MenuConfig = [
         functionName: 'isObjEmpty',
       },
       {
-        exhibitStr: '删除json中值为 null和undefined 的属性',
+        exhibitStr: '删除json中假值，生成新json',
         router: '/index/util-83',
         functionName: 'removeNullAndUndefinedJSON',
       },
@@ -389,7 +390,7 @@ export const MenuConfig = [
         exhibitStr: '[Ld]深比较判断对象是否相等',
         router: '/index/util-88',
         functionName: 'isEqual',
-      }
+      },
     ],
   },
 
@@ -572,6 +573,4 @@ export const MenuConfig = [
       },
     ],
   },
-
-
 ];
