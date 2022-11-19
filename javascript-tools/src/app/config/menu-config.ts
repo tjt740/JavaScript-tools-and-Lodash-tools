@@ -314,6 +314,11 @@ export const MenuConfig = [
         functionName: 'getCookie',
       },
       {
+        exhibitStr: '获取其他页面cookie，同时格式化cookie',
+        router: '/index/util-90',
+        functionName: 'getHTMLCookie',
+      },
+      {
         exhibitStr: '设置cookie',
         router: '/index/util-18',
         functionName: 'setCookie',

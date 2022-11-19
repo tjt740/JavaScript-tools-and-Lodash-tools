@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cookie change</title>
+    <style type="text/css">
+      #cookie-change {
+        width: 460px;
+        height: 224px;
+      }
+      .error-color {
+        color: #f00;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+  </head>
+
+  <body>
+    <textarea id="cookie-change" onchange="changeText()"></textarea>
+    <button onclick="btnAction()" style="height: 30px">格式化cookie</button>
+    <br />
+    <button onclick="copy()" style="height: 30px; width: 100px">复 制</button>
+    <input type="text" id="domin" />
+    <span id="is-success" style="display: none"> SUCCESS </span>
+    <div
+      id="cookie-new"
+      style="
+        width: 100%;
+        white-space: pre-wrap;
+        word-break: break-all;
+        padding-top: 20px;
+      "
+    ></div>
+
+    <script type="text/javascript">
+      $('#cookie-change').bind('input propertychange', 'textarea', function () {
+        btnAction();
+      });
+
+      function btnAction() {
+        changeText();
+        document.querySelector('#cookie-new').className = '';
+        const text_value = document.querySelector('#cookie-change').value;
+        if (text_value) {
+          try {
+            let cookie_new = JSON.parse(
+              document.querySelector('#cookie-change').value
+            );
+            cookie_new.forEach((item) => {
+              item.domain =
+                document.getElementById('domin').value || 'localhost';
+            });
+            innerTextInput(JSON.stringify(cookie_new));
+          } catch (e) {
+            innerTextInput('cookie格式错误');
+            document.querySelector('#cookie-new').className = 'error-color';
+          }
+        } else {
+          innerTextInput();
+        }
+      }
+
+      function innerTextInput(text) {
+        document.querySelector('#cookie-new').innerText = text || '';
+      }
+
+      function changeText() {
+        document.querySelector('#is-success').style = 'display: none;';
+      }
+
+      // 复制内容
+      function copy(text) {
+        return new Promise((resolve, reject) => {
+          creatHideArea();
+          try {
+            this.area.value = document.querySelector('#cookie-new').innerText;
+            this.area.select();
+            document.execCommand('copy');
+            document.querySelector('#is-success').style = 'color: green;';
+            document.querySelector('#is-success').innerText = 'SUCCESS';
+            resolve();
+          } catch (e) {
+            document.querySelector('#is-success').style = 'color: red;';
+            document.querySelector('#is-success').innerText = 'ERROR' + e;
+            reject(e);
+          }
+          removeHideArea();
+        });
+      }
+
+      function creatHideArea() {
+        const area = (this.area = document.createElement('textarea'));
+        area.style['position'] = 'absolute';
+        area.style['left'] = '-99999px';
+        document.body.appendChild(area);
+      }
+
+      function removeHideArea() {
+        let div = document.createElement('div');
+        div.appendChild(this.area);
+        div.innerHTML = '';
+        div = null;
+      }
+    </script>
+    <script>
+      var d =
+        'https%3A%2F%2Fbaoquan.court.gov.cn%2Fpages%2Fcallback%2Fcallback&state=200&scope=userinfo&timestamp=1568797203319&signature=E248EDC6E3B787107C8136EBEFD3F361300C3F63FC108B1229160B78DC6EBC7D';
+      console.log(decodeURIComponent(d));
+      console.log(encodeURIComponent(decodeURIComponent(d)));
+      var f =
+        'https%3A%2F%2Fbaoquan.court.gov.cn%2Fpages%2Fcallback%2Fcallback%26state%3D200%26scope%3Duserinfo%26timestamp%3D1568797203319%26signature%3DE248EDC6E3B787107C8136EBEFD3F361300C3F63FC108B1229160B78DC6EBC7D';
+    </script>
+  </body>
+</html>
