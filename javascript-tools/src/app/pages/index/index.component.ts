@@ -5,6 +5,8 @@ import * as all from '../../config/menu-config';
 import { ToolsDocService } from 'src/app/services/tools-doc.service';
 import * as _ from 'lodash';
 import { NzIconService } from 'ng-zorro-antd/icon';
+
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',

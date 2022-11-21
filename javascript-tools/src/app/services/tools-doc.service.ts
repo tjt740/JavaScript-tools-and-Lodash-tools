@@ -1247,10 +1247,12 @@ export class ToolsDocService {
   // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
   isObjEmpty() {
     return `
-      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
-
-      false: json中 有不为空/假值的值。
-      true: json 中 全为空值undefined/假值。
+      /* 
+        判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+       
+        false: json中 有不为空/假值的值。
+        true: json 中 全为空值undefined/假值。
+      */
 
       const isObjEmpty = (obj) => {
           let flag = true;
@@ -1285,9 +1287,10 @@ export class ToolsDocService {
   // *删除json中假值，生成新json
   removeNullAndUndefinedJSON() {
     return `
-      // 删除json中假值，生成新json
+      /* 删除json中假值，生成新json
 
-      // jsonData： json数据
+         jsonData： json数据
+      */
 
       const removeNullAndUndefinedJSON = (jsonData) => {
         const newJSON = {};
