@@ -42,7 +42,7 @@ export class ToolsDocService {
           let pos = 0;
           if ($1[0] !== '0') {
             pos = len - idx;
-            if (idx == 0 && $1[0] == 1 && idxs[len - idx] == '十') {
+            if (idx === 0 && $1[0] === 1 && idxs[len - idx] === '十') {
               return idxs[len - idx];
             }
             return num[$1[0]] + idxs[len - idx];
@@ -626,26 +626,172 @@ export class ToolsDocService {
     `;
   }
 
-  // *筛选出两个数组相同值组成数组
+  // *筛选出两个数组相同值，组成数组
   filterArray() {
     return `
-      // 筛选出两个数组相同值组成数组
+      // 筛选出两个数组相同值，组成数组
 
       // arr: 被匹配的数组
       // matchArr: 条件数组
 
-      let arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+      // 案例1:
+        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
 
-      let matchArr = ['1','3','7','9'];
+        const matchArr = ['1','3','7','9'];
 
-      方法1:
-        let newArr = arr.map(i => matchArr.map(o => { if (o === i.name) return i })).flat(Infinity).filter(Boolean);
-        // [{name:'1',age:1},{name:'3',age:3}]
+      // 方法1:
+        const newArr = arr.map((i) =>
+            matchArr.map((o) => {
+                return o.includes(i.name) ? i : null;
+            })
+        ).flat(Infinity).filter(Boolean);
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
-      方法2:
-        let newArr = arr.filter(i=> matchArr.includes(i.name));
-        // [{name:'1',age:1},{name:'3',age:3}]
+      // 方法2:
+        const newArr = arr.filter(i=> matchArr.includes(i.name));
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
+        
+      // 案例2:
+          const tagList = [
+            {
+                id: 6,
+                gmtCreate: 1669272678000,
+                gmtModified: 1669282575000,
+                labelName: 'ce',
+                labelKey: 'ces',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 7,
+                gmtCreate: 1669274393000,
+                gmtModified: 1669282575000,
+                labelName: '测试一年S',
+                labelKey: 'C11',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: true,
+            },
+            {
+                id: 8,
+                gmtCreate: 1669274535000,
+                gmtModified: 1669282575000,
+                labelName: 'ce',
+                labelKey: 'dss',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 9,
+                gmtCreate: 1669274710000,
+                gmtModified: 1669282575000,
+                labelName: 'cess',
+                labelKey: '11111',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: true,
+            },
+            {
+                id: 10,
+                gmtCreate: 1669278763000,
+                gmtModified: 1669282575000,
+                labelName: '你好',
+                labelKey: 'hello',
+                labelType: 'category',
+                color: null,
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 11,
+                gmtCreate: 1669278818000,
+                gmtModified: 1669282575000,
+                labelName: 'color',
+                labelKey: 'color11',
+                labelType: 'category',
+                color: '#0062b1',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 12,
+                gmtCreate: 1669278828000,
+                gmtModified: 1669282575000,
+                labelName: '21',
+                labelKey: '22',
+                labelType: 'category',
+                color: '#fda1ff',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 13,
+                gmtCreate: 1669278835000,
+                gmtModified: 1669282575000,
+                labelName: '212221',
+                labelKey: '2222',
+                labelType: 'category',
+                color: '#fb9e00',
+                dataSetId: 23,
+                flag: false,
+            },
+        ];
+        
+        const selectList = [
+            {
+                id: 54,
+                gmtCreate: 1669300937000,
+                gmtModified: 1669300937000,
+                labelKey: '11111',
+                labelType: 'category',
+                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+                comment: null,
+                feature: null,
+                operatorId: null,
+                operatorName: null,
+                taskDetailId: 301,
+                taskRecordId: null,
+                taskId: null,
+                dataSetId: 23,
+            },
+            {
+                id: 60,
+                gmtCreate: 1669301346000,
+                gmtModified: 1669301346000,
+                labelKey: 'C11',
+                labelType: 'category',
+                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+                comment: null,
+                feature: null,
+                operatorId: null,
+                operatorName: null,
+                taskDetailId: 301,
+                taskRecordId: null,
+                taskId: null,
+                dataSetId: 23,
+            },
+        ];
+        
+
+        const newArr = tagList
+            .map((i) =>
+            selectList.map((o) => {
+                    return o.labelKey.includes(i.labelKey) ? i : null;
+                })
+            )
+            .flat(Infinity)
+            .filter(Boolean);
+         // → [
+         //  {"id":7,"gmtCreate":1669274393000,"gmtModified":1669282575000,"labelName":"测试一年S","labelKey":"C11","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true},
+         //  {"id":9,"gmtCreate":1669274710000,"gmtModified":1669282575000,"labelName":"cess","labelKey":"11111","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true}
+         // ]
     `;
   }
 
@@ -677,11 +823,12 @@ export class ToolsDocService {
             }
         }
         return arr;
-    };
+      };
 
-    const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
+      const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
 
-    const newArr = filterArrayRepetition(result); // ['aTSSk6oEn3TM02DEU3jPuA']
+      filterArrayRepetition(result); 
+      // → ['aTSSk6oEn3TM02DEU3jPuA']
 
     `;
   }
@@ -1072,7 +1219,7 @@ export class ToolsDocService {
       // → 2
 
       _.findLastIndex(users, function (o) {
-        return o.userName === '谭金涛' && o.active===false;
+        return o.userName === '谭金涛' && o.active === false;
       });
       // → 3
 
@@ -1210,6 +1357,29 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]提取/对比两个数组中相同的值，组成新数组。
+  intersectionWithArray() {
+    return `
+      /*
+        提取两个数组中相同的值，组成新数组。
+
+        array1: 需要进行对比的数组
+        array2: 需要进行对比的数组
+        _.isEqual: 去重
+        
+      */
+
+      _.intersectionWith(array1, array2, _.isEqual)
+
+      const arr1 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '柳晔', 'age': 24 },{'name': '戚思宁', 'age': 23}];
+      const arr2 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '戚思宁', 'age': 23 }];
+
+      _.intersectionWith(arr1, arr2, _.isEqual)
+      // → [{"name":"谭金涛","age":24},{"name":"戚思宁","age":23}]
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json转为数组
   mapJson() {
@@ -1251,7 +1421,8 @@ export class ToolsDocService {
         判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
        
         false: json中 有不为空/假值的值。
-        true: json 中 全为空值undefined/假值。
+        true: json 中 全为空值undefined/
+        obj: json对象
       */
 
       const isObjEmpty = (obj) => {
@@ -1267,7 +1438,7 @@ export class ToolsDocService {
                       arrV2.push(j);
                   }
               }
-              if (arrV2.length == arr.length) {
+              if (arrV2.length === arr.length) {
                   flag = true;
               }
               return flag;
@@ -1275,11 +1446,14 @@ export class ToolsDocService {
           return flag;
       };
 
-      const emptyJson = {name:null,age:undefined,tall:'',work:false};
-      isObjEmpty(emptyJson); // true json中全为假值。
+      const emptyJSON = {name:null,age:undefined,tall:'',work:false};
+      isObjEmpty(emptyJSON); // true json中全为假值。
 
       const json = {a:1,b:2,c:undefined};
       isObjEmpty(json); // true json中不是全为假值。
+
+      const emptyJSON = {};
+      isObjEmpty(emptyJSON); // true json中全为假值。
 
     `;
   }
@@ -2056,9 +2230,9 @@ export class ToolsDocService {
 
       const broswer = () => {
         const ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        if (ua.match(/MicroMessenger/i) === "micromessenger") {
             return "VX";
-        } else if (ua.match(/QQ/i) == "qq") {
+        } else if (ua.match(/QQ/i) === "qq") {
             return "QQ";
         }
         // 不是微信/QQ内置浏览器;
@@ -2203,7 +2377,7 @@ export class ToolsDocService {
       // 获取可视窗口宽度
 
       const getClientWidth = () => {
-        return (document.compatMode == "BackCompat" ? document.body : document.documentElement.clientWidth);
+        return (document.compatMode === "BackCompat" ? document.body : document.documentElement.clientWidth);
       };
 
     `;
@@ -2311,7 +2485,7 @@ export class ToolsDocService {
       const ulBox = document.querySelector('.ul-box');
 
       ulBox.onclick = (e) => {
-        if (e.target.nodeName.toLowerCase() == 'li') { // nodeName 都是大写，用toLowerCase()转为小写
+        if (e.target.nodeName.toLowerCase() === 'li') { // nodeName 都是大写，用toLowerCase()转为小写
           console.log(e.target) // 01 02 03 ...
         }
       }
@@ -2321,7 +2495,7 @@ export class ToolsDocService {
       ul.onclick = function (e) {
         var e = e || window.event
         var that = e.target || e.srcElement
-        if (that.nodeName.toLowerCase() == 'li') {
+        if (that.nodeName.toLowerCase() === 'li') {
           console.log(that) // 01 02 03 ...
         }
       }

@@ -149,6 +149,12 @@ export const MenuConfig = [
         router: '/index/util-87',
         functionName: 'uniqWithArray',
       },
+      {
+        exhibitStr: '[Ld]提取/对比两个数组中相同的值，组成新数组',
+        router: '/index/util-91',
+        functionName: 'intersectionWithArray',
+      },
+      
     ],
   },
 
