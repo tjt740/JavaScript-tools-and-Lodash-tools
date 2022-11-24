@@ -2,7 +2,7 @@ export const MenuConfig = [
   // Tjt: 数组操作
   {
     title: '数组操作',
-    icon: 'smile',
+    icon: 'icon--devil',
     id: Math.random(),
     childRoute: [
       {
@@ -133,13 +133,35 @@ export const MenuConfig = [
         router: '/index/util-69',
         functionName: 'initialArray',
       },
+      {
+        exhibitStr: '[Ld]返回新的去重后的数组',
+        router: '/index/util-85',
+        functionName: 'uniqArray',
+      },
+      {
+        exhibitStr:
+          '[Ld]返回新的去重后的数组（1.能处理复杂数组 2.能附带去重条件）',
+        router: '/index/util-86',
+        functionName: 'uniqByArray',
+      },
+      {
+        exhibitStr: '[Ld]返回新的去重数组（去重数组中相同的json）',
+        router: '/index/util-87',
+        functionName: 'uniqWithArray',
+      },
+      {
+        exhibitStr: '[Ld]提取/对比两个数组中相同的值，组成新数组',
+        router: '/index/util-91',
+        functionName: 'intersectionWithArray',
+      },
+      
     ],
   },
 
   // Tjt: 字符串操作
   {
     title: '字符串操作',
-    icon: 'heart',
+    icon: 'icon--astonished',
     id: Math.random(),
     childRoute: [
       {
@@ -168,7 +190,7 @@ export const MenuConfig = [
   // Tjt: 数字操作
   {
     title: '数字操作',
-    icon: 'crown',
+    icon: 'icon--scared-',
     id: Math.random(),
     childRoute: [
       {
@@ -197,7 +219,7 @@ export const MenuConfig = [
   // Tjt: JSON对象操作
   {
     title: 'JSON操作',
-    icon: 'cloud',
+    icon: 'icon--cool',
     id: Math.random(),
     childRoute: [
       {
@@ -211,7 +233,7 @@ export const MenuConfig = [
         functionName: 'isObjEmpty',
       },
       {
-        exhibitStr: '删除json中值为 null和undefined 的属性',
+        exhibitStr: '删除json中假值，生成新json',
         router: '/index/util-83',
         functionName: 'removeNullAndUndefinedJSON',
       },
@@ -226,7 +248,7 @@ export const MenuConfig = [
   // Tjt: URL操作
   {
     title: 'URL操作',
-    icon: 'disconnect',
+    icon: 'icon--in-love',
     id: Math.random(),
     childRoute: [
       {
@@ -250,7 +272,7 @@ export const MenuConfig = [
   // Tjt: 存储(localStorage/sessionStorage)操作
   {
     title: '存储操作',
-    icon: 'download',
+    icon: 'icon--angry',
     id: Math.random(),
     childRoute: [
       {
@@ -289,13 +311,18 @@ export const MenuConfig = [
   // Tjt: cookie操作
   {
     title: 'cookie操作',
-    icon: 'sliders',
+    icon: 'icon--angel',
     id: Math.random(),
     childRoute: [
       {
         exhibitStr: '获取cookie',
         router: '/index/util-17',
         functionName: 'getCookie',
+      },
+      {
+        exhibitStr: '获取其他页面cookie，同时格式化cookie',
+        router: '/index/util-90',
+        functionName: 'getHTMLCookie',
       },
       {
         exhibitStr: '设置cookie',
@@ -313,7 +340,7 @@ export const MenuConfig = [
   // Tjt: 格式校验
   {
     title: '格式校验',
-    icon: 'safety-certificate',
+    icon: 'icon--flushed',
     id: Math.random(),
     childRoute: [
       {
@@ -354,10 +381,10 @@ export const MenuConfig = [
     ],
   },
 
-  // Tjt: 判断类型
+  // Tjt: 判断/检查信息
   {
-    title: '判断类型',
-    icon: 'message',
+    title: '判断/检查信息',
+    icon: 'icon--smirking',
     id: Math.random(),
     childRoute: [
       {
@@ -370,13 +397,18 @@ export const MenuConfig = [
         router: '/index/util-48',
         functionName: 'isArray',
       },
+      {
+        exhibitStr: '[Ld]深比较判断对象是否相等',
+        router: '/index/util-88',
+        functionName: 'isEqual',
+      },
     ],
   },
 
   // Tjt: 设备判断
   {
     title: '设备判断',
-    icon: 'instagram',
+    icon: 'icon--thinking',
     id: Math.random(),
     childRoute: [
       {
@@ -415,7 +447,7 @@ export const MenuConfig = [
   // Tjt: 浏览器操作
   {
     title: '浏览器操作',
-    icon: 'desktop',
+    icon: 'icon--tongue-1',
     id: Math.random(),
     childRoute: [
       {
@@ -459,7 +491,7 @@ export const MenuConfig = [
   // Tjt: 时间操作
   {
     title: '时间操作',
-    icon: 'field-time',
+    icon: 'icon--mute',
     id: Math.random(),
     childRoute: [
       {
@@ -478,7 +510,7 @@ export const MenuConfig = [
   // Tjt:DOM操作
   {
     title: 'DOM操作',
-    icon: 'box-plot',
+    icon: 'icon--zombie',
     id: Math.random(),
     childRoute: [
       {
@@ -512,7 +544,7 @@ export const MenuConfig = [
   // Tjt: JavaScript操作
   {
     title: 'JavaScript操作',
-    icon: 'code',
+    icon: 'icon--vomiting-',
     id: Math.random(),
     childRoute: [
       {
@@ -544,6 +576,11 @@ export const MenuConfig = [
         exhibitStr: '等待函数',
         router: '/index/util-77',
         functionName: 'waitTime',
+      },
+      {
+        exhibitStr: '颜色转换',
+        router: '/index/util-89',
+        functionName: 'changeColor',
       },
     ],
   },

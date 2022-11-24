@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +42,7 @@ export class ToolsDocService {
           let pos = 0;
           if ($1[0] !== '0') {
             pos = len - idx;
-            if (idx == 0 && $1[0] == 1 && idxs[len - idx] == '十') {
+            if (idx === 0 && $1[0] === 1 && idxs[len - idx] === '十') {
               return idxs[len - idx];
             }
             return num[$1[0]] + idxs[len - idx];
@@ -625,26 +626,172 @@ export class ToolsDocService {
     `;
   }
 
-  // *筛选出两个数组相同值组成数组
+  // *筛选出两个数组相同值，组成数组
   filterArray() {
     return `
-      // 筛选出两个数组相同值组成数组
+      // 筛选出两个数组相同值，组成数组
 
       // arr: 被匹配的数组
       // matchArr: 条件数组
 
-      let arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+      // 案例1:
+        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
 
-      let matchArr = ['1','3','7','9'];
+        const matchArr = ['1','3','7','9'];
 
-      方法1:
-        let newArr = arr.map(i => matchArr.map(o => { if (o === i.name) return i })).flat(Infinity).filter(Boolean);
-        // [{name:'1',age:1},{name:'3',age:3}]
+      // 方法1:
+        const newArr = arr.map((i) =>
+            matchArr.map((o) => {
+                return o.includes(i.name) ? i : null;
+            })
+        ).flat(Infinity).filter(Boolean);
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
-      方法2:
-        let newArr = arr.filter(i=> matchArr.includes(i.name));
-        // [{name:'1',age:1},{name:'3',age:3}]
+      // 方法2:
+        const newArr = arr.filter(i=> matchArr.includes(i.name));
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
+        
+      // 案例2:
+          const tagList = [
+            {
+                id: 6,
+                gmtCreate: 1669272678000,
+                gmtModified: 1669282575000,
+                labelName: 'ce',
+                labelKey: 'ces',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 7,
+                gmtCreate: 1669274393000,
+                gmtModified: 1669282575000,
+                labelName: '测试一年S',
+                labelKey: 'C11',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: true,
+            },
+            {
+                id: 8,
+                gmtCreate: 1669274535000,
+                gmtModified: 1669282575000,
+                labelName: 'ce',
+                labelKey: 'dss',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 9,
+                gmtCreate: 1669274710000,
+                gmtModified: 1669282575000,
+                labelName: 'cess',
+                labelKey: '11111',
+                labelType: 'category',
+                color: '#FFFFFF',
+                dataSetId: 23,
+                flag: true,
+            },
+            {
+                id: 10,
+                gmtCreate: 1669278763000,
+                gmtModified: 1669282575000,
+                labelName: '你好',
+                labelKey: 'hello',
+                labelType: 'category',
+                color: null,
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 11,
+                gmtCreate: 1669278818000,
+                gmtModified: 1669282575000,
+                labelName: 'color',
+                labelKey: 'color11',
+                labelType: 'category',
+                color: '#0062b1',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 12,
+                gmtCreate: 1669278828000,
+                gmtModified: 1669282575000,
+                labelName: '21',
+                labelKey: '22',
+                labelType: 'category',
+                color: '#fda1ff',
+                dataSetId: 23,
+                flag: false,
+            },
+            {
+                id: 13,
+                gmtCreate: 1669278835000,
+                gmtModified: 1669282575000,
+                labelName: '212221',
+                labelKey: '2222',
+                labelType: 'category',
+                color: '#fb9e00',
+                dataSetId: 23,
+                flag: false,
+            },
+        ];
+        
+        const selectList = [
+            {
+                id: 54,
+                gmtCreate: 1669300937000,
+                gmtModified: 1669300937000,
+                labelKey: '11111',
+                labelType: 'category',
+                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+                comment: null,
+                feature: null,
+                operatorId: null,
+                operatorName: null,
+                taskDetailId: 301,
+                taskRecordId: null,
+                taskId: null,
+                dataSetId: 23,
+            },
+            {
+                id: 60,
+                gmtCreate: 1669301346000,
+                gmtModified: 1669301346000,
+                labelKey: 'C11',
+                labelType: 'category',
+                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+                comment: null,
+                feature: null,
+                operatorId: null,
+                operatorName: null,
+                taskDetailId: 301,
+                taskRecordId: null,
+                taskId: null,
+                dataSetId: 23,
+            },
+        ];
+        
+
+        const newArr = tagList
+            .map((i) =>
+            selectList.map((o) => {
+                    return o.labelKey.includes(i.labelKey) ? i : null;
+                })
+            )
+            .flat(Infinity)
+            .filter(Boolean);
+         // → [
+         //  {"id":7,"gmtCreate":1669274393000,"gmtModified":1669282575000,"labelName":"测试一年S","labelKey":"C11","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true},
+         //  {"id":9,"gmtCreate":1669274710000,"gmtModified":1669282575000,"labelName":"cess","labelKey":"11111","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true}
+         // ]
     `;
   }
 
@@ -676,11 +823,12 @@ export class ToolsDocService {
             }
         }
         return arr;
-    };
+      };
 
-    const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
+      const result = ['mqZPaNKiLoyiAxboAhQO5A', '4Pl6Hd7JqbAeazPyZtxg5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'NJt83GheHI-LvUcRrjrZxg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'cWuHkPJUWf_L64s2gregDQ', '_aXbgqSod0OQDjaBcu_Njg', 'aTSSk6oEn3TM02DEU3jPuA', '2PkMJOTIz-KxEcoUHwTEvA', 'wsf0Vn2mGxtzXgHOS2vjkg', 'nHP3mZmOvVyZti5CUVbucw', 'Of3m9Adl2F-j7OSusipuxQ', '_rc1XHOt_dhdbUt-g3F7iQ', 'cWuHkPJUWf_L64s2gregDQ', 'mqZPaNKiLoyiAxboAhQO5A', 'PS37Y_1TCy1E4t48Kg9LrQ', 'aTSSk6oEn3TM02DEU3jPuA', 'YDVxsy7-npw2kIjXwWYqXA', 'ajygfh8S5R0rzwSffds2OA', 'wsf0Vn2mGxtzXgHOS2vjkg'];
 
-    const newArr = filterArrayRepetition(result); // ['aTSSk6oEn3TM02DEU3jPuA']
+      filterArrayRepetition(result); 
+      // → ['aTSSk6oEn3TM02DEU3jPuA']
 
     `;
   }
@@ -846,7 +994,8 @@ export class ToolsDocService {
   difference() {
     return `
       /*
-        筛选出【Array】中需要被排除的值[values]，返回新数组
+          筛选出【Array】中需要被排除的值[values]，返回新数组。
+          
           array: 被检查的数组
           [values]:(...Array) 需要被排除的值（必须是数组形式）
       */
@@ -916,7 +1065,6 @@ export class ToolsDocService {
 
         array: 被裁剪的数组
         n: 裁剪数组★前★的n位
-
       */
 
       _.drop(array, n=1)
@@ -948,7 +1096,6 @@ export class ToolsDocService {
 
         array: 被裁剪的数组
         n: 裁剪数组★后★的n位
-
       */
 
       _.dropRight(array, n=1)
@@ -976,10 +1123,10 @@ export class ToolsDocService {
   fillArray() {
     return `
       /*
-      使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
-      PS:这个方法会改变原 array（注：不是创建新数组）
+        使用 value 值来填充（替换） Array，从start位置开始, 到length位置结束。
+        PS:这个方法会改变原 array（注：不是创建新数组）
 
-      Array: 要填充改变的数组
+        Array: 要填充改变的数组
         value: 填充给Array的值
         [start=0]: 开始下标
         [end=array.length]: 结束下标（length） 类似于字符串的substr
@@ -1008,11 +1155,11 @@ export class ToolsDocService {
   findIndex() {
     return `
       /*
-      返回数组中符合条件的第一个下标【从前向后】。
-      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+        返回数组中符合条件的第一个下标【从前向后】。
+        该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
 
-       array: 要搜索的数组
-       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+        array: 要搜索的数组
+        condition: 条件 function(o){return ....} / {key:value} / ['key',value];
       */
 
       _.findIndex(array,condition)
@@ -1049,11 +1196,11 @@ export class ToolsDocService {
   findLastIndex() {
     return `
       /*
-      返回数组中符合条件的第一个下标【从后向前】。
-      该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
+        返回数组中符合条件的第一个下标【从后向前】。
+        该方法类似_.find，区别是该方法返回第一个通过 condition 判断为真值的元素的索引值（index），而不是元素本身。
 
-       array: 要搜索的数组
-       condition: 条件 function(o){return ....} / {key:value} / ['key',value];
+        array: 要搜索的数组
+        condition: 条件 function(o){return ....} / {key:value} / ['key',value];
       */
 
       _.findLastIndex(array,condition)
@@ -1072,7 +1219,7 @@ export class ToolsDocService {
       // → 2
 
       _.findLastIndex(users, function (o) {
-        return o.userName === '谭金涛' && o.active===false;
+        return o.userName === '谭金涛' && o.active === false;
       });
       // → 3
 
@@ -1095,7 +1242,6 @@ export class ToolsDocService {
         array: 需要被检索的数组
         value: 需要被查找的值
         [fromIndex=0]: 从下标几开始查找，默认是0
-
       */
 
       _.indexOf(array,value,[fromIndex=0])
@@ -1118,7 +1264,6 @@ export class ToolsDocService {
         返回数组array中除了最后一个元素之外的所有元素（注：去除数组array中的最后一个元素）
 
         array: 需要被去除最后一个元素的数组
-
       */
 
       _.initial(array);
@@ -1127,6 +1272,110 @@ export class ToolsDocService {
 
       _.initial(arr);
       // → [1, 2]
+
+    `;
+  }
+
+  // *[Ld]返回新的去重后的数组
+  uniqArray() {
+    return `
+      /* 
+        返回新的去重后的数组
+
+        array: 需要被去重的数组
+      */
+
+      _.uniq(array);
+
+      const arr = [4, 2, 'a', 'b', 'b', '我', '你', '你', 1, 2, 3, 4];
+
+      _.uniq(arr);
+      // → [4, 2, 'a', 'b', '我', '你', 1, 3];
+
+    `;
+  }
+
+  // *[Ld]返回新的去重数组（1.能处理复杂数组 2.能附带去重条件）
+  uniqByArray() {
+    return `
+      /*
+        返回新的去重数组，跟_.uniq(array)相似。
+        1.能处理复杂数组 
+        2.能附带去重条件
+
+        array: 需要被去重的数组
+        (Array|Function|Object|string): 数组按照什么条件去重
+      */
+
+      _.uniqBy(array, (Array|Function|Object|string));
+
+      const arr = [{name:'谭金涛',key:'tjt'},{name:'戚思宁',key:'740'},{name:'柳晔',key:'ly'},{name:'谭金涛',key:'abc'},{name:'陆游',key:'ly'}];
+
+      const uniqByArr1 = _.uniqBy(arr,(item)=> item.name); 
+      // → [{"name":"谭金涛","key":"tjt"},{"name":"戚思宁","key":"740"},{"name":"柳晔","key":"ly"},{"name":"陆游","key":"ly"}];
+
+      const uniqByArr2 = _.uniqBy(arr,(item)=> item.key); 
+      // → [{"name":"谭金涛","key":"tjt"},{"name":"戚思宁","key":"740"},{"name":"柳晔","key":"ly"},{"name":"谭金涛","key":"abc"}];
+
+      const arr2 = [1.2, 2.4, 3.3, 4, 1.3, 1.1, 2.1];
+      _.uniqBy(arr2, Math.floor);
+      // → [1.2, 2.4, 3.3, 4];
+
+      const arr3 = [{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }];
+      _.uniqBy(arr3, 'x');
+      // → [{ 'x': 1 }, { 'x': 2 }];
+
+      const arr3 = [[1, 2, 3], [1, 2, 3], [3, 2, 1], [1, 3, 2]];
+      _.uniqBy(arr3, [1, 2, 3]);
+      // → [[1,2,3],[1,3,2]];
+
+    `;
+  }
+
+  // *[Ld]返回新的去重数组（去重数组中相同的json）
+  uniqWithArray() {
+    return `
+      /*
+        返回新的去重数组 （去重数组中相同的json）
+
+        array: 需要被去重的数组
+        _.isEqual: 【深比较】两者的值是否相等 👇  _.isEqual功能
+        const obj = { 'a': 1 };
+        const otherObj = { 'a': 1 };
+        
+        _.isEqual(obj, otherObj);
+        // => true
+        obj === other;
+        // => false
+      */
+
+      const objArr = [{ 'a': 1, 'b': 2 }, { 'a': 2, 'b': 1 }, { 'a': 1, 'b': 2 }, { 'a': 1, b: 2 }, { c: 1, d: 2 }];
+
+      _.uniqWith(objArr, _.isEqual);
+      // → [{"a":1,"b":2},{"a":2,"b":1},{"c":1,"d":2}];
+
+    `;
+  }
+
+  // *[Ld]提取/对比两个数组中相同的值，组成新数组。
+  intersectionWithArray() {
+    return `
+      /*
+        提取两个数组中相同的值，组成新数组。
+
+        array1: 需要进行对比的数组
+        array2: 需要进行对比的数组
+        _.isEqual: 去重
+        
+      */
+
+      _.intersectionWith(array1, array2, _.isEqual)
+
+      const arr1 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '柳晔', 'age': 24 },{'name': '戚思宁', 'age': 23}];
+      const arr2 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '戚思宁', 'age': 23 }];
+
+      _.intersectionWith(arr1, arr2, _.isEqual)
+      // → [{"name":"谭金涛","age":24},{"name":"戚思宁","age":23}]
 
     `;
   }
@@ -1168,10 +1417,13 @@ export class ToolsDocService {
   // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
   isObjEmpty() {
     return `
-      // 判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
-
-      false: json中 有不为空/假值的值。
-      true: json 中 全为空值undefined/假值。
+      /* 
+        判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+       
+        false: json中 有不为空/假值的值。
+        true: json 中 全为空值undefined/
+        obj: json对象
+      */
 
       const isObjEmpty = (obj) => {
           let flag = true;
@@ -1186,7 +1438,7 @@ export class ToolsDocService {
                       arrV2.push(j);
                   }
               }
-              if (arrV2.length == arr.length) {
+              if (arrV2.length === arr.length) {
                   flag = true;
               }
               return flag;
@@ -1194,21 +1446,25 @@ export class ToolsDocService {
           return flag;
       };
 
-      const emptyJson = {name:null,age:undefined,tall:'',work:false};
-      isObjEmpty(emptyJson); // true json中全为假值。
+      const emptyJSON = {name:null,age:undefined,tall:'',work:false};
+      isObjEmpty(emptyJSON); // true json中全为假值。
 
       const json = {a:1,b:2,c:undefined};
       isObjEmpty(json); // true json中不是全为假值。
 
+      const emptyJSON = {};
+      isObjEmpty(emptyJSON); // true json中全为假值。
+
     `;
   }
 
-  // *删除json中值为 null和undefined 的属性
+  // *删除json中假值，生成新json
   removeNullAndUndefinedJSON() {
     return `
-      // 删除json中值为 null和undefined 的属性，生成新json
+      /* 删除json中假值，生成新json
 
-      // jsonData： json数据
+         jsonData： json数据
+      */
 
       const removeNullAndUndefinedJSON = (jsonData) => {
         const newJSON = {};
@@ -1525,6 +1781,128 @@ export class ToolsDocService {
     `;
   }
 
+  // *获取其他页面cookie，同时格式化cookie
+  getHTMLCookie() { 
+    return `
+      // 获取其他页面cookie，同时格式化cookie
+
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>cookie change</title>
+          <style type="text/css">
+            #cookie-change {
+              width: 460px;
+              height: 224px;
+            }
+            .error-color {
+              color: #f00;
+            }
+          </style>
+          <script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+        </head>
+      
+        <body>
+          <textarea id="cookie-change" onchange="changeText()"></textarea>
+          <button onclick="btnAction()" style="height: 30px">格式化cookie</button>
+          <br />
+          <button onclick="copy()" style="height: 30px; width: 100px">复 制</button>
+          <input type="text" id="domin" />
+          <span id="is-success" style="display: none"> SUCCESS </span>
+          <div
+            id="cookie-new"
+            style="
+              width: 100%;
+              white-space: pre-wrap;
+              word-break: break-all;
+              padding-top: 20px;
+            "
+          ></div>
+      
+          <script type="text/javascript">
+            $('#cookie-change').bind('input propertychange', 'textarea', function () {
+              btnAction();
+            });
+      
+            function btnAction() {
+              changeText();
+              document.querySelector('#cookie-new').className = '';
+              const text_value = document.querySelector('#cookie-change').value;
+              if (text_value) {
+                try {
+                  let cookie_new = JSON.parse(
+                    document.querySelector('#cookie-change').value
+                  );
+                  cookie_new.forEach((item) => {
+                    item.domain =
+                      document.getElementById('domin').value || 'localhost';
+                  });
+                  innerTextInput(JSON.stringify(cookie_new));
+                } catch (e) {
+                  innerTextInput('cookie格式错误');
+                  document.querySelector('#cookie-new').className = 'error-color';
+                }
+              } else {
+                innerTextInput();
+              }
+            }
+      
+            function innerTextInput(text) {
+              document.querySelector('#cookie-new').innerText = text || '';
+            }
+      
+            function changeText() {
+              document.querySelector('#is-success').style = 'display: none;';
+            }
+      
+            // 复制内容
+            function copy(text) {
+              return new Promise((resolve, reject) => {
+                creatHideArea();
+                try {
+                  this.area.value = document.querySelector('#cookie-new').innerText;
+                  this.area.select();
+                  document.execCommand('copy');
+                  document.querySelector('#is-success').style = 'color: green;';
+                  document.querySelector('#is-success').innerText = 'SUCCESS';
+                  resolve();
+                } catch (e) {
+                  document.querySelector('#is-success').style = 'color: red;';
+                  document.querySelector('#is-success').innerText = 'ERROR' + e;
+                  reject(e);
+                }
+                removeHideArea();
+              });
+            }
+      
+            function creatHideArea() {
+              const area = (this.area = document.createElement('textarea'));
+              area.style['position'] = 'absolute';
+              area.style['left'] = '-99999px';
+              document.body.appendChild(area);
+            }
+      
+            function removeHideArea() {
+              let div = document.createElement('div');
+              div.appendChild(this.area);
+              div.innerHTML = '';
+              div = null;
+            }
+          </script>
+          <script>
+            var d =
+              'https%3A%2F%2Fbaoquan.court.gov.cn%2Fpages%2Fcallback%2Fcallback&state=200&scope=userinfo&timestamp=1568797203319&signature=E248EDC6E3B787107C8136EBEFD3F361300C3F63FC108B1229160B78DC6EBC7D';
+            console.log(decodeURIComponent(d));
+            console.log(encodeURIComponent(decodeURIComponent(d)));
+            var f =
+              'https%3A%2F%2Fbaoquan.court.gov.cn%2Fpages%2Fcallback%2Fcallback%26state%3D200%26scope%3Duserinfo%26timestamp%3D1568797203319%26signature%3DE248EDC6E3B787107C8136EBEFD3F361300C3F63FC108B1229160B78DC6EBC7D';
+          </script>
+        </body>
+      </html>
+      
+    `;
+  }
+
   // *设置cookie
   setCookie() {
     return `
@@ -1532,14 +1910,15 @@ export class ToolsDocService {
 
       // key:    键值
       // value:  值
-      // days:   持续天数
+      // days:   持续月数
 
-      const setCookie = (key, value, days) => {
-        const days = 30;
+      const setCookie = (key, value, months=1) => {
         const exp = new Date();
-        exp.setTime(exp.getTime() + days*24*60*60*1000);
+        exp.setTime(exp.getTime() + months*30*24*60*60*1000);
         document.cookie = key + '=' + value + ';expires=' + exp.toUTCString();
       };
+      
+      setCookie('tjt','哈哈哈哈哈哈')
 
     `;
   }
@@ -1694,7 +2073,7 @@ export class ToolsDocService {
     `;
   }
 
-  // Ps:判断类型
+  // Ps:判断/检查信息
   // *判断是否是数字
   isNumber() {
     return `
@@ -1739,6 +2118,45 @@ export class ToolsDocService {
       // 4. 通过constructor判断;
             arr.constructor === Array   // true
             json.constructor === Array  // 报错
+
+    `;
+  }
+
+  // *[Ld]深比较判断对象是否相等
+  isEqual() {
+    return `
+      /*
+        深比较判断对象是否相等
+
+        value1: 用来比较的值
+        value2: 另一个用来比较的值
+      */
+
+      _.isEqual(value1, value2);
+
+      const obj = { name: 'tjt' };
+      const otherObj = { name: 'tjt' };
+
+      _.isEqual(obj, otherObj);
+      // → true
+      
+      obj === otherObj;
+      // → false
+
+      _.isEqual(()=>1, ()=>1);
+      // → false
+
+      _.isEqual(1,1);
+      // → true
+
+      _.isEqual(null ,null);
+      // → true
+      
+      _.isEqual(NaN,NaN);
+      // → true
+
+      NaN === NaN;
+      // → false
 
     `;
   }
@@ -1812,9 +2230,9 @@ export class ToolsDocService {
 
       const broswer = () => {
         const ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        if (ua.match(/MicroMessenger/i) === "micromessenger") {
             return "VX";
-        } else if (ua.match(/QQ/i) == "qq") {
+        } else if (ua.match(/QQ/i) === "qq") {
             return "QQ";
         }
         // 不是微信/QQ内置浏览器;
@@ -1959,7 +2377,7 @@ export class ToolsDocService {
       // 获取可视窗口宽度
 
       const getClientWidth = () => {
-        return (document.compatMode == "BackCompat" ? document.body : document.documentElement.clientWidth);
+        return (document.compatMode === "BackCompat" ? document.body : document.documentElement.clientWidth);
       };
 
     `;
@@ -2067,7 +2485,7 @@ export class ToolsDocService {
       const ulBox = document.querySelector('.ul-box');
 
       ulBox.onclick = (e) => {
-        if (e.target.nodeName.toLowerCase() == 'li') { // nodeName 都是大写，用toLowerCase()转为小写
+        if (e.target.nodeName.toLowerCase() === 'li') { // nodeName 都是大写，用toLowerCase()转为小写
           console.log(e.target) // 01 02 03 ...
         }
       }
@@ -2077,7 +2495,7 @@ export class ToolsDocService {
       ul.onclick = function (e) {
         var e = e || window.event
         var that = e.target || e.srcElement
-        if (that.nodeName.toLowerCase() == 'li') {
+        if (that.nodeName.toLowerCase() === 'li') {
           console.log(that) // 01 02 03 ...
         }
       }
@@ -2382,6 +2800,93 @@ export class ToolsDocService {
       };
 
       asyncFn()  // Promise {<pending>} >>>1s后>>>> 等待异步函数执行结束！
+
+    `;
+  }
+
+  // *颜色转换
+  changeColor() {
+    return `
+      // 颜色转换
+
+      // rgbToHex：rgba格式转 #000000格式 （rgba格式转十六进制）
+      // hexToRgb：#ffffff 格式转rgba格式 （十六进制转rgba格式）
+      
+
+      const colorChange = {
+        rgbToHex: function (val) {
+            //RGB(A)颜色转换为HEX十六进制的颜色值
+            var r,
+                g,
+                b,
+                a,
+                regRgba = /rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(,([.\d]+))?\)/, //判断rgb颜色值格式的正则表达式，如rgba(255,20,10,.54)
+                rsa = val.replace(/\s+/g, '').match(regRgba);
+            if (!!rsa) {
+                r = parseInt(rsa[1]).toString(16);
+                r = r.length === 1 ? '0' + r : r;
+                g = (+rsa[2]).toString(16);
+                g = g.length === 1 ? '0' + g : g;
+                b = (+rsa[3]).toString(16);
+                b = b.length === 1 ? '0' + b : b;
+                a = +(rsa[5] ? rsa[5] : 1) * 100;
+                return {
+                    hex: '#' + r + g + b,
+                    r: parseInt(r, 16),
+                    g: parseInt(g, 16),
+                    b: parseInt(b, 16),
+                    alpha: Math.ceil(a),
+                };
+            } else {
+                return { hex: '无效', alpha: 100 };
+            }
+        },
+        hexToRgb: function (val) {
+            //HEX十六进制颜色值转换为RGB(A)颜色值
+            // 16进制颜色值的正则
+            var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+            // 把颜色值变成小写
+            var color = val.toLowerCase();
+            var result = '';
+            if (reg.test(color)) {
+                // 如果只有三位的值，需变成六位，如：#fff => #ffffff
+                if (color.length === 4) {
+                    var colorNew = '#';
+                    for (var i = 1; i < 4; i += 1) {
+                        colorNew += color
+                            .slice(i, i + 1)
+                            .concat(color.slice(i, i + 1));
+                    }
+                    color = colorNew;
+                }
+                // 处理六位的颜色值，转为RGB
+                var colorChange = [];
+                for (let i = 1; i < 7; i += 2) {
+                    colorChange.push(parseInt('0x' + color.slice(i, i + 2)));
+                }
+                result = 'rgb(' + colorChange.join(',') + ')';
+                return {
+                    rgb: result,
+                    r: colorChange[0],
+                    g: colorChange[1],
+                    b: colorChange[2],
+                };
+            } else {
+                result = '无效';
+                return { rgb: result };
+            }
+        },
+      };
+    
+
+      colorChange.rgbToHex('rgb(155,10,20)');     // { hex: '#9b0a14', r: 155, g: 10, b: 20, alpha: 100 }
+      colorChange.rgbToHex('rgb(155,10,20,0.5)'); // { hex: '#9b0a14', r: 155, g: 10, b: 20, alpha: 50 }
+      colorChange.hexToRgb('#ff0000');  // { rgb: 'rgb(255,0,0)', r: 255, g: 0, b: 0 }
+
+
+      
+
+
 
     `;
   }

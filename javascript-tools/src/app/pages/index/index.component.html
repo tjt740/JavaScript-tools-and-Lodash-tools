@@ -16,7 +16,11 @@
       nzMode="inline"
       *ngFor="let item of routeConfig; index as i; trackBy: trackFn"
     >
-      <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+      <li nz-submenu>
+        <span title>
+          <span class="menu-icon" nz-icon [nzIconfont]="item.icon"></span>
+          <span>{{ item.title }}</span></span
+        >
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item (click)="hideAnimationAndChooseTool(val)">
             {{ val.exhibitStr }}
@@ -52,7 +56,15 @@
         [nzOptions]="listOfGroupOption"
         (ngModelChange)="search($event)"
       ></nz-select>
-      <h3>请打开控制台看效果</h3>
+      <h3>
+        <span class="menu-icon" nz-icon [nzIconfont]="'icon--happy-1'"></span>
+        请打开控制台查看效果
+        <span
+          class="menu-icon"
+          nz-icon
+          [nzIconfont]="'icon-tongluoshao'"
+        ></span>
+      </h3>
     </nz-header>
     <nz-content>
       <div class="inner-content">

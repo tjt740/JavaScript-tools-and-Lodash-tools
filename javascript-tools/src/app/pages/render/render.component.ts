@@ -24,7 +24,7 @@ export class RenderComponent implements OnInit {
 
   ngOnInit(): void {
     console.groupCollapsed(
-      `%c 🍌window._ = lodash🍆`,
+      `%c 🍌window._. = lodash🍆`,
       'color:#36ab60; font-size: 14px;'
     );
     console.log('🌻_.xxx 使用lodash方法🌼');
