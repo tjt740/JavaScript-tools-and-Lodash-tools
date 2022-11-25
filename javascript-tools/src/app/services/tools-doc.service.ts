@@ -642,7 +642,7 @@ export class ToolsDocService {
       // 方法1:
         const newArr = arr.map((i) =>
             matchArr.map((o) => {
-                return o.includes(i.name) ? i : null;
+                return o === i.name ? i : null;
             })
         ).flat(Infinity).filter(Boolean);
         // → [{name:'1',age:1},{name:'3',age:3}]
@@ -783,7 +783,7 @@ export class ToolsDocService {
         const newArr = tagList
             .map((i) =>
             selectList.map((o) => {
-                    return o.labelKey.includes(i.labelKey) ? i : null;
+                    return o.labelKey === i.labelKey ? i : null;
                 })
             )
             .flat(Infinity)
@@ -1580,13 +1580,12 @@ export class ToolsDocService {
 
       // https://www.baidu.com/s?ie=UTF-8&wd=baidu
 
-      getUrlKeyInfo('wd') // 'baidu'
+      getUrlKeyInfo('wd') // → 'baidu'
 
-      const getUrlKeyInfo =(urlKey)=>{
-        return new URLSearchParams(window.location.search)
-        .get(urlKey)
-      }
-
+      const getUrlKeyInfo = (urlKey) => {
+        return new URLSearchParams(window.location.search).get(urlKey);
+      };
+    
     `;
   }
 
