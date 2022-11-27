@@ -246,6 +246,35 @@ export class ToolsDocService {
     `;
   }
 
+  // *获取/筛选/匹配字符串中相同的字符，组成数组
+  getSameStrToArr() { 
+    return `
+      /*
+        获取/筛选/匹配字符串中相同的字符，组成数组
+
+        str: 字符串变量
+        matchStr: 需要进行筛选的字符串
+      */
+
+      const getSameStrToArr = (str, matchStr) => {
+        const strArr = [];
+        let pos = str.indexOf(matchStr);
+        while (pos > -1) {
+          strArr.push(pos);
+          pos = str.indexOf(matchStr, pos + 1);
+        }
+          return strArr;
+      };
+
+      const str1 = 'Mr.Lee is Lee L L sad L';
+      getSameStrToArr(str1, 'L'); // →  [3, 10, 14, 16, 22];
+
+      const str2 = '01234567891123456789212345678931234567894123';
+      getSameStrToArr(str2, '3'); // →  [3, 13, 23, 30, 33, 43];
+      
+    `;
+  }
+
   // Ps:数组操作
   // *数组乱序
   randomArray() {
