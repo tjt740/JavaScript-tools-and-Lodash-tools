@@ -246,6 +246,35 @@ export class ToolsDocService {
     `;
   }
 
+  // *获取/筛选/匹配字符串中相同的字符，组成数组
+  getSameStrToArr() { 
+    return `
+      /*
+        获取/筛选/匹配字符串中相同的字符，组成数组
+
+        str: 字符串变量
+        matchStr: 需要进行筛选的字符串
+      */
+
+      const getSameStrToArr = (str, matchStr) => {
+        const strArr = [];
+        let pos = str.indexOf(matchStr);
+        while (pos > -1) {
+          strArr.push(pos);
+          pos = str.indexOf(matchStr, pos + 1);
+        }
+          return strArr;
+      };
+
+      const str1 = 'Mr.Lee is Lee L L sad L';
+      getSameStrToArr(str1, 'L'); // →  [3, 10, 14, 16, 22];
+
+      const str2 = '01234567891123456789212345678931234567894123';
+      getSameStrToArr(str2, '3'); // →  [3, 13, 23, 30, 33, 43];
+      
+    `;
+  }
+
   // Ps:数组操作
   // *数组乱序
   randomArray() {
@@ -642,7 +671,7 @@ export class ToolsDocService {
       // 方法1:
         const newArr = arr.map((i) =>
             matchArr.map((o) => {
-                return o.includes(i.name) ? i : null;
+                return o === i.name ? i : null;
             })
         ).flat(Infinity).filter(Boolean);
         // → [{name:'1',age:1},{name:'3',age:3}]
@@ -783,7 +812,7 @@ export class ToolsDocService {
         const newArr = tagList
             .map((i) =>
             selectList.map((o) => {
-                    return o.labelKey.includes(i.labelKey) ? i : null;
+                    return o.labelKey === i.labelKey ? i : null;
                 })
             )
             .flat(Infinity)
@@ -1580,13 +1609,12 @@ export class ToolsDocService {
 
       // https://www.baidu.com/s?ie=UTF-8&wd=baidu
 
-      getUrlKeyInfo('wd') // 'baidu'
+      getUrlKeyInfo('wd') // → 'baidu'
 
-      const getUrlKeyInfo =(urlKey)=>{
-        return new URLSearchParams(window.location.search)
-        .get(urlKey)
-      }
-
+      const getUrlKeyInfo = (urlKey) => {
+        return new URLSearchParams(window.location.search).get(urlKey);
+      };
+    
     `;
   }
 

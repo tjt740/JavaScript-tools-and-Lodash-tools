@@ -1,7 +1,7 @@
 # 此项目是谭金涛一些常用的JS函数 + Lodash方法的汇总
 
 🍑
-![](./course/5.png);
+![](./course/5.png)
 
 - 🥐 现已支持模糊查询
 - 🍊 富文本编辑用的Monaco Editor编辑器

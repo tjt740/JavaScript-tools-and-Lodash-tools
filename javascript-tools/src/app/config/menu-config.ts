@@ -184,6 +184,11 @@ export const MenuConfig = [
         router: '/index/util-9',
         functionName: 'getCamelCase',
       },
+      {
+        exhibitStr: '获取/筛选/匹配字符串中相同的字符，组成数组',
+        router: '/index/util-92',
+        functionName: 'getSameStrToArr',
+      },
     ],
   },
 
