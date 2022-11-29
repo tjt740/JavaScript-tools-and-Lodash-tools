@@ -9,11 +9,27 @@
 
 </head>
 
+<style>
+.text::after {
+  /* 伪类动态监听data-attr变化 */
+  content: attr(data-attr);
+  display: inner-block;
+  color:tan;
+}
+</style>
 
 <body>
+<script>
+  const spanEle = document.createElement('span');
+  spanEle.className='text';
+  spanEle.innerText='我跟你说：';
+  // 设置data-attr属性
+  spanEle.setAttribute('data-attr','你吃了吗？');
+  document.body.appendChild(spanEle);
 
-</body>
-
+  // 获取data-attr 属性
+  console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
+</script>
 
 
 <script>
@@ -91,6 +107,6 @@
   // json1.show6().call(json2);    // show6==> this.name: 戚思宁;
   // json1.show6.call(json2)()    // show6==> this.name: 谭金涛
 
-</script>
-
+</script> 
+</body>
 </html>

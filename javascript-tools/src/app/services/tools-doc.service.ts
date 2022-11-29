@@ -2814,11 +2814,14 @@ export class ToolsDocService {
   // *等待函数
   waitTime() {
     return `
-      // 等待函数
+    /* 
+      等待函数
 
-      // waitTime: 时间控制器
+      waitTime: 时间控制器
 
-      // asyncFn: 等待时间（ms）完成后触发的函数
+      asyncFn: 等待时间（ms）完成后触发的函数
+
+    */
 
       const waitTime = (ms) => new Promise((resolve)=> setTimeout(resolve, ms));
 
@@ -2832,14 +2835,16 @@ export class ToolsDocService {
     `;
   }
 
-  // *颜色转换
+  // *颜色转换 rgba ⇋ #000
   changeColor() {
     return `
-      // 颜色转换
+      /* 
+        颜色转换 rgba ⇋ #000
 
-      // rgbToHex：rgba格式转 #000000格式 （rgba格式转十六进制）
-      // hexToRgb：#ffffff 格式转rgba格式 （十六进制转rgba格式）
-      
+        rgbToHex：rgba格式转 #000000格式 （rgba格式转十六进制）
+        hexToRgb：#ffffff 格式转rgba格式 （十六进制转rgba格式）
+
+      */
 
       const colorChange = {
         rgbToHex: function (val) {
@@ -2918,4 +2923,77 @@ export class ToolsDocService {
 
     `;
   }
+
+  //* 复制功能
+  copy() { 
+    return `
+      /*
+        复制功能 
+      */
+
+      <div>
+        <div id="copy-code">1234543212345432</div>
+      </div>
+      <button id="copy-btn">复制</button>
+  
+      <script>
+        document.getElementById('copy-btn').onclick = () => {
+          //创建range对象;
+          const range = document.createRange();
+          //获取复制内容的 id 选择器
+          range.selectNode(document.getElementById('copy-code'));
+          //创建 selection对象
+          const selection = window.getSelection();
+          //如果页面已经有选取了的话，会自动删除这个选区，没有选区的话，会把这个选取加入选区
+          if (selection.rangeCount > 0) selection.removeAllRanges();
+          //将range对象添加到selection选区当中，会高亮文本块
+          selection.addRange(range);
+          //复制选中的文字到剪贴板
+          document.execCommand('copy');
+          console.log('复制成功');
+          // 移除选中的元素
+          selection.removeRange(range);
+        };
+      </script>
+
+      // →1234543212345432
+
+    `;
+  }
+
+    //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
+    changAfterBefore() { 
+      return `
+        /*
+          修改伪类样式的方法，动态控制伪元素(::before,::after)的方法 
+          
+          使用HTML5的data-属性，在属性中使用attr()动态修改
+        */
+  
+        // css/less/scss: 
+        <style>
+          .text::after {
+            /* 伪类动态监听data-attr变化 */
+            content: attr(data-attr);
+            display: inner-block;
+            color:tan;
+          }
+        </style>
+       
+        <script>
+          const spanEle = document.createElement('span');
+          spanEle.className='text';
+          spanEle.innerText='我跟你说：';
+          // 设置data-attr属性
+          spanEle.setAttribute('data-attr','你吃了吗？');
+          document.body.appendChild(spanEle);
+        
+          // 获取data-attr 属性
+          console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
+        </script>
+        
+          // →我跟你说：你吃了吗？
+  
+      `;
+    }
 }

@@ -583,10 +583,20 @@ export const MenuConfig = [
         functionName: 'waitTime',
       },
       {
-        exhibitStr: '颜色转换',
+        exhibitStr: '颜色转换 rgba ⇋ #000',
         router: '/index/util-89',
         functionName: 'changeColor',
       },
+      {
+        exhibitStr: '复制功能',
+        router: '/index/util-93',
+        functionName: 'copy',
+      },
+      {
+        exhibitStr: '修改伪类样式的方法，动态控制伪元素(::before,::after)的方法',
+        router: '/index/util-94',
+        functionName: 'changAfterBefore',
+      }
     ],
   },
 ];
