@@ -276,7 +276,7 @@ export const MenuConfig = [
 
   // Tjt: 存储(localStorage/sessionStorage)操作
   {
-    title: '存储操作',
+    title: 'localStorage / sessionStorage操作',
     icon: 'icon--angry',
     id: Math.random(),
     childRoute: [
