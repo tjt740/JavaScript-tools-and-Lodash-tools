@@ -1479,7 +1479,7 @@ export class ToolsDocService {
       isObjEmpty(emptyJSON); // true json中全为假值。
 
       const json = {a:1,b:2,c:undefined};
-      isObjEmpty(json); // true json中不是全为假值。
+      isObjEmpty(json); // false json中不是全为假值。
 
       const emptyJSON = {};
       isObjEmpty(emptyJSON); // true json中全为假值。
