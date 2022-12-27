@@ -154,7 +154,6 @@ export const MenuConfig = [
         router: '/index/util-91',
         functionName: 'intersectionWithArray',
       },
-      
     ],
   },
 
@@ -593,10 +592,11 @@ export const MenuConfig = [
         functionName: 'copy',
       },
       {
-        exhibitStr: '修改伪类样式的方法，动态控制伪元素(::before,::after)的方法',
+        exhibitStr:
+          '修改伪类样式的方法，动态控制伪元素(::before,::after)的方法',
         router: '/index/util-94',
         functionName: 'changAfterBefore',
-      }
+      },
     ],
   },
 ];
