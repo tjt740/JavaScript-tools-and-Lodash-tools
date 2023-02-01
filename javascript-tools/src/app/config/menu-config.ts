@@ -232,7 +232,7 @@ export const MenuConfig = [
         functionName: 'mapJson',
       },
       {
-        exhibitStr: '判断json对象里是否全为假值',
+        exhibitStr: '判断json对象是否为空对象 || 判断json中是否存在假值',
         router: '/index/util-71',
         functionName: 'isObjEmpty',
       },

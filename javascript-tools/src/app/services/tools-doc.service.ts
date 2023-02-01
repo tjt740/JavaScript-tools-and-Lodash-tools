@@ -663,11 +663,6 @@ export class ToolsDocService {
       // arr: 被匹配的数组
       // matchArr: 条件数组
 
-      // 案例1:
-        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
-
-        const matchArr = ['1','3','7','9'];
-
       // 方法1:
         const newArr = arr.map((i) =>
             matchArr.map((o) => {
@@ -680,6 +675,11 @@ export class ToolsDocService {
         const newArr = arr.filter(i=> matchArr.includes(i.name));
         // → [{name:'1',age:1},{name:'3',age:3}]
 
+
+      // 案例1:
+      const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+
+      const matchArr = ['1','3','7','9'];
         
       // 案例2:
           const tagList = [
@@ -1443,14 +1443,14 @@ export class ToolsDocService {
     `;
   }
 
-  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+  // *判断json对象是否为空对象 || 判断json中是否存在假值
   isObjEmpty() {
     return `
       /* 
-        判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+        判断json对象是否为空对象 || 判断json中是否存在假值
        
-        false: json中 有不为空/假值的值。
-        true: json 中 全为空值undefined/
+        false: json中有不为空/假值的值。
+        true: json为空或者json中有假值。
         obj: json对象
       */
 
