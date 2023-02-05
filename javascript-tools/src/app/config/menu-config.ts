@@ -597,6 +597,11 @@ export const MenuConfig = [
         router: '/index/util-94',
         functionName: 'changAfterBefore',
       },
+      {
+        exhibitStr: '创建a链接并点击',
+        router: '/index/util-95',
+        functionName: 'createALinkAndClick',
+      },
     ],
   },
 ];

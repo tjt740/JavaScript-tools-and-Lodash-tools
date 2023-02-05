@@ -247,7 +247,7 @@ export class ToolsDocService {
   }
 
   // *获取/筛选/匹配字符串中相同的字符，组成数组
-  getSameStrToArr() { 
+  getSameStrToArr() {
     return `
       /*
         获取/筛选/匹配字符串中相同的字符，组成数组
@@ -1810,7 +1810,7 @@ export class ToolsDocService {
   }
 
   // *获取其他页面cookie，同时格式化cookie
-  getHTMLCookie() { 
+  getHTMLCookie() {
     return `
       // 获取其他页面cookie，同时格式化cookie
 
@@ -2925,7 +2925,7 @@ export class ToolsDocService {
   }
 
   //* 复制功能
-  copy() { 
+  copy() {
     return `
       /*
         复制功能 
@@ -2961,39 +2961,66 @@ export class ToolsDocService {
     `;
   }
 
-    //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
-    changAfterBefore() { 
-      return `
-        /*
-          修改伪类样式的方法，动态控制伪元素(::before,::after)的方法 
-          
-          使用HTML5的data-属性，在属性中使用attr()动态修改
-        */
-  
-        // css/less/scss: 
-        <style>
-          .text::after {
-            /* 伪类动态监听data-attr变化 */
-            content: attr(data-attr);
-            display: inner-block;
-            color:tan;
-          }
-        </style>
-       
-        <script>
-          const spanEle = document.createElement('span');
-          spanEle.className='text';
-          spanEle.innerText='我跟你说：';
-          // 设置data-attr属性
-          spanEle.setAttribute('data-attr','你吃了吗？');
-          document.body.appendChild(spanEle);
+  //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
+  changAfterBefore() {
+    return `
+      /*
+        修改伪类样式的方法，动态控制伪元素(::before,::after)的方法 
         
-          // 获取data-attr 属性
-          console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
-        </script>
-        
-          // →我跟你说：你吃了吗？
-  
-      `;
-    }
+        使用HTML5的data-属性，在属性中使用attr()动态修改
+      */
+
+      // css/less/scss: 
+      <style>
+        .text::after {
+          /* 伪类动态监听data-attr变化 */
+          content: attr(data-attr);
+          display: inner-block;
+          color:tan;
+        }
+      </style>
+      
+      <script>
+        const spanEle = document.createElement('span');
+        spanEle.className='text';
+        spanEle.innerText='我跟你说：';
+        // 设置data-attr属性
+        spanEle.setAttribute('data-attr','你吃了吗？');
+        document.body.appendChild(spanEle);
+      
+        // 获取data-attr 属性
+        console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
+      </script>
+      
+      // →我跟你说：你吃了吗？
+
+    `;
+  }
+
+  //* 创建a链接并点击
+  createALinkAndClick() {
+    return `
+      /*
+        创建a链接并点击
+
+        url: 下载链接地址
+      */
+
+      const createALinkAndClick = (url) =>{
+        // 创建一个a标签元素
+        const aLink = document.createElement("a"); 
+        // 设置元素不可见
+        aLink.style.display = "none"; 
+        //设置下载地址
+        aLink.href = url;
+        // 加入
+        document.body.appendChild(aLink); 
+        // 触发点击,下载
+        aLink.click(); 
+        // 释放
+        document.body.removeChild(aLink); 
+      };
+     
+    `;
+  }
 }
