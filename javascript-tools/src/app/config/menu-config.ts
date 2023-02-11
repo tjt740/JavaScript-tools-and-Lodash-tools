@@ -31,7 +31,7 @@ export const MenuConfig = [
         functionName: 'lastArrayItem',
       },
       {
-        exhibitStr: '匹配两个数组中相等值，组成新数组',
+        exhibitStr: '匹配两个数组中相等值，返回新数组',
         router: '/index/util-72',
         functionName: 'filterArray',
       },
@@ -61,12 +61,17 @@ export const MenuConfig = [
         functionName: 'sortItemArray',
       },
       {
+        exhibitStr: '数组按照某一键值组成新数组（复杂）',
+        router: '/index/util-97',
+        functionName: 'filterSthForArray',
+      },
+      {
         exhibitStr: '交换数组中两个元素',
         router: '/index/util-53',
         functionName: 'swapItems',
       },
       {
-        exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，组成新数组',
+        exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，返回新数组',
         router: '/index/util-57',
         functionName: 'chunkArray',
       },
@@ -150,9 +155,14 @@ export const MenuConfig = [
         functionName: 'uniqWithArray',
       },
       {
-        exhibitStr: '[Ld]提取/对比两个数组中相同的值，组成新数组',
+        exhibitStr: '[Ld]提取/对比两个数组中相同的值，返回新数组',
         router: '/index/util-91',
         functionName: 'intersectionWithArray',
+      },
+      {
+        exhibitStr: '[Ld]将解构的数组转成JSON对象',
+        router: '/index/util-98',
+        functionName: 'fromPairs',
       },
     ],
   },
@@ -184,7 +194,7 @@ export const MenuConfig = [
         functionName: 'getCamelCase',
       },
       {
-        exhibitStr: '获取/筛选/匹配字符串中相同的字符，组成数组',
+        exhibitStr: '获取/筛选/匹配字符串中相同的字符，返回新数组',
         router: '/index/util-92',
         functionName: 'getSameStrToArr',
       },
@@ -245,6 +255,16 @@ export const MenuConfig = [
         exhibitStr: '打平JSON，找到键值对应的枚举，生成新数组',
         router: '/index/util-84',
         functionName: 'flatJSON',
+      },
+      {
+        exhibitStr: '打平、扁平化JSON/打平Object对象',
+        router: '/index/util-96',
+        functionName: 'flattenObj',
+      },
+      {
+        exhibitStr: '[Ld]将JSON对象转成被解构的数组',
+        router: '/index/util-99',
+        functionName: 'toPairs',
       },
     ],
   },

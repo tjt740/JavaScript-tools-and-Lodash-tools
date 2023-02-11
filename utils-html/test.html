@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const arr = {
+                name: '谭金涛',
+                work: 'IT',
+            };
+            _.toPairs(arr); // →  arr = [['name', '谭金涛'],['work', IT]];
+
+            // 数组按照某一键值组成新数组（复杂）
+            const filterSthForArray = (arr) => {
+                return arr.reduce((prev, current) => {
+                    return [
+                        ...prev,
+                        ...current['list']?.map((item) => {
+                            return {
+                                name1: current?.name || null,
+                                name3: current['obj']?.insect || null,
+                                name2: item?.type || null,
+                                name4: item?.level || null,
+                            };
+                        }),
+                    ];
+                }, []);
+            };
+
+            console.log(filterSthForArray(arr, 'list', 'obj'));
+        </script>
+    </body>
+</html>

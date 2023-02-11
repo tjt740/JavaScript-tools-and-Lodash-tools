@@ -939,6 +939,109 @@ export class ToolsDocService {
     `;
   }
 
+  // *数组按照某一键值组成新数组（复杂）
+  filterSthForArray() {
+    return `
+      /*
+        数组按照某一键值组成新数组（复杂）
+
+        arr：需要被处理的数组
+      */
+
+      const arr = [
+        {
+            name: '张三',
+            age: 18,
+            ancient: null,
+            list: [
+                {
+                    type: 'angular',
+                    level: 'major',
+                },
+                {
+                    type: 'vue',
+                    level: 'expert',
+                },
+                {
+                    type: 'react',
+                    level: 'junior',
+                },
+            ],
+        },
+        {
+            name: '李四',
+            age: 20,
+            obj: {
+                insect: '螃蟹',
+                invention: '蜈蚣',
+            },
+            list: [
+                {
+                    type: 'vue',
+                    level: 'junior',
+                },
+                {
+                    type: 'react',
+                    level: 'expert',
+                },
+            ],
+        },
+      ];
+
+      // 数组按照某一键值组成新数组（复杂）
+      const filterSthForArray = (arr) => {
+          return arr.reduce((prev, current) => {
+              return [
+                  ...prev,
+                  ...current['list']?.map((item) => {
+                      return {
+                          name1: current?.name || null,
+                          name3: current['obj']?.insect || null,
+                          name2: item?.type || null,
+                          name4: item?.level || null,
+                      };
+                  }),
+              ];
+          }, []);
+      };
+
+      console.log(filterSthForArray(arr, 'list', 'obj')); // →
+      //   [
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "angular",
+      //         "name4": "major"
+      //     },
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "vue",
+      //         "name4": "expert"
+      //     },
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "react",
+      //         "name4": "junior"
+      //     },
+      //     {
+      //         "name1": "李四",
+      //         "name3": "螃蟹",
+      //         "name2": "vue",
+      //         "name4": "junior"
+      //     },
+      //     {
+      //         "name1": "李四",
+      //         "name3": "螃蟹",
+      //         "name2": "react",
+      //         "name4": "expert"
+      //     }
+      // ]
+
+    `;
+  }
+
   // *交换数组中两个元素
   swapItems() {
     return `
@@ -1398,13 +1501,32 @@ export class ToolsDocService {
         
       */
 
-      _.intersectionWith(array1, array2, _.isEqual)
+      _.intersectionWith(array1, array2, _.isEqual);
 
       const arr1 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '柳晔', 'age': 24 },{'name': '戚思宁', 'age': 23}];
       const arr2 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '戚思宁', 'age': 23 }];
 
       _.intersectionWith(arr1, arr2, _.isEqual)
       // → [{"name":"谭金涛","age":24},{"name":"戚思宁","age":23}]
+
+    `;
+  }
+
+  // *[Ld]将解构的数组转成JSON对象
+  fromPairs() {
+    return `
+      /*
+        array: 需要处理的数组
+      */
+
+      _.fromPairs(array);
+
+      const arr = [ 
+        ['name', '谭金涛'],
+        ['age', 24],
+      ];
+      
+      _.fromPairs(arr) // → {name: '谭金涛', age: 24}
 
     `;
   }
@@ -1559,6 +1681,95 @@ export class ToolsDocService {
       };
 
       flatJSON(data, containerContextEnum); // [ '包装箱id', [ '包装箱高度', '包装箱长度', '体积', '包装箱宽度' ], '价格', '体积', '重量' ];
+
+    `;
+  }
+
+  // *打平JSON / 打平Object对象
+  flattenObj() {
+    return `
+      /*
+        打平JSON / 打平Object对象
+        
+        obj: 需要被JSON对象 
+      */
+      
+      const flattenObj = (obj) => {
+          const processObj = {};
+          (function flatObj(newObj) {
+              Object.entries(newObj).forEach((v) => {
+                  const [key, value] = v;
+                  if (Object.prototype.toString.call(value) === '[object Object]') {
+                        return flatObj(value);
+                  }
+                  Object.defineProperty(processObj, key, {
+                      value: value,
+                      writable: true,
+                      configurable: true,
+                      enumerable: true,
+                  });
+              });
+          })(obj);
+          return processObj;
+      };
+      
+
+      const data = {
+          containerId: '集装箱01号',
+          cube: { height: 2698, length: 12032, volume: 76351414272, width: 2352 },
+          price: 3400,
+          volume: 76351414272,
+          weight: 30400,
+      };
+
+      const json = {
+        a: 1,
+        b: {
+            c: 2,
+            d: 3,
+        },
+        e: 4,
+        f: {
+            g: 5,
+            h: 6,
+            i: {
+                j: 7,
+                k: 8,
+                l: {
+                    m: 9,
+                    n: 10,
+                },
+            },
+        },
+        o: null,
+        p: false,
+        q: 0,
+    };
+
+    console.log(flattenObj(data)); // → {containerId:"集装箱01号",height:2698,length:12032,volume:76351414272,width:2352,price:3400,weight:30400};
+
+    console.log(flattenObj(json)); // → { a: 1, c: 2, d: 3, e: 4, g: 5, h: 6, j: 7, k: 8, m: 9, n: 10, o: null, p: false, q: 0 };
+
+    `;
+  }
+
+  // *[Ld]将解构的数组转成JSON对象
+  toPairs() {
+    return `
+      /*
+        将解构的数组转成JSON对象
+        
+        json: 需要处理的json数组
+      */
+
+      _.toPairs(json);
+
+      const json = {
+        name: '谭金涛',
+        work: 'IT',
+      };
+      
+      _.toPairs(arr)  // → arr = [['name', '谭金涛'],['work', IT]];
 
     `;
   }
