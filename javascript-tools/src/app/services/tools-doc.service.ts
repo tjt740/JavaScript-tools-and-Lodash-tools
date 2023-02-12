@@ -1516,6 +1516,8 @@ export class ToolsDocService {
   fromPairs() {
     return `
       /*
+        将解构的数组转成JSON对象
+        
         array: 需要处理的数组
       */
 
