@@ -38,6 +38,7 @@ export class IndexComponent implements OnInit {
   initialSiderWidth = 260;
   toolsData = '';
 
+
   // mock MenuConfig
   mockAll = JSON.parse(JSON.stringify(all.MenuConfig));
 
@@ -76,7 +77,6 @@ export class IndexComponent implements OnInit {
 
   hideAnimationAndChooseTool(value: any) {
     window.location.hash = value.router.replace('/index/', '');
-
     const { functionName } = value;
     // @ts-ignore
     this.toolsData = this.toolsDoc[functionName]();

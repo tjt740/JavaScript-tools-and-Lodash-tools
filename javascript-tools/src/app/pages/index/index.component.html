@@ -17,13 +17,13 @@
       *ngFor="let item of routeConfig; index as i; trackBy: trackFn"
     >
       <li nz-submenu>
-        <span title>
+        <span title class="menu">
           <span class="menu-icon" nz-icon [nzIconfont]="item.icon"></span>
-          <span>{{ item.title }}</span></span
+          <span class="first-menu">{{ item.title }}</span></span
         >
         <ul *ngFor="let val of item.childRoute">
           <li nz-menu-item (click)="hideAnimationAndChooseTool(val)">
-            {{ val.exhibitStr }}
+            <span class="second-menu">{{ val.exhibitStr }}</span>
           </li>
         </ul>
       </li>
@@ -59,11 +59,8 @@
       <h3>
         <span class="menu-icon" nz-icon [nzIconfont]="'icon--happy-1'"></span>
         请打开控制台查看效果
-        <span
-          class="menu-icon"
-          nz-icon
-          [nzIconfont]="'icon-tongluoshao'"
-        ></span>
+        <span class="menu-icon" nz-icon [nzIconfont]="'icon-tongluoshao'">
+        </span>
       </h3>
     </nz-header>
     <nz-content>

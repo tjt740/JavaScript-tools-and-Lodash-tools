@@ -141,9 +141,6 @@
     background: transparent;
   }
 
-
-
-
   .header-trigger {
     height: 64px;
     padding: 20px 24px;
@@ -165,12 +162,13 @@
     background: #001529;
     transition: all .3s;
   }
-  .sidebar-logo:after{
+
+  .sidebar-logo:after {
     content: '123333';
     display: block;
     width: calc(100% - 20px);
     height: 1px;
-    background: rgba(0,0,0,.06);
+    background: rgba(0, 0, 0, .06);
   }
 
   .sidebar-logo img {
@@ -248,9 +246,29 @@
     }
   }
 
-  .body {
-    min-width: 35%;
-    height: 100%;
-    overflow-x: auto;
+  .menu {
+    display: contents;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+
+    .first-menu {
+      display: inline-block;
+      width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: top;
+    }
+
   }
+
+  .second-menu {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
+
 }
