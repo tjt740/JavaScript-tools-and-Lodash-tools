@@ -247,7 +247,7 @@ export class ToolsDocService {
   }
 
   // *获取/筛选/匹配字符串中相同的字符，组成数组
-  getSameStrToArr() { 
+  getSameStrToArr() {
     return `
       /*
         获取/筛选/匹配字符串中相同的字符，组成数组
@@ -663,11 +663,6 @@ export class ToolsDocService {
       // arr: 被匹配的数组
       // matchArr: 条件数组
 
-      // 案例1:
-        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
-
-        const matchArr = ['1','3','7','9'];
-
       // 方法1:
         const newArr = arr.map((i) =>
             matchArr.map((o) => {
@@ -680,6 +675,11 @@ export class ToolsDocService {
         const newArr = arr.filter(i=> matchArr.includes(i.name));
         // → [{name:'1',age:1},{name:'3',age:3}]
 
+
+      // 案例1:
+      const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+
+      const matchArr = ['1','3','7','9'];
         
       // 案例2:
           const tagList = [
@@ -935,6 +935,109 @@ export class ToolsDocService {
 
       let newArr1 = oldArr.sort(sortItemArray); // 正序 a-b
       let newArr2 = oldArr.sort(sortItemArray); // 倒序 b-a
+
+    `;
+  }
+
+  // *数组按照某一键值组成新数组（复杂）
+  filterSthForArray() {
+    return `
+      /*
+        数组按照某一键值组成新数组（复杂）
+
+        arr：需要被处理的数组
+      */
+
+      const arr = [
+        {
+            name: '张三',
+            age: 18,
+            ancient: null,
+            list: [
+                {
+                    type: 'angular',
+                    level: 'major',
+                },
+                {
+                    type: 'vue',
+                    level: 'expert',
+                },
+                {
+                    type: 'react',
+                    level: 'junior',
+                },
+            ],
+        },
+        {
+            name: '李四',
+            age: 20,
+            obj: {
+                insect: '螃蟹',
+                invention: '蜈蚣',
+            },
+            list: [
+                {
+                    type: 'vue',
+                    level: 'junior',
+                },
+                {
+                    type: 'react',
+                    level: 'expert',
+                },
+            ],
+        },
+      ];
+
+      // 数组按照某一键值组成新数组（复杂）
+      const filterSthForArray = (arr) => {
+          return arr.reduce((prev, current) => {
+              return [
+                  ...prev,
+                  ...current['list']?.map((item) => {
+                      return {
+                          name1: current?.name || null,
+                          name3: current['obj']?.insect || null,
+                          name2: item?.type || null,
+                          name4: item?.level || null,
+                      };
+                  }),
+              ];
+          }, []);
+      };
+
+      console.log(filterSthForArray(arr, 'list', 'obj')); // →
+      //   [
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "angular",
+      //         "name4": "major"
+      //     },
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "vue",
+      //         "name4": "expert"
+      //     },
+      //     {
+      //         "name1": "张三",
+      //         "name3": null,
+      //         "name2": "react",
+      //         "name4": "junior"
+      //     },
+      //     {
+      //         "name1": "李四",
+      //         "name3": "螃蟹",
+      //         "name2": "vue",
+      //         "name4": "junior"
+      //     },
+      //     {
+      //         "name1": "李四",
+      //         "name3": "螃蟹",
+      //         "name2": "react",
+      //         "name4": "expert"
+      //     }
+      // ]
 
     `;
   }
@@ -1398,13 +1501,34 @@ export class ToolsDocService {
         
       */
 
-      _.intersectionWith(array1, array2, _.isEqual)
+      _.intersectionWith(array1, array2, _.isEqual);
 
       const arr1 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '柳晔', 'age': 24 },{'name': '戚思宁', 'age': 23}];
       const arr2 = [{ 'name': '谭金涛', 'age': 24 }, { 'name': '戚思宁', 'age': 23 }];
 
       _.intersectionWith(arr1, arr2, _.isEqual)
       // → [{"name":"谭金涛","age":24},{"name":"戚思宁","age":23}]
+
+    `;
+  }
+
+  // *[Ld]将解构的数组转成JSON对象
+  fromPairs() {
+    return `
+      /*
+        将解构的数组转成JSON对象
+        
+        array: 需要处理的数组
+      */
+
+      _.fromPairs(array);
+
+      const arr = [ 
+        ['name', '谭金涛'],
+        ['age', 24],
+      ];
+      
+      _.fromPairs(arr) // → {name: '谭金涛', age: 24}
 
     `;
   }
@@ -1443,14 +1567,14 @@ export class ToolsDocService {
     `;
   }
 
-  // *判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+  // *判断json对象是否为空对象 || 判断json中是否存在假值
   isObjEmpty() {
     return `
       /* 
-        判断json对象里面是否是全为空的属性值 || 判断json对象里是否全为假值
+        判断json对象是否为空对象 || 判断json中是否存在假值
        
-        false: json中 有不为空/假值的值。
-        true: json 中 全为空值undefined/
+        false: json中有不为空/假值的值。
+        true: json为空或者json中有假值。
         obj: json对象
       */
 
@@ -1559,6 +1683,95 @@ export class ToolsDocService {
       };
 
       flatJSON(data, containerContextEnum); // [ '包装箱id', [ '包装箱高度', '包装箱长度', '体积', '包装箱宽度' ], '价格', '体积', '重量' ];
+
+    `;
+  }
+
+  // *打平JSON / 打平Object对象
+  flattenObj() {
+    return `
+      /*
+        打平JSON / 打平Object对象
+        
+        obj: 需要被JSON对象 
+      */
+      
+      const flattenObj = (obj) => {
+          const processObj = {};
+          (function flatObj(newObj) {
+              Object.entries(newObj).forEach((v) => {
+                  const [key, value] = v;
+                  if (Object.prototype.toString.call(value) === '[object Object]') {
+                        return flatObj(value);
+                  }
+                  Object.defineProperty(processObj, key, {
+                      value: value,
+                      writable: true,
+                      configurable: true,
+                      enumerable: true,
+                  });
+              });
+          })(obj);
+          return processObj;
+      };
+      
+
+      const data = {
+          containerId: '集装箱01号',
+          cube: { height: 2698, length: 12032, volume: 76351414272, width: 2352 },
+          price: 3400,
+          volume: 76351414272,
+          weight: 30400,
+      };
+
+      const json = {
+        a: 1,
+        b: {
+            c: 2,
+            d: 3,
+        },
+        e: 4,
+        f: {
+            g: 5,
+            h: 6,
+            i: {
+                j: 7,
+                k: 8,
+                l: {
+                    m: 9,
+                    n: 10,
+                },
+            },
+        },
+        o: null,
+        p: false,
+        q: 0,
+    };
+
+    console.log(flattenObj(data)); // → {containerId:"集装箱01号",height:2698,length:12032,volume:76351414272,width:2352,price:3400,weight:30400};
+
+    console.log(flattenObj(json)); // → { a: 1, c: 2, d: 3, e: 4, g: 5, h: 6, j: 7, k: 8, m: 9, n: 10, o: null, p: false, q: 0 };
+
+    `;
+  }
+
+  // *[Ld]将解构的数组转成JSON对象
+  toPairs() {
+    return `
+      /*
+        将解构的数组转成JSON对象
+        
+        json: 需要处理的json数组
+      */
+
+      _.toPairs(json);
+
+      const json = {
+        name: '谭金涛',
+        work: 'IT',
+      };
+      
+      _.toPairs(arr)  // → arr = [['name', '谭金涛'],['work', IT]];
 
     `;
   }
@@ -1810,7 +2023,7 @@ export class ToolsDocService {
   }
 
   // *获取其他页面cookie，同时格式化cookie
-  getHTMLCookie() { 
+  getHTMLCookie() {
     return `
       // 获取其他页面cookie，同时格式化cookie
 
@@ -2925,7 +3138,7 @@ export class ToolsDocService {
   }
 
   //* 复制功能
-  copy() { 
+  copy() {
     return `
       /*
         复制功能 
@@ -2961,39 +3174,66 @@ export class ToolsDocService {
     `;
   }
 
-    //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
-    changAfterBefore() { 
-      return `
-        /*
-          修改伪类样式的方法，动态控制伪元素(::before,::after)的方法 
-          
-          使用HTML5的data-属性，在属性中使用attr()动态修改
-        */
-  
-        // css/less/scss: 
-        <style>
-          .text::after {
-            /* 伪类动态监听data-attr变化 */
-            content: attr(data-attr);
-            display: inner-block;
-            color:tan;
-          }
-        </style>
-       
-        <script>
-          const spanEle = document.createElement('span');
-          spanEle.className='text';
-          spanEle.innerText='我跟你说：';
-          // 设置data-attr属性
-          spanEle.setAttribute('data-attr','你吃了吗？');
-          document.body.appendChild(spanEle);
+  //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
+  changAfterBefore() {
+    return `
+      /*
+        修改伪类样式的方法，动态控制伪元素(::before,::after)的方法 
         
-          // 获取data-attr 属性
-          console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
-        </script>
-        
-          // →我跟你说：你吃了吗？
-  
-      `;
-    }
+        使用HTML5的data-属性，在属性中使用attr()动态修改
+      */
+
+      // css/less/scss: 
+      <style>
+        .text::after {
+          /* 伪类动态监听data-attr变化 */
+          content: attr(data-attr);
+          display: inner-block;
+          color:tan;
+        }
+      </style>
+      
+      <script>
+        const spanEle = document.createElement('span');
+        spanEle.className='text';
+        spanEle.innerText='我跟你说：';
+        // 设置data-attr属性
+        spanEle.setAttribute('data-attr','你吃了吗？');
+        document.body.appendChild(spanEle);
+      
+        // 获取data-attr 属性
+        console.log(document.getElementsByClassName('text')[0].getAttribute('data-attr'))
+      </script>
+      
+      // →我跟你说：你吃了吗？
+
+    `;
+  }
+
+  //* 创建a链接并点击
+  createALinkAndClick() {
+    return `
+      /*
+        创建a链接并点击
+
+        url: 下载链接地址
+      */
+
+      const createALinkAndClick = (url) =>{
+        // 创建一个a标签元素
+        const aLink = document.createElement("a"); 
+        // 设置元素不可见
+        aLink.style.display = "none"; 
+        //设置下载地址
+        aLink.href = url;
+        // 加入
+        document.body.appendChild(aLink); 
+        // 触发点击,下载
+        aLink.click(); 
+        // 释放
+        document.body.removeChild(aLink); 
+      };
+     
+    `;
+  }
 }

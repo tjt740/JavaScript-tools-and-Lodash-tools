@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clock</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <style>
+        /* @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&diasply=swap'); */
+        /*引用谷歌字体*/
+        /* @import './google-font.css'; */
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #acbaca;
+        } */
+
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #c9d5e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, 0.15),
+                inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+                -15px -15px 35px rgba(255, 255, 255, 0.55),
+                inset -1px -1px 10px rgba(0, 0, 0, 0.2);
+        }
+        .clock::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #e91e63;
+            border-radius: 50%;
+            z-index: 1000;
+            box-shadow: 0 0 0 1px #e91e63, 0 0 0 3px #fff,
+                0 0 5px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .clock .numbers {
+            position: absolute;
+            inset: 35px;
+            background-color: #152b4a;
+            border-radius: 50%;
+            box-shadow: 5px 5px 15px #152b4a66,
+                inset 5px 5px 5px rgba(255, 255, 255, 0.75),
+                -6px -6px 10px rgba(255, 255, 255, 1);
+        }
+
+        .clock .numbers span {
+            position: absolute;
+            inset: 5px;
+            text-align: center;
+            color: #e6e2de;
+            font-size: 1.25rem;
+            transform: rotate(calc(90deg * var(--i)));
+        }
+
+        .clock .numbers span b {
+            font-weight: 600;
+            display: inline-block;
+            transform: rotate(calc(-90deg * var(--i)));
+        }
+
+        .clock .numbers::before {
+            content: '';
+            position: absolute;
+            inset: 35px;
+            background: linear-gradient(#3196f3, #e91e63);
+            border-radius: 50%;
+            animation: animate 2s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0);
+            }
+        }
+
+        .clock .numbers::after {
+            content: '';
+            position: absolute;
+            inset: 38px;
+            background-color: #152b4a;
+            border-radius: 50%;
+        }
+
+        .clock .numbers .circle {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .clock .numbers .circle i {
+            position: absolute;
+            width: 3px;
+            height: 50%;
+            border-radius: 3px;
+            background-color: rgb(180, 177, 177);
+            transform-origin: bottom;
+            transform: scaleY(0.55);
+        }
+        .clock .numbers .circle#hr i {
+            transform: scaleY(0.3);
+            width: 4px;
+        }
+
+        .clock .numbers .circle#mn i {
+            transform: scaleY(0.45);
+        }
+
+        .clock .numbers .circle#sc i {
+            width: 2px;
+            transform: scaleY(0.55);
+            background-color: #e91e63;
+            box-shadow: 0 30px 0 #e91e63;
+        }
+    </style>
+    <body>
+        <div class="clock">
+            <div class="numbers">
+                <span style="--i: 0"><b>12</b></span>
+                <span style="--i: 1"><b>3</b></span>
+                <span style="--i: 2"><b>6</b></span>
+                <span style="--i: 3"><b>9</b></span>
+                <div class="circle" id="hr"><i></i></div>
+                <div class="circle" id="mn"><i></i></div>
+                <div class="circle" id="sc"><i></i></div>
+            </div>
+        </div>
+        <script>
+            const hr = document.querySelector('#hr');
+            const mn = document.querySelector('#mn');
+            const sc = document.querySelector('#sc');
+
+            setInterval(() => {
+                const day = new Date();
+                const hh = day.getHours() * 30;
+                const mm = day.getMinutes() * 6;
+                const ss = day.getSeconds() * 6;
+                hr.style.transform = `rotateZ(${hh + mm / 12}deg)`;
+                mn.style.transform = `rotateZ(${mm}deg)`;
+                sc.style.transform = `rotateZ(${ss}deg)`;
+            });
+        </script>
+    </body>
+</html>

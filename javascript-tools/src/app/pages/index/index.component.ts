@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit {
     protected route: Router
   ) {
     this.iconService.fetchFromIconfont({
-      scriptUrl: '//at.alicdn.com/t/c/font_3733690_pwzufpkbntj.js',
+      scriptUrl: '//at.alicdn.com/t/c/font_3733690_ycx4nwk4sw.js',
     });
   }
 
@@ -37,6 +37,7 @@ export class IndexComponent implements OnInit {
   // 侧边栏的初始宽度； // Ps: 跟siderWidth值保持一致.
   initialSiderWidth = 260;
   toolsData = '';
+
 
   // mock MenuConfig
   mockAll = JSON.parse(JSON.stringify(all.MenuConfig));
@@ -76,7 +77,6 @@ export class IndexComponent implements OnInit {
 
   hideAnimationAndChooseTool(value: any) {
     window.location.hash = value.router.replace('/index/', '');
-
     const { functionName } = value;
     // @ts-ignore
     this.toolsData = this.toolsDoc[functionName]();
