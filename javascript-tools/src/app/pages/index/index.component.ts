@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit {
     protected route: Router
   ) {
     this.iconService.fetchFromIconfont({
-      scriptUrl: '//at.alicdn.com/t/c/font_3733690_pwzufpkbntj.js',
+      scriptUrl: '//at.alicdn.com/t/c/font_3733690_ycx4nwk4sw.js',
     });
   }
 
