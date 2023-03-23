@@ -622,6 +622,11 @@ export const MenuConfig = [
         router: '/index/util-95',
         functionName: 'createALinkAndClick',
       },
+      {
+        exhibitStr: '可拖拽移动弹窗',
+        router: '/index/util-100',
+        functionName: 'dragModalDemo',
+      },
     ],
   },
 ];

@@ -3236,4 +3236,78 @@ export class ToolsDocService {
      
     `;
   }
+
+  //* 可拖拽移动弹窗
+  dragModalDemo() {
+    return `
+      /*
+        可拖拽移动弹窗 
+      */
+
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>可移动弹窗</title>
+                <style>
+                    .popup {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 200px;
+                        height: 100px;
+                        transform: translate(-50%, -50%);
+                        background-color: #fff;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                        z-index: 999;
+                        border-radius: 10px;
+                    }
+                    .popup button {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                        background-color: transparent;
+                        border: none;
+                        font-size: 20px;
+                        cursor: move;
+                    }
+                </style>
+            </head>
+            <body>
+                <div id="popup" class="popup">
+                    <h2>这是一个弹窗</h2>
+                    <p>可以通过拖动改变位置</p>
+                    <button class="drag-btn">🖐🏻</button>
+                </div>
+                <script>
+                    const popup = document.getElementById('popup');
+                    const dragBtn = document.getElementsByClassName('drag-btn')[0];
+                    let isDragging = false;
+                    const mouseOffset = { x: 0, y: 0 };
+        
+                    // 按钮点击开始拖拽
+                    dragBtn.addEventListener('mousedown', function (e) {
+                        isDragging = true;
+                        mouseOffset.x = e.clientX - popup.offsetLeft;
+                        mouseOffset.y = e.clientY - popup.offsetTop;
+                    });
+                    // 移动计算位置
+                    document.addEventListener('mousemove', function (e) {
+                        if (isDragging) {
+                            popup.style.left = e.clientX - mouseOffset.x + 'px';
+                            popup.style.top = e.clientY - mouseOffset.y + 'px';
+                        }
+                    });
+                    // 鼠标从图标上抬起，结束拖拽
+                    document.addEventListener('mouseup', function (e) {
+                        isDragging = false;
+                    });
+                </script>
+            </body>
+        </html>
+        
+
+    `;
+  }
 }
