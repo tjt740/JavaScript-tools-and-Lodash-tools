@@ -2852,24 +2852,25 @@ export class ToolsDocService {
       /* <input type="text" placeholder="防抖" id="debounce"> */
 
       const debounceDom = document.getElementById('debounce');
-
+            
       function debounce(fn, ms) {
-        let timer = null;
-        return (...arg) => {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            fn.apply(this, arg);
-          }, ms)
-        }
+          let timer = null;
+          return function () {
+              const context = this;
+              const args = arguments;
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                  fn.apply(context, args);
+              }, ms);
+          };
       }
 
       function fn(e) {
-        console.log(e);
-        console.log(防抖成功: e.target.value);
+          console.log('防抖成功:', e.target.value);
       }
 
       debounceDom.addEventListener('input', debounce(fn, 2000), false);
-
+      
     `;
   }
 
