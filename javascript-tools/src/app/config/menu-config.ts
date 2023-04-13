@@ -627,6 +627,11 @@ export const MenuConfig = [
         router: '/index/util-100',
         functionName: 'dragModalDemo',
       },
+      {
+        exhibitStr: '生成uuid',
+        router: '/index/util-101',
+        functionName: 'generateUuid',
+      },
     ],
   },
 ];

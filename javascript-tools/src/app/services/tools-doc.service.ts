@@ -891,6 +891,151 @@ export class ToolsDocService {
       // 取最小值:
       arr.reduce((a, b) => (a < b ? a : b)); // 1
 
+      const arr2 = [
+        {
+          "id": 5460,
+          "gmtCreate": 1681267297000,
+          "labelKey": "category1",
+          "labelType": "category",
+          "color": "#d95757",
+          "labelName": "分类标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": null
+        },
+        {
+          "id": 5466,
+          "gmtCreate": 1681267356000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "4"
+        },
+        {
+          "id": 5475,
+          "gmtCreate": 1681267419000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "6"
+        },
+        {
+          "id": 5488,
+          "gmtCreate": 1681267623000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "10"
+        },
+        {
+          "id": 5489,
+          "gmtCreate": 1681267818000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "11"
+        },
+        {
+          "id": 5504,
+          "gmtCreate": 1681267915000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "12"
+        },
+        {
+          "id": 5505,
+          "gmtCreate": 1681267918000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "13"
+        },
+        {
+          "id": 5506,
+          "gmtCreate": 1681267919000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "14"
+        },
+        {
+          "id": 5510,
+          "gmtCreate": 1681268182000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "15"
+        },
+        {
+          "id": 5511,
+          "gmtCreate": 1681268193000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "16"
+        },
+        {
+          "id": 5512,
+          "gmtCreate": 1681268196000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "17"
+        },
+        {
+          "id": 5516,
+          "gmtCreate": 1681268218000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "18"
+        },
+        {
+          "id": 5533,
+          "gmtCreate": 1681268517000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "19"
+        },
+        {
+          "id": 5534,
+          "gmtCreate": 1681268522000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "20"
+        }
+      ]
+      
+      arr2.reduce((a, b) => Number(a.dataIndex) > Number(b.dataIndex) ? a : b).dataIndex; // '20'
+    
     `;
   }
 
@@ -3308,6 +3453,26 @@ export class ToolsDocService {
             </body>
         </html>
         
+
+    `;
+  }
+
+  //* 生成uuid
+  generateUuid() {
+    return `
+      /*
+        生成uuid 
+      */
+
+      function uuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c)=> {
+            const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+      };
+      
+      uuid(); // '9a08e5a9-6941-4a74-9681-6b47130f7b75'
 
     `;
   }
