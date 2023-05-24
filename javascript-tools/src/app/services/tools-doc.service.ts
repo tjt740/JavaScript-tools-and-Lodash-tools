@@ -891,6 +891,151 @@ export class ToolsDocService {
       // 取最小值:
       arr.reduce((a, b) => (a < b ? a : b)); // 1
 
+      const arr2 = [
+        {
+          "id": 5460,
+          "gmtCreate": 1681267297000,
+          "labelKey": "category1",
+          "labelType": "category",
+          "color": "#d95757",
+          "labelName": "分类标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": null
+        },
+        {
+          "id": 5466,
+          "gmtCreate": 1681267356000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "4"
+        },
+        {
+          "id": 5475,
+          "gmtCreate": 1681267419000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "6"
+        },
+        {
+          "id": 5488,
+          "gmtCreate": 1681267623000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "10"
+        },
+        {
+          "id": 5489,
+          "gmtCreate": 1681267818000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "11"
+        },
+        {
+          "id": 5504,
+          "gmtCreate": 1681267915000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "12"
+        },
+        {
+          "id": 5505,
+          "gmtCreate": 1681267918000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "13"
+        },
+        {
+          "id": 5506,
+          "gmtCreate": 1681267919000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "14"
+        },
+        {
+          "id": 5510,
+          "gmtCreate": 1681268182000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "15"
+        },
+        {
+          "id": 5511,
+          "gmtCreate": 1681268193000,
+          "labelKey": "span1",
+          "labelType": "span",
+          "color": "#aea1ff",
+          "labelName": "序列化标签1",
+          "operatorName": "谭x涛",
+          "dataIndex": "16"
+        },
+        {
+          "id": 5512,
+          "gmtCreate": 1681268196000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "17"
+        },
+        {
+          "id": 5516,
+          "gmtCreate": 1681268218000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "18"
+        },
+        {
+          "id": 5533,
+          "gmtCreate": 1681268517000,
+          "labelKey": "span2",
+          "labelType": "span",
+          "color": "#68bc00",
+          "labelName": "序列化标签2",
+          "operatorName": "谭x涛",
+          "dataIndex": "19"
+        },
+        {
+          "id": 5534,
+          "gmtCreate": 1681268522000,
+          "labelKey": "span3",
+          "labelType": "span",
+          "color": "#e27300",
+          "labelName": "序列化标签3",
+          "operatorName": "谭x涛",
+          "dataIndex": "20"
+        }
+      ]
+      
+      arr2.reduce((a, b) => Number(a.dataIndex) > Number(b.dataIndex) ? a : b).dataIndex; // '20'
+    
     `;
   }
 
@@ -2786,6 +2931,39 @@ export class ToolsDocService {
     `;
   }
 
+  // *监听元素DOM属性变化
+  observerDOM() {
+    return `
+      // 监听元素DOM属性变化
+      <div id="test">test</div>
+      <button onclick="handleClick()">OK</button>
+
+      <script>
+          
+          const observer = new MutationObserver((mutations) => {
+              console.log('属性发生变化了：', mutations);
+          });
+          observer.observe(el, {
+              attributes: true,
+          });
+
+          const el = document.getElementById('test');
+          let n = 1;
+
+          function handleClick() {
+              el.setAttribute('style', 'color: red');
+              el.setAttribute('data-name', n++);
+          }
+
+          setTimeout(() => {
+              // 停止监听
+              observer.disconnect(); 
+          }, 5000);
+
+      </script>
+    `;
+  }
+
   // Ps:时间操作
   // *格式化时间
   dateFormater() {
@@ -2852,24 +3030,25 @@ export class ToolsDocService {
       /* <input type="text" placeholder="防抖" id="debounce"> */
 
       const debounceDom = document.getElementById('debounce');
-
+            
       function debounce(fn, ms) {
-        let timer = null;
-        return (...arg) => {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            fn.apply(this, arg);
-          }, ms)
-        }
+          let timer = null;
+          return function () {
+              const context = this;
+              const args = arguments;
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                  fn.apply(context, args);
+              }, ms);
+          };
       }
 
       function fn(e) {
-        console.log(e);
-        console.log(防抖成功: e.target.value);
+          console.log('防抖成功:', e.target.value);
       }
 
       debounceDom.addEventListener('input', debounce(fn, 2000), false);
-
+      
     `;
   }
 
@@ -3137,7 +3316,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 复制功能
+  // *复制功能
   copy() {
     return `
       /*
@@ -3174,7 +3353,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
+  // *修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
   changAfterBefore() {
     return `
       /*
@@ -3210,7 +3389,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 创建a链接并点击
+  // *创建a链接并点击
   createALinkAndClick() {
     return `
       /*
@@ -3234,6 +3413,122 @@ export class ToolsDocService {
         document.body.removeChild(aLink); 
       };
      
+    `;
+  }
+
+  // *可拖拽移动弹窗
+  dragModalDemo() {
+    return `
+      /*
+        可拖拽移动弹窗 
+      */
+
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>可移动弹窗</title>
+                <style>
+                    .popup {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 200px;
+                        height: 100px;
+                        transform: translate(-50%, -50%);
+                        background-color: #fff;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                        z-index: 999;
+                        border-radius: 10px;
+                    }
+                    .popup button {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                        background-color: transparent;
+                        border: none;
+                        font-size: 20px;
+                        cursor: move;
+                    }
+                </style>
+            </head>
+            <body>
+                <div id="popup" class="popup">
+                    <h2>这是一个弹窗</h2>
+                    <p>可以通过拖动改变位置</p>
+                    <button class="drag-btn">🖐🏻</button>
+                </div>
+                <script>
+                    const popup = document.getElementById('popup');
+                    const dragBtn = document.getElementsByClassName('drag-btn')[0];
+                    let isDragging = false;
+                    const mouseOffset = { x: 0, y: 0 };
+        
+                    // 按钮点击开始拖拽
+                    dragBtn.addEventListener('mousedown', function (e) {
+                        isDragging = true;
+                        mouseOffset.x = e.clientX - popup.offsetLeft;
+                        mouseOffset.y = e.clientY - popup.offsetTop;
+                    });
+                    // 移动计算位置
+                    document.addEventListener('mousemove', function (e) {
+                        if (isDragging) {
+                            popup.style.left = e.clientX - mouseOffset.x + 'px';
+                            popup.style.top = e.clientY - mouseOffset.y + 'px';
+                        }
+                    });
+                    // 鼠标从图标上抬起，结束拖拽
+                    document.addEventListener('mouseup', function (e) {
+                        isDragging = false;
+                    });
+                </script>
+            </body>
+        </html>
+        
+
+    `;
+  }
+
+  // *生成uuid
+  generateUuid() {
+    return `
+      /*
+        生成uuid 
+      */
+
+      function uuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c)=> {
+            const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+      };
+      
+      uuid(); // '9a08e5a9-6941-4a74-9681-6b47130f7b75'
+
+    `;
+  }
+
+  // *图片预加载
+  preloader() {
+    return `
+      /* 
+        图片预加载 
+        当有大量图片的时候，需要将图片进行预加载以免出现白屏的情况。
+      */
+     
+      const images = []
+
+      function preloader(args) {
+          for (let i = 0, len = args.length; i < len; i++) {  
+              images[i] = new Image()  
+              images[i].src = args[i]
+          } 
+      }  ;
+    
+      preloader(['1.png', '2.jpg']);
+
     `;
   }
 }

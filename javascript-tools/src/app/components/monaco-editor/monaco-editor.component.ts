@@ -89,11 +89,23 @@ export class MonacoEditorComponent implements AfterViewInit, OnChanges {
     this.codeEditorInstance = monaco.editor.create(
       this._editorContainer.nativeElement,
       {
+        tabSize: 4,
+        fontSize: 16,
         value: this.code,
         language: 'javascript',
-        theme: 'vs-dark',
+        autoDetectHighContrast: true,
+        foldingStrategy: 'indentation', // 代码可分小段折叠
+        overviewRulerBorder: false, // 不要滚动条的边框
+        automaticLayout: true,
+        readOnly: false, // 只读, 不可编辑
+        minimap: {
+          enabled: true, // 缩略图
+        },
+        theme: 'vs-dark', // vs-dark | vs | hc-black
       }
     );
+    // 格式化
+    // this.codeEditorInstance.getAction('editor.action.formatDocument').run()
 
     // @ts-ignore
     this.codeEditorInstance.getModel().onDidChangeContent((e: any) => {
