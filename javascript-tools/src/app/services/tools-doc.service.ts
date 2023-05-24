@@ -2931,6 +2931,39 @@ export class ToolsDocService {
     `;
   }
 
+  // *监听元素DOM属性变化
+  observerDOM() {
+    return `
+      // 监听元素DOM属性变化
+      <div id="test">test</div>
+      <button onclick="handleClick()">OK</button>
+
+      <script>
+          
+          const observer = new MutationObserver((mutations) => {
+              console.log('属性发生变化了：', mutations);
+          });
+          observer.observe(el, {
+              attributes: true,
+          });
+
+          const el = document.getElementById('test');
+          let n = 1;
+
+          function handleClick() {
+              el.setAttribute('style', 'color: red');
+              el.setAttribute('data-name', n++);
+          }
+
+          setTimeout(() => {
+              // 停止监听
+              observer.disconnect(); 
+          }, 5000);
+
+      </script>
+    `;
+  }
+
   // Ps:时间操作
   // *格式化时间
   dateFormater() {
@@ -3283,7 +3316,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 复制功能
+  // *复制功能
   copy() {
     return `
       /*
@@ -3320,7 +3353,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
+  // *修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
   changAfterBefore() {
     return `
       /*
@@ -3356,7 +3389,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 创建a链接并点击
+  // *创建a链接并点击
   createALinkAndClick() {
     return `
       /*
@@ -3383,7 +3416,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 可拖拽移动弹窗
+  // *可拖拽移动弹窗
   dragModalDemo() {
     return `
       /*
@@ -3457,7 +3490,7 @@ export class ToolsDocService {
     `;
   }
 
-  //* 生成uuid
+  // *生成uuid
   generateUuid() {
     return `
       /*
@@ -3473,6 +3506,28 @@ export class ToolsDocService {
       };
       
       uuid(); // '9a08e5a9-6941-4a74-9681-6b47130f7b75'
+
+    `;
+  }
+
+  // *图片预加载
+  preloader() {
+    return `
+      /* 
+        图片预加载 
+        当有大量图片的时候，需要将图片进行预加载以免出现白屏的情况。
+      */
+     
+      const images = []
+
+      function preloader(args) {
+          for (let i = 0, len = args.length; i < len; i++) {  
+              images[i] = new Image()  
+              images[i].src = args[i]
+          } 
+      }  ;
+    
+      preloader(['1.png', '2.jpg']);
 
     `;
   }
