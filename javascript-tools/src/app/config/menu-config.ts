@@ -179,6 +179,11 @@ export const MenuConfig = [
         functionName: 'randomStr',
       },
       {
+        exhibitStr: 'toString()和toLocaleString()方法和区别',
+        router: '/index/util-102',
+        functionName: 'toStringANDtoLocaleString',
+      },      
+      {
         exhibitStr: '字符串首字母大写',
         router: '/index/util-7',
         functionName: 'firstStrUpper',

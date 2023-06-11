@@ -170,6 +170,35 @@ export class ToolsDocService {
     `;
   }
 
+  // *toString()和toLocaleString()方法和区别
+  toStringANDtoLocaleString() { 
+    return `
+      /*
+        toString()和toLocaleString()方法和区别
+      */
+
+        // toString方法将数组转换为一个由数组元素组成的字符串，元素之间用逗号分隔。
+
+        const arr = [1, 2, 3, 4, 5];
+        console.log(arr.toString());  // 1,2,3,4,5
+        const arr2 = ['苹果', '蓝莓', '橘子', '西瓜', '葡萄'];
+        const arr3 = ['a', 'null', 'b', 'c', 'undefined', 'd', 'e']
+        console.log(arr2.toString());  // 苹果,蓝莓,橘子,西瓜,葡萄
+        console.log(arr3.toString());  // a,null,b,c,undefined,d,e
+
+        //🌟 toLocaleString方法将数组转换为一个由数组元素组成的字符串，元素之间同样用逗号分隔，但是它会根据当前环境的语言和地区设置来决定元素的格式。
+
+        // 根据当前环境的语言和地区设置来决定元素的格式
+        const arr = [123456.789, new Date()];
+        console.log(arr.toLocaleString()); // 123,456.789,2023/5/29 07:57:19
+
+        const arr2 = [1000, 2000, 3000];
+        const str = arr2.toLocaleString();
+        console.log(str); // 1,000,2,000,3,000
+
+    `
+  }
+
   // *字符串首字母大写
   firstStrUpper() {
     return `
