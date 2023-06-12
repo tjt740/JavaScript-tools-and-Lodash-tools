@@ -171,7 +171,7 @@ export class ToolsDocService {
   }
 
   // *toString()和toLocaleString()方法和区别
-  toStringANDtoLocaleString() { 
+  toStringANDtoLocaleString() {
     return `
       /*
         toString()和toLocaleString()方法和区别
@@ -196,7 +196,7 @@ export class ToolsDocService {
         const str = arr2.toLocaleString();
         console.log(str); // 1,000,2,000,3,000
 
-    `
+    `;
   }
 
   // *字符串首字母大写
@@ -1235,6 +1235,37 @@ export class ToolsDocService {
 
     `;
   }
+  // *一次循环中删除多项值
+  spliceLoopArray() {
+    return `
+    /*
+      用于解决一次循环中删除多项时，无法正确删除的问题。
+    */
+
+      //❌ 错误的↓
+      const list = [1,2,3,4,5]
+  
+      for(let i = 0; i < list.length; i++) {
+        if(list[i] === 2 || list[i] === 3) {
+          list.splice(i,1)
+        }
+      }
+      console.log(list)  //[1,3,4,5];
+
+      //✅ 正确的↓
+      const list = [1,2,3,4,5];
+  
+      for(let i = list.length - 1; i >= 0; i--) {
+        if(list[i] === 2 || list[i] === 3) {
+          list.splice(i,1)
+        }
+      }
+      console.log(list) // [1, 4]
+      
+
+    `;
+  }
+
   // *[Ld]将数组拆分成多个【size】长的区块，组成新数组
   chunkArray() {
     return `

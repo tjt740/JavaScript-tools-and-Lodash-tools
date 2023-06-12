@@ -71,6 +71,11 @@ export const MenuConfig = [
         functionName: 'swapItems',
       },
       {
+        exhibitStr: '一次循环中删除多项值',
+        router: '/index/util-103',
+        functionName: 'spliceLoopArray',
+      },
+      {
         exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，返回新数组',
         router: '/index/util-57',
         functionName: 'chunkArray',
@@ -182,7 +187,7 @@ export const MenuConfig = [
         exhibitStr: 'toString()和toLocaleString()方法和区别',
         router: '/index/util-102',
         functionName: 'toStringANDtoLocaleString',
-      },      
+      },
       {
         exhibitStr: '字符串首字母大写',
         router: '/index/util-7',
