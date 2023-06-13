@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
+    "@ant-design/icons-angular": "^13.1.0",
     "angular": "^1.8.3",
     "lodash": "^4.17.21",
     "monaco-editor": "^0.32.1",

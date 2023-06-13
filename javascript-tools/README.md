@@ -7,4 +7,8 @@
   
 ## 创建pages页面
 
-  ng g c 路径/自定义页面名 -m app
+  `ng g c 路径/自定义页面名 -m app`
+
+## 解决  Cannot find module '@ant-design/icons-angular/icons' or its corresponding type declarations.9 } from '@ant-design/icons-angular/icons'; 报错
+
+`ng add @ant-design/icons-angular`
