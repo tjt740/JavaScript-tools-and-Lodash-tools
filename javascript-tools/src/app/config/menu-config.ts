@@ -617,9 +617,14 @@ export const MenuConfig = [
         functionName: 'changeColor',
       },
       {
-        exhibitStr: '复制功能',
+        exhibitStr: '复制功能 （1）',
         router: '/index/util-93',
-        functionName: 'copy',
+        functionName: 'copy1',
+      },
+      {
+        exhibitStr: '复制功能 （2）',
+        router: '/index/util-104',
+        functionName: 'copy2',
       },
       {
         exhibitStr:

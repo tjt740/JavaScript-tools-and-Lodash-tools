@@ -3343,11 +3343,11 @@ export class ToolsDocService {
     `;
   }
 
-  //* 复制功能
-  copy() {
+  //* 复制功能（1）
+  copy1() {
     return `
       /*
-        复制功能 
+        复制功能 （1）
       */
 
       <div>
@@ -3377,6 +3377,14 @@ export class ToolsDocService {
 
       // →1234543212345432
 
+    `;
+  }
+
+  //* 复制功能（2）
+  copy2() {
+    return `
+      // 复制 === ctrl+c 
+      navigator.clipboard.writeText('Hello');
     `;
   }
 
