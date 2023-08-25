@@ -1738,6 +1738,28 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]将解构的数组转成JSON对象
+  zipObject() {
+    return `
+      /*
+        将解构的数组转成JSON对象
+        
+        props:Array 转换成JSON的key
+        values:Array 转换成JSON的value 
+      */
+
+      _.zipObject([props=[],values=[]]);
+
+      const arr = [ 
+        ['a', 'b'],
+        ['1', 2],
+      ];
+      
+      _.zipObject(arr) // → {'a': 1, 'age': 2}
+
+    `;
+  }
+
   // Ps:JSON操作
   // *遍历json转为数组
   mapJson() {
