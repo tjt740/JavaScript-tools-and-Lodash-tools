@@ -7,9 +7,6 @@
 - 🍊 富文本编辑用的Monaco Editor编辑器
 - 🥑 Angular-cli v13.2.3
 - 🚶 不定时更新...
-  - 邮箱: 15751666937@163.com
-  - QQ: 2771289317
-  - VX: tjt740
   
 # 如何将项目部署到Github Pages上
 
