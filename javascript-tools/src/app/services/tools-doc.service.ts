@@ -145,6 +145,113 @@ export class ToolsDocService {
     `;
   }
 
+  // *[Ld]数值是否大于其他数值
+  gt() {
+    return `
+      /*
+        数值是否大于其他数值
+
+        value: 值
+        other: 另一个要比较的值
+      */
+
+      _.gt(value, other); 
+
+      _.gt(3, 1); // → true
+      
+      _.gt(3, 3); // → false
+      
+      _.gt(1, 3); // → false
+
+    `;
+  }
+
+  // *[Ld]数值是否大于或等于其他数值
+  gte() {
+    return `
+      /*
+        数值是否大于或等于其他数值
+
+        value: 值
+        other: 另一个要比较的值
+      */
+
+      _.gte(value, other); 
+
+      _.gte(3, 1); // → true
+ 
+      _.gte(3, 3); // → true
+      
+      _.gte(1, 3); // → false
+
+
+    `;
+  }
+
+  // *[Ld]数值是否小于其他数值
+  lt() {
+    return `
+      /*
+        数值是否小于其他数值
+
+        value: 值
+        other: 另一个要比较的值
+      */
+
+      _.lt(value, other); 
+
+      _.lt(1, 3);// → true
+ 
+      _.lt(3, 3);// → false
+      
+      _.lt(3, 1);// → false
+
+    `;
+  }
+
+  // *[Ld]数值是否小于或等于其他数值
+  lte() {
+    return `
+      /*
+        数值是否小于或等于其他数值
+
+        value: 值
+        other: 另一个要比较的值
+      */
+
+      _.lte(value, other); 
+
+      _.lte(3, 1); // → false
+ 
+      _.lte(3, 3); // → true
+      
+      _.lte(1, 3); // → true
+
+    `;
+  }
+
+  // *[Ld]数值保留几位小数点
+  round() {
+    return `
+      /*
+        数值保留几位小数点
+
+        number:Number 数字
+        [precision]: Array<Number> 数字保留几位小数点
+
+      */
+
+      _.round(number, [precision=0]);
+
+      _.round(Math.PI); // → 3
+      
+      _.round(Math.PI,2);// → 3.14
+
+      _.round(Math.PI,[10]);// → 3.1415926536
+
+    `;
+  }
+
   // Ps:字符串操作
   // *随机生成自定义长度的字符串
   randomStr() {
@@ -1755,8 +1862,140 @@ export class ToolsDocService {
         ['1', 2],
       ];
       
-      _.zipObject(arr) // → {'a': 1, 'age': 2}
+      _.zipObject(arr); // → {'a': 1, 'age': 2}
 
+    `;
+  }
+
+  // *[Ld]把数组中的JSON对象按照条件升序排序
+  sortBy() {
+    return `
+      /*
+        把数组中的JSON对象按照条件升序排序
+
+        collection: Array 需要进行排序的JSON
+        [iteratees=[_.identity]]:  (...(Array|Array[]|Function|Function[]|Object|Object[]|string|string[])): 这个函数决定排序。
+      */
+    
+      _.sortBy(collection, [iteratees=[_.identity]])
+
+      const users = [
+        { 'user': 'fred',   'age': 48 },
+        { 'user': 'barney', 'age': 36 },
+        { 'user': 'fred',   'age': 40 },
+        { 'user': 'barney', 'age': 34 }
+      ];
+
+      _.sortBy(users, function(o) { return o.user; }); // → [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+      
+      _.sortBy(users, ['user', 'age']); // → [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+      
+      _.sortBy(users, 'user', function(o) {
+        return Math.floor(o.age / 10);
+      }); // → [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+
+    `;
+  }
+
+  // *[Ld]筛选出数组中最小的值
+  min() {
+    return `
+      /*
+        筛选出数组中最小的值
+
+        array 需要被进行筛选的数组
+      */
+
+      _.min(array);
+
+      _.min([4, 2, 8, 6]); // → 2
+
+      _.min([]); // → undefined
+            
+      _.min(['1',2,3,'哈哈','0']); // → '0'    
+
+    `;
+  }
+
+  // *[Ld]按照条件，筛选出数组中最小的值
+  minBy() {
+    return `
+      /*
+        按照条件，筛选出数组中最小的值
+
+        array 需要被进行筛选的数组
+        [iteratee=_.identity] (Function): 筛选条件
+      */
+
+      _.minBy(array, [iteratee=_.identity])
+    
+      const objects1 = [{ n: 1 }, { n: 2 }, { n: '0' }];
+
+      _.minBy(objects1, function (o) {
+          return o.n;
+      }); // → {'n': '0'}
+
+      const objects2 = [
+        { name: 'tjt',age:24 },
+        { name: '740',age:23 },
+        { name: 'ly',age:25 },
+        { name: 'bf', age: '88' },
+        { name: '张三'},
+      ];
+    
+      _.minBy(objects2,'age'); // → {name: '740', age: 23}
+    
+    `;
+  }
+
+  // *[Ld]筛选出数组中最大的值
+  max() {
+    return `
+      /*
+        筛选出数组中最大的值
+
+        array 需要被进行筛选的数组
+      */
+
+      _.max(array);
+
+      _.max([4, 2, 8, 6]); // → 2
+
+      _.max([]); // → undefined
+            
+      _.max(['1',2,3,'哈哈','0']); // → '0'    
+
+    `;
+  }
+
+  // *[Ld]按照条件，筛选出数组中最大的值
+  maxBy() {
+    return `
+      /*
+        按照条件，筛选出数组中最大的值
+
+        array 需要被进行筛选的数组
+        [iteratee=_.identity] (Function): 筛选条件
+      */
+
+      _.maxBy(array, [iteratee=_.identity])
+    
+      const objects1 = [{ n: 1 }, { n: 2 }, { n: '0' }];
+
+      _.maxBy(objects1, function (o) {
+          return o.n;
+      }); // → { n: 2 }
+
+      const objects2 = [
+        { name: 'tjt',age:24 },
+        { name: '740',age:23 },
+        { name: 'ly',age:25 },
+        { name: 'bf', age: '88' },
+        { name: '张三'},
+      ];
+    
+      _.maxBy(objects2,'age'); // → {name: 'bf', age: '88'}
+    
     `;
   }
 

@@ -165,9 +165,39 @@ export const MenuConfig = [
         functionName: 'intersectionWithArray',
       },
       {
-        exhibitStr: '[Ld]将解构的数组转成JSON对象',
+        exhibitStr: '[Ld]将解构的数组转成JSON对象1',
         router: '/index/util-98',
         functionName: 'fromPairs',
+      },
+      {
+        exhibitStr: '[Ld]将解构的数组转成JSON对象2',
+        router: '/index/util-105',
+        functionName: 'zipObject',
+      },
+      {
+        exhibitStr: '[Ld]把数组中的JSON对象按照条件升序排序',
+        router: '/index/util-106',
+        functionName: 'sortBy',
+      },
+      {
+        exhibitStr: '[Ld]筛选出数组中最小的值',
+        router: '/index/util-112',
+        functionName: 'min',
+      },
+      {
+        exhibitStr: '[Ld]按照条件筛选出数组中最小的值',
+        router: '/index/util-113',
+        functionName: 'minBy',
+      },
+      {
+        exhibitStr: '[Ld]筛选出数组中最大的值',
+        router: '/index/util-114',
+        functionName: 'max',
+      },
+      {
+        exhibitStr: '[Ld]按照条件筛选出数组中最大的值',
+        router: '/index/util-115',
+        functionName: 'maxBy',
       },
     ],
   },
@@ -236,6 +266,31 @@ export const MenuConfig = [
         exhibitStr: '数字千分位分隔',
         router: '/index/util-3',
         functionName: 'partitionNum',
+      },
+      {
+        exhibitStr: '[Ld]数值是否大于其他数值',
+        router: '/index/util-107',
+        functionName: 'gt',
+      },
+      {
+        exhibitStr: '[Ld]数值是否大于或等于其他数值',
+        router: '/index/util-108',
+        functionName: 'gte',
+      },
+      {
+        exhibitStr: '[Ld]数值是否小于其他数值',
+        router: '/index/util-109',
+        functionName: 'lt',
+      },
+      {
+        exhibitStr: '[Ld]数值是否小于或等于其他数值',
+        router: '/index/util-110',
+        functionName: 'lte',
+      },
+      {
+        exhibitStr: '[Ld]数值保留几位小数点',
+        router: '/index/util-111',
+        functionName: 'round',
       },
     ],
   },
