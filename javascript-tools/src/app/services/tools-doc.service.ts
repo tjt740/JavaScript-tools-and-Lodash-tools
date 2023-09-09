@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -2865,6 +2864,15 @@ export class ToolsDocService {
       NaN === NaN;
       // → false
 
+      _.isEqual(undefined, undefined);
+      // → true
+
+      _.isEqual([1,2,3], [1,2,3]);
+      // → true
+      
+      _.isEqual({a:1}, {a:1});
+      // → true
+      
     `;
   }
 
