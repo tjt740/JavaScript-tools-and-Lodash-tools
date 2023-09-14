@@ -2363,6 +2363,21 @@ export class ToolsDocService {
     `;
   }
 
+  // *不刷新页面更改URL上参数
+  changeUrlParams() {
+    return `
+      /*
+        不刷新页面更改URL上参数    
+      */
+
+      const fixedHref = 'https://ai.cainiao-inc.test/project/task-list/text2-sql-tag?dataSetId=265&taskRecordId=112';
+
+      const fixedDetailId = '&detailId=66449';
+
+      window.history.pushState('', '', fixedHref + fixedDetailId);
+    `;
+  }
+
   // Ps:存储(localStorage/sessionStorage)操作
   // *获取localStorage
   getLocalStorage() {
@@ -3810,6 +3825,52 @@ export class ToolsDocService {
       };
       
       uuid(); // '9a08e5a9-6941-4a74-9681-6b47130f7b75'
+
+    `;
+  }
+
+  //* 模拟自动单击某个DOM元素
+  simulatedAutoclick() {
+    return `
+      /*
+        模拟自动单击某个DOM元素
+      */
+
+      // 获取DOM
+      const element = document.querySelector('#elementId');
+
+      // 创建点击函数
+      const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+
+      // 触发点击函数
+      element.dispatchEvent(clickEvent);
+
+    `;
+  }
+
+  //* 模拟自动双击某个DOM元素
+  simulatedAutoDblclick() {
+    return `
+      /*
+        模拟自动双击某个DOM元素
+      */
+
+      // 获取DOM
+      const element = document.querySelector('#elementId');
+
+      // 创建点击函数
+      const clickEvent = new MouseEvent('dblclick', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+
+      // 触发点击函数
+      element.dispatchEvent(clickEvent);
 
     `;
   }

@@ -355,6 +355,11 @@ export const MenuConfig = [
         router: '/index/util-76',
         functionName: 'aboutLocation',
       },
+      {
+        exhibitStr: '不刷新页面更改URL上参数',
+        router: '/index/util-118',
+        functionName: 'changeUrlParams',
+      },
     ],
   },
 
@@ -701,6 +706,16 @@ export const MenuConfig = [
         exhibitStr: '生成uuid',
         router: '/index/util-101',
         functionName: 'generateUuid',
+      },
+      {
+        exhibitStr: '模拟自动单击某个DOM元素',
+        router: '/index/util-116',
+        functionName: 'simulatedAutoclick',
+      },
+      {
+        exhibitStr: '模拟自动双击某个DOM元素',
+        router: '/index/util-117',
+        functionName: 'simulatedAutoDblclick',
       },
     ],
   },
