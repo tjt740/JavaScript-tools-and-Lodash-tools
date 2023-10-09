@@ -3538,7 +3538,7 @@ export class ToolsDocService {
     `;
   }
 
-  // *颜色转换 rgba ⇋ #000
+  //* 颜色转换 rgba ⇋ #000
   changeColor() {
     return `
       /* 
@@ -3623,6 +3623,39 @@ export class ToolsDocService {
       
 
 
+
+    `;
+  }
+
+  //* 随机颜色
+  randomColor() {
+    return /*js*/ `
+      //（1）随机RGB颜色值
+      function randomColor(){
+        const r = Math.floor(Math.random()*255);
+        const g = Math.floor(Math.random()*255);
+        const b = Math.floor(Math.random()*255);
+        const color = 'rgba('+ r +','+ g +','+ b +',1)';
+        return color;
+      };
+      const color1 = randomColor();//→ rgba(233,85,0,1)
+      const color2 = randomColor();//→ rgba(95,74,149,1)
+
+      //（2）随机十六进制颜色#xxxx
+      function getRandomColor() {
+          return (
+              '#' +
+              (function (color) {
+                  return (color += '0123456789abcdef'[
+                      Math.floor(Math.random() * 16)
+                  ]) && color.length == 6
+                      ? color
+                      : arguments.callee(color);
+              })('')
+          );
+      };
+      const color3 = getRandomColor();//→ #640751
+      const color4 = getRandomColor();//→ #9fb08b      
 
     `;
   }

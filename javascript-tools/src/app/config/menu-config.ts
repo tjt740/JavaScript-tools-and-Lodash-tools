@@ -677,6 +677,11 @@ export const MenuConfig = [
         functionName: 'changeColor',
       },
       {
+        exhibitStr: '随机颜色',
+        router: '/index/util-119',
+        functionName: 'randomColor',
+      },
+      {
         exhibitStr: '复制功能 （1）',
         router: '/index/util-93',
         functionName: 'copy1',
