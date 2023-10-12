@@ -799,16 +799,16 @@ export class ToolsDocService {
       // matchArr: 条件数组
 
       // 方法1:
-        const newArr = arr.map((i) =>
-            matchArr.map((o) => {
-                return o === i.name ? i : null;
-            })
-        ).flat(Infinity).filter(Boolean);
-        // → [{name:'1',age:1},{name:'3',age:3}]
+      const newArr = arr.map((i) =>
+          matchArr.map((o) => {
+              return o === i.name ? i : null;
+          })
+      ).flat(Infinity).filter(Boolean);
+      // → [{name:'1',age:1},{name:'3',age:3}]
 
       // 方法2:
-        const newArr = arr.filter(i=> matchArr.includes(i.name));
-        // → [{name:'1',age:1},{name:'3',age:3}]
+      const newArr = arr.filter(i=> matchArr.includes(i.name));
+      // → [{name:'1',age:1},{name:'3',age:3}]
 
 
       // 案例1:
@@ -3406,8 +3406,11 @@ export class ToolsDocService {
     return `
       // 数据类型判断
 
-      // val: 想要进行判断的参数
+      /*
+        val: 想要进行判断的参数
+      */
 
+      // 方法一:
       function getType(value) {
         if (value === null) {
             return value + "";
@@ -3427,7 +3430,27 @@ export class ToolsDocService {
       getType()       // 'undefined'
       getType(null)   // 'null'
       getType([])     // 'array'
+      getType(/\jdj/g) // 'regexp'
 
+      
+      // 方法二:
+      function getType(obj){
+        let type  = typeof obj;
+        if (type !== "object") {    // 先进行typeof判断，如果是基础数据类型，直接返回
+          return type;
+        }
+        // 对于typeof返回结果是object的，再进行如下的判断，正则返回结果
+        return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'); 
+      };
+      
+      getType([])     // "Array" typeof []是object，因此toString返回
+      getType('123')  // "string" typeof 直接返回
+      getType(window) // "Window" toString返回
+      getType(null)   // "Null"首字母大写，typeof null是object，需toString来判断
+      getType(undefined)   // "undefined" typeof 直接返回
+      getType()            // "undefined" typeof 直接返回
+      getType(function(){}) // "function" typeof能判断，因此首字母小写
+      getType(/123/g)      //"RegExp" toString返回
     `;
   }
 
