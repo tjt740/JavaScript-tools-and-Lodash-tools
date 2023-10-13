@@ -793,165 +793,163 @@ export class ToolsDocService {
   // *筛选出两个数组相同值，组成数组
   filterArray() {
     return `
-      // 筛选出两个数组相同值，组成数组
+        // 筛选出两个数组相同值，组成数组
 
-      // arr: 被匹配的数组
-      // matchArr: 条件数组
+        /*
+          arr: 被匹配的数组
+          matchArr: 条件数组
+        */
 
-      // 方法1:
-      const newArr = arr.map((i) =>
+        // 方法1:
+        const newArr = arr.flatMap((i) =>
           matchArr.map((o) => {
               return o === i.name ? i : null;
           })
-      ).flat(Infinity).filter(Boolean);
-      // → [{name:'1',age:1},{name:'3',age:3}]
+        ).filter(Boolean);
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
-      // 方法2:
-      const newArr = arr.filter(i=> matchArr.includes(i.name));
-      // → [{name:'1',age:1},{name:'3',age:3}]
+        // 方法2:
+        const newArr = arr.filter(i=> matchArr.includes(i.name));
+        // → [{name:'1',age:1},{name:'3',age:3}]
 
 
-      // 案例1:
-      const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
-
-      const matchArr = ['1','3','7','9'];
+        // 案例1:
+        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+        const matchArr = ['1','3','7','9'];
         
-      // 案例2:
-          const tagList = [
-            {
-                id: 6,
-                gmtCreate: 1669272678000,
-                gmtModified: 1669282575000,
-                labelName: 'ce',
-                labelKey: 'ces',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 7,
-                gmtCreate: 1669274393000,
-                gmtModified: 1669282575000,
-                labelName: '测试一年S',
-                labelKey: 'C11',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: true,
-            },
-            {
-                id: 8,
-                gmtCreate: 1669274535000,
-                gmtModified: 1669282575000,
-                labelName: 'ce',
-                labelKey: 'dss',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 9,
-                gmtCreate: 1669274710000,
-                gmtModified: 1669282575000,
-                labelName: 'cess',
-                labelKey: '11111',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: true,
-            },
-            {
-                id: 10,
-                gmtCreate: 1669278763000,
-                gmtModified: 1669282575000,
-                labelName: '你好',
-                labelKey: 'hello',
-                labelType: 'category',
-                color: null,
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 11,
-                gmtCreate: 1669278818000,
-                gmtModified: 1669282575000,
-                labelName: 'color',
-                labelKey: 'color11',
-                labelType: 'category',
-                color: '#0062b1',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 12,
-                gmtCreate: 1669278828000,
-                gmtModified: 1669282575000,
-                labelName: '21',
-                labelKey: '22',
-                labelType: 'category',
-                color: '#fda1ff',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 13,
-                gmtCreate: 1669278835000,
-                gmtModified: 1669282575000,
-                labelName: '212221',
-                labelKey: '2222',
-                labelType: 'category',
-                color: '#fb9e00',
-                dataSetId: 23,
-                flag: false,
-            },
+        // 案例2:
+        const tagList = [
+          {
+              id: 6,
+              gmtCreate: 1669272678000,
+              gmtModified: 1669282575000,
+              labelName: 'ce',
+              labelKey: 'ces',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 7,
+              gmtCreate: 1669274393000,
+              gmtModified: 1669282575000,
+              labelName: '测试一年S',
+              labelKey: 'C11',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: true,
+          },
+          {
+              id: 8,
+              gmtCreate: 1669274535000,
+              gmtModified: 1669282575000,
+              labelName: 'ce',
+              labelKey: 'dss',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 9,
+              gmtCreate: 1669274710000,
+              gmtModified: 1669282575000,
+              labelName: 'cess',
+              labelKey: '11111',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: true,
+          },
+          {
+              id: 10,
+              gmtCreate: 1669278763000,
+              gmtModified: 1669282575000,
+              labelName: '你好',
+              labelKey: 'hello',
+              labelType: 'category',
+              color: null,
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 11,
+              gmtCreate: 1669278818000,
+              gmtModified: 1669282575000,
+              labelName: 'color',
+              labelKey: 'color11',
+              labelType: 'category',
+              color: '#0062b1',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 12,
+              gmtCreate: 1669278828000,
+              gmtModified: 1669282575000,
+              labelName: '21',
+              labelKey: '22',
+              labelType: 'category',
+              color: '#fda1ff',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 13,
+              gmtCreate: 1669278835000,
+              gmtModified: 1669282575000,
+              labelName: '212221',
+              labelKey: '2222',
+              labelType: 'category',
+              color: '#fb9e00',
+              dataSetId: 23,
+              flag: false,
+          },
         ];
         
         const selectList = [
-            {
-                id: 54,
-                gmtCreate: 1669300937000,
-                gmtModified: 1669300937000,
-                labelKey: '11111',
-                labelType: 'category',
-                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
-                comment: null,
-                feature: null,
-                operatorId: null,
-                operatorName: null,
-                taskDetailId: 301,
-                taskRecordId: null,
-                taskId: null,
-                dataSetId: 23,
-            },
-            {
-                id: 60,
-                gmtCreate: 1669301346000,
-                gmtModified: 1669301346000,
-                labelKey: 'C11',
-                labelType: 'category',
-                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
-                comment: null,
-                feature: null,
-                operatorId: null,
-                operatorName: null,
-                taskDetailId: 301,
-                taskRecordId: null,
-                taskId: null,
-                dataSetId: 23,
-            },
+          {
+              id: 54,
+              gmtCreate: 1669300937000,
+              gmtModified: 1669300937000,
+              labelKey: '11111',
+              labelType: 'category',
+              sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+              comment: null,
+              feature: null,
+              operatorId: null,
+              operatorName: null,
+              taskDetailId: 301,
+              taskRecordId: null,
+              taskId: null,
+              dataSetId: 23,
+          },
+          {
+              id: 60,
+              gmtCreate: 1669301346000,
+              gmtModified: 1669301346000,
+              labelKey: 'C11',
+              labelType: 'category',
+              sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+              comment: null,
+              feature: null,
+              operatorId: null,
+              operatorName: null,
+              taskDetailId: 301,
+              taskRecordId: null,
+              taskId: null,
+              dataSetId: 23,
+          },
         ];
-        
 
         const newArr = tagList
-            .map((i) =>
+            .flatMap((i) =>
             selectList.map((o) => {
                     return o.labelKey === i.labelKey ? i : null;
                 })
-            )
-            .flat(Infinity)
-            .filter(Boolean);
+            ).filter(Boolean);
          // → [
          //  {"id":7,"gmtCreate":1669274393000,"gmtModified":1669282575000,"labelName":"测试一年S","labelKey":"C11","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true},
          //  {"id":9,"gmtCreate":1669274710000,"gmtModified":1669282575000,"labelName":"cess","labelKey":"11111","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true}
