@@ -76,6 +76,11 @@ export const MenuConfig = [
         functionName: 'spliceLoopArray',
       },
       {
+        exhibitStr: '统计数组中相同值出现的次数',
+        router: '/index/util-119',
+        functionName: 'statisticsSameNum',
+      },
+      {
         exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，返回新数组',
         router: '/index/util-57',
         functionName: 'chunkArray',

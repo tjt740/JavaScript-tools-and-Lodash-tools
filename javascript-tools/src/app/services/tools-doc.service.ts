@@ -1339,7 +1339,7 @@ export class ToolsDocService {
 
     `;
   }
-  // *一次循环中删除多项值
+  //* 一次循环中删除多项值
   spliceLoopArray() {
     return `
     /*
@@ -1370,7 +1370,31 @@ export class ToolsDocService {
     `;
   }
 
-  // *[Ld]将数组拆分成多个【size】长的区块，组成新数组
+  //* 统计数组中相同值出现的次数
+  statisticsSameNum() {
+    return `
+      /*
+        统计数组中相同值出现的次数
+
+        arr: 需要统计的数组
+      */
+
+      function statisticsSameNum(arr) {
+          return arr.reduce(
+              (prev, item) => prev.set(item, (prev.get(item) || 0) + 1),
+              new Map()
+          );
+      }
+      
+      const arr = [1, 2, 3, 4, 3, 4, 5, 6, 1, 2, 3];
+      const newArr = statisticsSameNum(arr);
+      
+      console.log(newArr); // Map(6) { 1 => 2, 2 => 2, 3 => 3, 4 => 2, 5 => 1, 6 => 1 }
+        
+    `;
+  }
+
+  //* [Ld]将数组拆分成多个【size】长的区块，组成新数组
   chunkArray() {
     return `
         /*
