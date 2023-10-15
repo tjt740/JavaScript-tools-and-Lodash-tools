@@ -637,6 +637,11 @@ export const MenuConfig = [
         router: '/index/util-46',
         functionName: 'preventDefault',
       },
+      {
+        exhibitStr: '监听元素DOM属性变化',
+        router: '/index/util-103',
+        functionName: 'observerDOM',
+      },
     ],
   },
 
@@ -721,6 +726,11 @@ export const MenuConfig = [
         exhibitStr: '模拟自动双击某个DOM元素',
         router: '/index/util-117',
         functionName: 'simulatedAutoDblclick',
+      },
+      {
+        exhibitStr: '图片预加载',
+        router: '/index/util-102',
+        functionName: 'preloader',
       },
     ],
   },
