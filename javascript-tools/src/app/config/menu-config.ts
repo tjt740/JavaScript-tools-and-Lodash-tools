@@ -76,6 +76,11 @@ export const MenuConfig = [
         functionName: 'spliceLoopArray',
       },
       {
+        exhibitStr: '统计数组中相同值出现的次数',
+        router: '/index/util-119',
+        functionName: 'statisticsSameNum',
+      },
+      {
         exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，返回新数组',
         router: '/index/util-57',
         functionName: 'chunkArray',
@@ -354,6 +359,11 @@ export const MenuConfig = [
         exhibitStr: '与location相关的一些操作',
         router: '/index/util-76',
         functionName: 'aboutLocation',
+      },
+      {
+        exhibitStr: '不刷新页面更改URL上参数',
+        router: '/index/util-118',
+        functionName: 'changeUrlParams',
       },
     ],
   },
@@ -706,6 +716,16 @@ export const MenuConfig = [
         exhibitStr: '生成uuid',
         router: '/index/util-101',
         functionName: 'generateUuid',
+      },
+      {
+        exhibitStr: '模拟自动单击某个DOM元素',
+        router: '/index/util-116',
+        functionName: 'simulatedAutoclick',
+      },
+      {
+        exhibitStr: '模拟自动双击某个DOM元素',
+        router: '/index/util-117',
+        functionName: 'simulatedAutoDblclick',
       },
       {
         exhibitStr: '图片预加载',

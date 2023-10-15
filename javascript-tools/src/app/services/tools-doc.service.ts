@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { isEqual } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -794,165 +793,163 @@ export class ToolsDocService {
   // *筛选出两个数组相同值，组成数组
   filterArray() {
     return `
-      // 筛选出两个数组相同值，组成数组
+        // 筛选出两个数组相同值，组成数组
 
-      // arr: 被匹配的数组
-      // matchArr: 条件数组
+        /*
+          arr: 被匹配的数组
+          matchArr: 条件数组
+        */
 
-      // 方法1:
-        const newArr = arr.map((i) =>
-            matchArr.map((o) => {
-                return o === i.name ? i : null;
-            })
-        ).flat(Infinity).filter(Boolean);
+        // 方法1:
+        const newArr = arr.flatMap((i) =>
+          matchArr.map((o) => {
+              return o === i.name ? i : null;
+          })
+        ).filter(Boolean);
         // → [{name:'1',age:1},{name:'3',age:3}]
 
-      // 方法2:
+        // 方法2:
         const newArr = arr.filter(i=> matchArr.includes(i.name));
         // → [{name:'1',age:1},{name:'3',age:3}]
 
 
-      // 案例1:
-      const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
-
-      const matchArr = ['1','3','7','9'];
+        // 案例1:
+        const arr = [{name:'1',age:1},{name:'2',age:2},{name:'3',age:3},{name:'4',age:4}];
+        const matchArr = ['1','3','7','9'];
         
-      // 案例2:
-          const tagList = [
-            {
-                id: 6,
-                gmtCreate: 1669272678000,
-                gmtModified: 1669282575000,
-                labelName: 'ce',
-                labelKey: 'ces',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 7,
-                gmtCreate: 1669274393000,
-                gmtModified: 1669282575000,
-                labelName: '测试一年S',
-                labelKey: 'C11',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: true,
-            },
-            {
-                id: 8,
-                gmtCreate: 1669274535000,
-                gmtModified: 1669282575000,
-                labelName: 'ce',
-                labelKey: 'dss',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 9,
-                gmtCreate: 1669274710000,
-                gmtModified: 1669282575000,
-                labelName: 'cess',
-                labelKey: '11111',
-                labelType: 'category',
-                color: '#FFFFFF',
-                dataSetId: 23,
-                flag: true,
-            },
-            {
-                id: 10,
-                gmtCreate: 1669278763000,
-                gmtModified: 1669282575000,
-                labelName: '你好',
-                labelKey: 'hello',
-                labelType: 'category',
-                color: null,
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 11,
-                gmtCreate: 1669278818000,
-                gmtModified: 1669282575000,
-                labelName: 'color',
-                labelKey: 'color11',
-                labelType: 'category',
-                color: '#0062b1',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 12,
-                gmtCreate: 1669278828000,
-                gmtModified: 1669282575000,
-                labelName: '21',
-                labelKey: '22',
-                labelType: 'category',
-                color: '#fda1ff',
-                dataSetId: 23,
-                flag: false,
-            },
-            {
-                id: 13,
-                gmtCreate: 1669278835000,
-                gmtModified: 1669282575000,
-                labelName: '212221',
-                labelKey: '2222',
-                labelType: 'category',
-                color: '#fb9e00',
-                dataSetId: 23,
-                flag: false,
-            },
+        // 案例2:
+        const tagList = [
+          {
+              id: 6,
+              gmtCreate: 1669272678000,
+              gmtModified: 1669282575000,
+              labelName: 'ce',
+              labelKey: 'ces',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 7,
+              gmtCreate: 1669274393000,
+              gmtModified: 1669282575000,
+              labelName: '测试一年S',
+              labelKey: 'C11',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: true,
+          },
+          {
+              id: 8,
+              gmtCreate: 1669274535000,
+              gmtModified: 1669282575000,
+              labelName: 'ce',
+              labelKey: 'dss',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 9,
+              gmtCreate: 1669274710000,
+              gmtModified: 1669282575000,
+              labelName: 'cess',
+              labelKey: '11111',
+              labelType: 'category',
+              color: '#FFFFFF',
+              dataSetId: 23,
+              flag: true,
+          },
+          {
+              id: 10,
+              gmtCreate: 1669278763000,
+              gmtModified: 1669282575000,
+              labelName: '你好',
+              labelKey: 'hello',
+              labelType: 'category',
+              color: null,
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 11,
+              gmtCreate: 1669278818000,
+              gmtModified: 1669282575000,
+              labelName: 'color',
+              labelKey: 'color11',
+              labelType: 'category',
+              color: '#0062b1',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 12,
+              gmtCreate: 1669278828000,
+              gmtModified: 1669282575000,
+              labelName: '21',
+              labelKey: '22',
+              labelType: 'category',
+              color: '#fda1ff',
+              dataSetId: 23,
+              flag: false,
+          },
+          {
+              id: 13,
+              gmtCreate: 1669278835000,
+              gmtModified: 1669282575000,
+              labelName: '212221',
+              labelKey: '2222',
+              labelType: 'category',
+              color: '#fb9e00',
+              dataSetId: 23,
+              flag: false,
+          },
         ];
         
         const selectList = [
-            {
-                id: 54,
-                gmtCreate: 1669300937000,
-                gmtModified: 1669300937000,
-                labelKey: '11111',
-                labelType: 'category',
-                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
-                comment: null,
-                feature: null,
-                operatorId: null,
-                operatorName: null,
-                taskDetailId: 301,
-                taskRecordId: null,
-                taskId: null,
-                dataSetId: 23,
-            },
-            {
-                id: 60,
-                gmtCreate: 1669301346000,
-                gmtModified: 1669301346000,
-                labelKey: 'C11',
-                labelType: 'category',
-                sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
-                comment: null,
-                feature: null,
-                operatorId: null,
-                operatorName: null,
-                taskDetailId: 301,
-                taskRecordId: null,
-                taskId: null,
-                dataSetId: 23,
-            },
+          {
+              id: 54,
+              gmtCreate: 1669300937000,
+              gmtModified: 1669300937000,
+              labelKey: '11111',
+              labelType: 'category',
+              sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+              comment: null,
+              feature: null,
+              operatorId: null,
+              operatorName: null,
+              taskDetailId: 301,
+              taskRecordId: null,
+              taskId: null,
+              dataSetId: 23,
+          },
+          {
+              id: 60,
+              gmtCreate: 1669301346000,
+              gmtModified: 1669301346000,
+              labelKey: 'C11',
+              labelType: 'category',
+              sourceContent: '【爱客宝】您的验证码是:2566,请在5分钟内使用',
+              comment: null,
+              feature: null,
+              operatorId: null,
+              operatorName: null,
+              taskDetailId: 301,
+              taskRecordId: null,
+              taskId: null,
+              dataSetId: 23,
+          },
         ];
-        
 
         const newArr = tagList
-            .map((i) =>
+            .flatMap((i) =>
             selectList.map((o) => {
                     return o.labelKey === i.labelKey ? i : null;
                 })
-            )
-            .flat(Infinity)
-            .filter(Boolean);
+            ).filter(Boolean);
          // → [
          //  {"id":7,"gmtCreate":1669274393000,"gmtModified":1669282575000,"labelName":"测试一年S","labelKey":"C11","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true},
          //  {"id":9,"gmtCreate":1669274710000,"gmtModified":1669282575000,"labelName":"cess","labelKey":"11111","labelType":"category","color":"#FFFFFF","dataSetId":23,"flag":true}
@@ -1342,7 +1339,7 @@ export class ToolsDocService {
 
     `;
   }
-  // *一次循环中删除多项值
+  //* 一次循环中删除多项值
   spliceLoopArray() {
     return `
     /*
@@ -1373,7 +1370,31 @@ export class ToolsDocService {
     `;
   }
 
-  // *[Ld]将数组拆分成多个【size】长的区块，组成新数组
+  //* 统计数组中相同值出现的次数
+  statisticsSameNum() {
+    return `
+      /*
+        统计数组中相同值出现的次数
+
+        arr: 需要统计的数组
+      */
+
+      function statisticsSameNum(arr) {
+          return arr.reduce(
+              (prev, item) => prev.set(item, (prev.get(item) || 0) + 1),
+              new Map()
+          );
+      }
+      
+      const arr = [1, 2, 3, 4, 3, 4, 5, 6, 1, 2, 3];
+      const newArr = statisticsSameNum(arr);
+      
+      console.log(newArr); // Map(6) { 1 => 2, 2 => 2, 3 => 3, 4 => 2, 5 => 1, 6 => 1 }
+        
+    `;
+  }
+
+  //* [Ld]将数组拆分成多个【size】长的区块，组成新数组
   chunkArray() {
     return `
         /*
@@ -2364,6 +2385,21 @@ export class ToolsDocService {
     `;
   }
 
+  // *不刷新页面更改URL上参数
+  changeUrlParams() {
+    return `
+      /*
+        不刷新页面更改URL上参数    
+      */
+
+      const fixedHref = 'https://ai.cainiao-inc.test/project/task-list/text2-sql-tag?dataSetId=265&taskRecordId=112';
+
+      const fixedDetailId = '&detailId=66449';
+
+      window.history.pushState('', '', fixedHref + fixedDetailId);
+    `;
+  }
+
   // Ps:存储(localStorage/sessionStorage)操作
   // *获取localStorage
   getLocalStorage() {
@@ -2865,6 +2901,15 @@ export class ToolsDocService {
       NaN === NaN;
       // → false
 
+      _.isEqual(undefined, undefined);
+      // → true
+
+      _.isEqual([1,2,3], [1,2,3]);
+      // → true
+      
+      _.isEqual({a:1}, {a:1});
+      // → true
+      
     `;
   }
 
@@ -3403,7 +3448,7 @@ export class ToolsDocService {
 
       function fn(e) {
         console.log(e);
-        console.log(节流成功:e.target.value);
+        console.log('节流成功:',e.target.value);
       }
 
       throttleDom.addEventListener("input", throttle(fn, 2000), false);
@@ -3416,8 +3461,11 @@ export class ToolsDocService {
     return `
       // 数据类型判断
 
-      // val: 想要进行判断的参数
+      /*
+        val: 想要进行判断的参数
+      */
 
+      // 方法一:
       function getType(value) {
         if (value === null) {
             return value + "";
@@ -3437,7 +3485,27 @@ export class ToolsDocService {
       getType()       // 'undefined'
       getType(null)   // 'null'
       getType([])     // 'array'
+      getType(/\jdj/g) // 'regexp'
 
+      
+      // 方法二:
+      function getType(obj){
+        let type  = typeof obj;
+        if (type !== "object") {    // 先进行typeof判断，如果是基础数据类型，直接返回
+          return type;
+        }
+        // 对于typeof返回结果是object的，再进行如下的判断，正则返回结果
+        return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'); 
+      };
+      
+      getType([])     // "Array" typeof []是object，因此toString返回
+      getType('123')  // "string" typeof 直接返回
+      getType(window) // "Window" toString返回
+      getType(null)   // "Null"首字母大写，typeof null是object，需toString来判断
+      getType(undefined)   // "undefined" typeof 直接返回
+      getType()            // "undefined" typeof 直接返回
+      getType(function(){}) // "function" typeof能判断，因此首字母小写
+      getType(/123/g)      //"RegExp" toString返回
     `;
   }
 
@@ -3674,9 +3742,6 @@ export class ToolsDocService {
     `;
   }
 
-<<<<<<< HEAD
-  // *修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
-=======
   //* 复制功能（2）
   copy2() {
     return `
@@ -3686,7 +3751,6 @@ export class ToolsDocService {
   }
 
   //* 修改伪类样式的方法，动态控制伪元素(::before,::after)的方法
->>>>>>> daily/2023.8.25
   changAfterBefore() {
     return `
       /*
@@ -3841,6 +3905,51 @@ export class ToolsDocService {
       uuid(); // '9a08e5a9-6941-4a74-9681-6b47130f7b75'
 
     `;
+  }
+
+  //* 模拟自动单击某个DOM元素
+  simulatedAutoclick() {
+    return `
+      /*
+        模拟自动单击某个DOM元素
+      */
+
+      // 获取DOM
+      const element = document.querySelector('#elementId');
+
+      // 创建点击函数
+      const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+
+      // 触发点击函数
+      element.dispatchEvent(clickEvent);
+
+    `;
+  }
+
+  //* 模拟自动双击某个DOM元素
+  simulatedAutoDblclick() {
+    return `
+      /*
+        模拟自动双击某个DOM元素
+      */
+
+      // 获取DOM
+      const element = document.querySelector('#elementId');
+
+      // 创建点击函数
+      const clickEvent = new MouseEvent('dblclick', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+
+      // 触发点击函数
+      element.dispatchEvent(clickEvent);
+      `;
   }
 
   // *图片预加载
