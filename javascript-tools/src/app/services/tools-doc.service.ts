@@ -3415,7 +3415,7 @@ export class ToolsDocService {
 
       function fn(e) {
         console.log(e);
-        console.log(节流成功:e.target.value);
+        console.log('节流成功:',e.target.value);
       }
 
       throttleDom.addEventListener("input", throttle(fn, 2000), false);
