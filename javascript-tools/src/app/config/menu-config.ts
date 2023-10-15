@@ -627,6 +627,11 @@ export const MenuConfig = [
         router: '/index/util-46',
         functionName: 'preventDefault',
       },
+      {
+        exhibitStr: '监听元素DOM属性变化',
+        router: '/index/util-103',
+        functionName: 'observerDOM',
+      },
     ],
   },
 
@@ -701,6 +706,11 @@ export const MenuConfig = [
         exhibitStr: '生成uuid',
         router: '/index/util-101',
         functionName: 'generateUuid',
+      },
+      {
+        exhibitStr: '图片预加载',
+        router: '/index/util-102',
+        functionName: 'preloader',
       },
     ],
   },
