@@ -33,6 +33,9 @@ export class ToolsDocService {
       // value: 数字(元)
 
       const intToChinese = (value) => {
+        if (Number(value) === 0) {
+          return '零';
+        };
         const str = String(value);
         const len = str.length - 1;
         const idxs = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万', '十', '百', '千', '亿'];
@@ -64,7 +67,7 @@ export class ToolsDocService {
 
       intToChinese(1000) // '一千'
       intToChinese('9999') // '九千九百九十九'
-
+      intToChinese(0) // '零'
     `;
   }
 
