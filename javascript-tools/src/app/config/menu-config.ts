@@ -682,6 +682,11 @@ export const MenuConfig = [
         functionName: 'waitTime',
       },
       {
+        exhibitStr: 'Promise顺序执行',
+        router: '/index/util-120',
+        functionName: 'promiseOrderImplement',
+      },
+      {
         exhibitStr: '颜色转换 rgba ⇋ #000',
         router: '/index/util-89',
         functionName: 'changeColor',

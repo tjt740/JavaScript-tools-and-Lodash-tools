@@ -3619,6 +3619,55 @@ export class ToolsDocService {
     `;
   }
 
+  // *Promise顺序执行
+  promiseOrderImplement() {
+    return `
+      /*
+        Promise顺序执行方法
+      */
+
+      const pro1 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+    
+      const pro2 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+          
+      const pro3 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+      
+      const pro4 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+      
+      async function queue() {
+          const a = await pro1()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('a===>', data);
+              });
+      
+          const b = await pro2()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('b===>', data);
+              });
+      
+          const c = await pro3()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('c===>', data);
+              });
+      
+          const d = await pro4()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('d===>', data);
+              });
+      }
+      queue();
+      
+    `;
+  }
+
   // *颜色转换 rgba ⇋ #000
   changeColor() {
     return `
