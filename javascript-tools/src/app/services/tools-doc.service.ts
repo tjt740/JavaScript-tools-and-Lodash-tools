@@ -1397,6 +1397,78 @@ export class ToolsDocService {
     `;
   }
 
+  //* 根据数组中的某个值数量，重复生成该对象，返回新数组
+  repeatArr() {
+    return `
+        const data = [
+            {
+                id: "4f14bdc1-fa60-423d-9c1c-a108191630cf",
+                num: 3,
+                type: "fruit",
+                name: "banana",
+            },
+            {
+                id: "426a07c6-97ce-425b-9b8d-d37f27b8ff64",
+                num: 2,
+                type: "brand",
+                name: "huawei",
+            },
+            {
+                id: "4f14bdc1-fa60-423d-9c1c-a108191630cf",
+                num: 1,
+                type: "car",
+                name: "BWM",
+            },
+        ];
+        
+        // 根据数组中的某个值数量，重复生成该对象，返回新数组
+        const result = data.flatMap(item => new Array(item.num).fill(item));
+        console.log(result);
+        
+        /*
+            [
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '426a07c6-97ce-425b-9b8d-d37f27b8ff64',
+                    num: 2,
+                    type: 'brand',
+                    name: 'huawei'
+                },
+                {
+                    id: '426a07c6-97ce-425b-9b8d-d37f27b8ff64',
+                    num: 2,
+                    type: 'brand',
+                    name: 'huawei'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 1,
+                    type: 'car',
+                    name: 'BWM'
+                }
+            ]
+        */
+
+    `;
+  }
+
   //* [Ld]将数组拆分成多个【size】长的区块，组成新数组
   chunkArray() {
     return `
