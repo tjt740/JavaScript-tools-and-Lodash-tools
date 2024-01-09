@@ -33,6 +33,9 @@ export class ToolsDocService {
       // value: 数字(元)
 
       const intToChinese = (value) => {
+        if (Number(value) === 0) {
+          return '零';
+        };
         const str = String(value);
         const len = str.length - 1;
         const idxs = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万', '十', '百', '千', '亿'];
@@ -64,7 +67,7 @@ export class ToolsDocService {
 
       intToChinese(1000) // '一千'
       intToChinese('9999') // '九千九百九十九'
-
+      intToChinese(0) // '零'
     `;
   }
 
@@ -1394,6 +1397,78 @@ export class ToolsDocService {
     `;
   }
 
+  //* 根据数组中的某个值数量，重复生成该对象，返回新数组
+  repeatArr() {
+    return `
+        const data = [
+            {
+                id: "4f14bdc1-fa60-423d-9c1c-a108191630cf",
+                num: 3,
+                type: "fruit",
+                name: "banana",
+            },
+            {
+                id: "426a07c6-97ce-425b-9b8d-d37f27b8ff64",
+                num: 2,
+                type: "brand",
+                name: "huawei",
+            },
+            {
+                id: "4f14bdc1-fa60-423d-9c1c-a108191630cf",
+                num: 1,
+                type: "car",
+                name: "BWM",
+            },
+        ];
+        
+        // 根据数组中的某个值数量，重复生成该对象，返回新数组
+        const result = data.flatMap(item => new Array(item.num).fill(item));
+        console.log(result);
+        
+        /*
+            [
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 3,
+                    type: 'fruit',
+                    name: 'banana'
+                },
+                {
+                    id: '426a07c6-97ce-425b-9b8d-d37f27b8ff64',
+                    num: 2,
+                    type: 'brand',
+                    name: 'huawei'
+                },
+                {
+                    id: '426a07c6-97ce-425b-9b8d-d37f27b8ff64',
+                    num: 2,
+                    type: 'brand',
+                    name: 'huawei'
+                },
+                {
+                    id: '4f14bdc1-fa60-423d-9c1c-a108191630cf',
+                    num: 1,
+                    type: 'car',
+                    name: 'BWM'
+                }
+            ]
+        */
+
+    `;
+  }
+
   //* [Ld]将数组拆分成多个【size】长的区块，组成新数组
   chunkArray() {
     return `
@@ -2391,12 +2466,27 @@ export class ToolsDocService {
       /*
         不刷新页面更改URL上参数    
       */
-
+      
+      // 方法一:
       const fixedHref = 'https://ai.cainiao-inc.test/project/task-list/text2-sql-tag?dataSetId=265&taskRecordId=112';
-
       const fixedDetailId = '&detailId=66449';
-
       window.history.pushState('', '', fixedHref + fixedDetailId);
+
+      // 方法二（推荐）:
+      const changeUrlParams(key,value){
+        // 获取当前 URL
+        const url = new URL(window.location.href);
+        // 创建 URLSearchParams 对象，解析 URL 上的参数
+        const params = new URLSearchParams(url.search);
+        // 设置新的参数值
+        params.set(key,value);
+        // 将更新后的 URL 应用到浏览器历史记录中，同时不刷新页面
+        const newUrl = window.location.pathname + '?' + params.toString();
+        history.replaceState(null, '', newUrl);
+      }
+
+      changeUrlParams('runId', 'd3a6c0a1f9894de5af9c5547137625c5'); // https://pre-holovid.cainiao.com/aviation-container-preview?planId=1704781838511&containerOrderId=1&runId=d3a6c0a1f9894de5af9c5547137625c5&type=3;
+
     `;
   }
 
@@ -3613,6 +3703,55 @@ export class ToolsDocService {
 
       asyncFn()  // Promise {<pending>} >>>1s后>>>> 等待异步函数执行结束！
 
+    `;
+  }
+
+  // *Promise顺序执行
+  promiseOrderImplement() {
+    return `
+      /*
+        Promise顺序执行方法
+      */
+
+      const pro1 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+    
+      const pro2 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+          
+      const pro3 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+      
+      const pro4 = () =>
+          fetch('https://mock.apifox.com/m1/3305209-0-default/api/getsomething');
+      
+      async function queue() {
+          const a = await pro1()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('a===>', data);
+              });
+      
+          const b = await pro2()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('b===>', data);
+              });
+      
+          const c = await pro3()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('c===>', data);
+              });
+      
+          const d = await pro4()
+              .then((res) => res.json())
+              .then((data) => {
+                  console.log('d===>', data);
+              });
+      }
+      queue();
+      
     `;
   }
 

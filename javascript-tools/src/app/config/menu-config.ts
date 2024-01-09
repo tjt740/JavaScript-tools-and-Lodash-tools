@@ -81,6 +81,11 @@ export const MenuConfig = [
         functionName: 'statisticsSameNum',
       },
       {
+        exhibitStr: '根据数组中的某个值数量，重复生成该对象，返回新数组',
+        router: '/index/util-121',
+        functionName: 'repeatArr',
+      },
+      {
         exhibitStr: '[Ld]将数组拆分成多个【size】长的区块，返回新数组',
         router: '/index/util-57',
         functionName: 'chunkArray',
@@ -680,6 +685,11 @@ export const MenuConfig = [
         exhibitStr: '等待函数',
         router: '/index/util-77',
         functionName: 'waitTime',
+      },
+      {
+        exhibitStr: 'Promise顺序执行',
+        router: '/index/util-120',
+        functionName: 'promiseOrderImplement',
       },
       {
         exhibitStr: '颜色转换 rgba ⇋ #000',
