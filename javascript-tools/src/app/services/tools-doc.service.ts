@@ -2473,7 +2473,7 @@ export class ToolsDocService {
       window.history.pushState('', '', fixedHref + fixedDetailId);
 
       // 方法二（推荐）:
-      const changeUrlParams(key,value){
+      const changeUrlParams=(key,value)=>{
         // 获取当前 URL
         const url = new URL(window.location.href);
         // 创建 URLSearchParams 对象，解析 URL 上的参数
