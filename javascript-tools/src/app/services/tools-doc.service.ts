@@ -2466,12 +2466,27 @@ export class ToolsDocService {
       /*
         不刷新页面更改URL上参数    
       */
-
+      
+      // 方法一:
       const fixedHref = 'https://ai.cainiao-inc.test/project/task-list/text2-sql-tag?dataSetId=265&taskRecordId=112';
-
       const fixedDetailId = '&detailId=66449';
-
       window.history.pushState('', '', fixedHref + fixedDetailId);
+
+      // 方法二（推荐）:
+      const changeUrlParams(key,value){
+        // 获取当前 URL
+        const url = new URL(window.location.href);
+        // 创建 URLSearchParams 对象，解析 URL 上的参数
+        const params = new URLSearchParams(url.search);
+        // 设置新的参数值
+        params.set(key,value);
+        // 将更新后的 URL 应用到浏览器历史记录中，同时不刷新页面
+        const newUrl = window.location.pathname + '?' + params.toString();
+        history.replaceState(null, '', newUrl);
+      }
+
+      changeUrlParams('runId', 'd3a6c0a1f9894de5af9c5547137625c5'); // https://pre-holovid.cainiao.com/aviation-container-preview?planId=1704781838511&containerOrderId=1&runId=d3a6c0a1f9894de5af9c5547137625c5&type=3;
+
     `;
   }
 
