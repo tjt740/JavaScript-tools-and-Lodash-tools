@@ -114,10 +114,11 @@ export class IndexComponent implements OnInit {
       }
 
       // 获取当前url所匹配到的menuConfig数据
-      const matchData = _.find(this.listOfGroupOption, function (o) {
-        return o.value === formatUrl;
-      });
-      console.log(this.listOfGroupOption, matchData);
+      const matchData = _.find(
+        this.listOfGroupOption,
+        (o) => o.value === formatUrl
+      );
+
       if (matchData) {
         // @ts-ignore
         this.toolsData = this.toolsDoc[matchData['functionName']]();
