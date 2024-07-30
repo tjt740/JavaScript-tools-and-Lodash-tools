@@ -25,6 +25,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { EyeEmojiComponent } from './components/eye-emoji/eye-emoji.component';
 
 // 服务
 
@@ -42,6 +43,7 @@ registerLocaleData(zh);
     OpenAnimationComponent,
     MonacoEditorComponent,
     RenderComponent,
+    EyeEmojiComponent,
   ],
   imports: [
     BrowserModule,

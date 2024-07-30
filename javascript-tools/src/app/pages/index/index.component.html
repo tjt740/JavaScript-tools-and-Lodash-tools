@@ -39,29 +39,32 @@
   <!-- 主体 -->
   <nz-layout class="body">
     <nz-header>
-      <button
-        id="goBack"
-        nz-button
-        nzType="default"
-        nzShape="circle"
-        (click)="goBack()"
-      >
-        <i nz-icon nzType="left" nzTheme="outline"></i>
-      </button>
-      <nz-select
-        nzShowSearch
-        nzAllowClear
-        nzPlaceHolder="🔎 输入关键词进行查找"
-        [(ngModel)]="selectedValue"
-        [nzOptions]="listOfGroupOption"
-        (ngModelChange)="search($event)"
-      ></nz-select>
-      <h3>
-        <span class="menu-icon" nz-icon [nzIconfont]="'icon--happy-1'"></span>
-        请打开控制台查看效果
-        <span class="menu-icon" nz-icon [nzIconfont]="'icon-tongluoshao'">
-        </span>
-      </h3>
+      <div class="left-layout">
+        <button
+          id="goBack"
+          nz-button
+          nzType="default"
+          nzShape="circle"
+          (click)="goBack()"
+        >
+          <i nz-icon nzType="left" nzTheme="outline"></i>
+        </button>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="🔎 输入关键词进行查找"
+          [(ngModel)]="selectedValue"
+          [nzOptions]="listOfGroupOption"
+          (ngModelChange)="search($event)"
+        ></nz-select>
+        <h3>
+          <span class="menu-icon" nz-icon [nzIconfont]="'icon--happy-1'"></span>
+          &nbsp;&nbsp;请打开控制台查看效果&nbsp;&nbsp;
+          <!-- emoji表情组件 -->
+          <app-eye-emoji></app-eye-emoji>
+        </h3>
+      </div>
+      <div class="right-layout"></div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
